@@ -1,0 +1,734 @@
+* {
+  font-family: "Chakra Petch", sans-serif;
+}
+
+body {
+  background: #272247;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.content {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* sidebar */
+.sidebar {
+  background: #595196;
+  min-width: 215px;
+  max-width: 215px;
+  z-index: 1;
+  transition: all ease-in 0.3s;
+}
+hr.hr-color {
+  background: #272247;
+}
+.sidebar ul {
+  padding: 0 11px;
+}
+.sidebar li {
+  margin: 7px 0;
+}
+.sidebar li a {
+  color: white;
+  padding: 8px 5px;
+  font-size: 14px;
+  margin-left: 0;
+}
+.sidebar .header-box img {
+  width: 33px;
+  height: 33px;
+  margin-right: 15px;
+}
+.sidebar li a.text-center {
+  border: solid rgb(39, 34, 71, 0.5) 0.3px;
+  border-radius: 8px;
+  padding: 5px 0;
+}
+.sidebar li i {
+  margin-right: 7px;
+}
+.sidebar .profil img {
+  width: 55px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 7px 0;
+  display: block;
+  transition: all ease-in 0.3s;
+  object-fit: cover;
+}
+.sidebar .profil h1 {
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sidebar .profil button {
+  border: 1.5px solid #595196;
+  position: absolute;
+  margin-top: -27px;
+  margin-left: 117px;
+  width: 20px;
+  height: 20px;
+}
+.sidebar .profil button i {
+  font-size: 8px;
+  color: #272247;
+}
+/* sidebar selesai */
+
+/* sidebar button */
+.sidebar #btnside {
+  margin-top: 17px;
+  transform: translateY(-50%);
+  margin-left: 18px;
+  font-size: 19px;
+}
+
+/* sidebar menu on */
+.sidebar li.active,
+.sidebar li:hover {
+  background: rgb(39, 34, 71, 0.5);
+  border-radius: 8px;
+  border: solid #272247 1px;
+}
+.sidebar li.active a,
+.sidebar li.active a:hover {
+  color: white;
+  padding: 5px 5px;
+}
+.sidebar li.active a.text-center:hover {
+  margin-bottom: 0;
+  background: rgb(39, 34, 71, 0.5);
+  border-radius: 8px;
+  border: solid #272247 1px;
+}
+/* sidebar on selesai */
+
+/* sidebar off */
+.sidebar.hide {
+  max-width: 80px;
+  min-width: 80px;
+  min-height: 100vh;
+}
+.sidebar.hide .profil button,
+.sidebar.hide .profil h1 {
+  display: none;
+}
+.sidebar.hide .profil img {
+  width: 35px;
+  display: block;
+  margin-bottom: 15px;
+}
+.sidebar.hide li a span {
+  display: none;
+}
+.sidebar.hide span {
+  display: none;
+}
+.sidebar.hide li i {
+  margin: 0;
+  font-size: 20px;
+}
+.sidebar.hide li a {
+  text-align: center;
+}
+.sidebar.hide .header-box img {
+  margin-left: 16px;
+}
+.sidebar.hide .btn-open {
+  margin-left: -4px;
+}
+.sidebar.hide #btnside {
+  margin-top: 17px;
+  transform: translateY(-50%) rotate(180deg);
+  margin-left: -3px;
+}
+/* sidebar off selesai */
+
+/* navbar */
+.content .navbar button {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+}
+.content .navbar span {
+  margin: -2px -25px;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+}
+.content .navbar {
+  background: rgb(89, 81, 150, 0.5);
+}
+.content .navbar li a {
+  margin-top: 3px;
+}
+/* navbar selesai */
+
+/* isi konten */
+.content .contents a {
+  border: solid #978fcc;
+  border-radius: 8px;
+  padding: 5px 35px;
+  background: rgb(121, 134, 199, 0.4);
+  color: #ffffff;
+}
+.content .contents a:hover {
+  border: solid #0002ff;
+  border-radius: 8px;
+  color: #0002ff;
+}
+
+/* card */
+.contents .card {
+  background: rgba(157, 136, 206, 0.5);
+  width: 200px;
+  height: 100px;
+}
+.contents .card-body {
+  padding: 9px 3px;
+  height: 100px;
+}
+.contents .card-body .icon {
+  position: absolute;
+  margin-top: -65px;
+  font-size: 50px;
+  margin-left: 117px;
+  color: #272247;
+}
+.content .contents .card-body a {
+  border: none;
+  background: none;
+  text-decoration: none;
+  text-align: left;
+  padding: 4px 0;
+  border-radius: none;
+  color: #b4b4ff;
+}
+.content .contents .card-body a:hover {
+  color: #0002ff;
+}
+.contents .card-subtitle {
+  margin-right: 48px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+}
+.contents .card-text {
+  text-align: center;
+  margin-right: 48px;
+  color: white;
+  font-size: 14px;
+}
+/* Card selesai */
+
+/* Button AHP */
+.contents .btn-ahp {
+  position: absolute;
+  margin: -125px 0 0 500px;
+  padding: 7px 0;
+}
+.contents .ahp {
+  margin: 30px 0;
+}
+.contents .ahp a {
+  text-decoration: none;
+  font-size: 14px;
+  padding: 7px 11px;
+  color: rgb(168, 177, 224);
+  border: solid #b4b4ff;
+  background: none;
+}
+.contents .ahp i {
+  padding-right: 5px;
+}
+.contents .ahp a:hover {
+  color: #0002ff;
+  background: #b4b4ff;
+  border: solid #0002ff;
+}
+
+.contents form button {
+  background: rgb(168, 177, 224);
+}
+
+/* table box*/
+.content .contents table {
+  --bs-table-color: #fff;
+  --bs-table-bg: none;
+  --bs-table-border-color: rgb(179, 164, 214);
+  --bs-table-striped-bg: rgb(179, 164, 214) 2;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #bacbe6;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: rgba(157, 136, 206, 0.5);
+  --bs-table-hover-color: rgb(236, 234, 255);
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+  margin: 0;
+  font-size: 13px;
+}
+.content .contents table tbody a {
+  border: none;
+  border-radius: none;
+  background: none;
+  padding: 0;
+  color: #b4b4ff;
+}
+.content .contents table tbody a:hover {
+  color: #0002ff;
+  border: none;
+}
+.content .contents .tabel {
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(157, 136, 206, 0.5);
+}
+.contents table .no {
+  width: 8%;
+}
+.contents table .ind {
+  width: 20%;
+}
+.content table .g {
+  width: 49%;
+  text-align: left;
+}
+.contents table .kg {
+  width: 10%;
+}
+.contents table .aksi {
+  width: 13%;
+}
+.contents .jdl {
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+.contents .tabel .del {
+  margin: 20px;
+}
+.contents .tabel input,
+.contents .tabel textarea,
+.contents .tabel select {
+  background: rgb(193, 193, 248, 0.4);
+  margin-top: 5px;
+  color: white;
+}
+.contents .tabel .form-select option {
+  background-color: #272247;
+}
+.contents .tabel::-webkit-input-placeholder,
+.contents .tabel:-moz-input-placeholder,
+.contents .tabel:-ms-input-placeholder,
+.contents .tabel .col-6:-ms-input-placeholder,
+.contents .tabel .col-6:-moz-input-placeholder,
+.contents .tabel .col-6::-webkit-input-placeholder {
+  color: white;
+}
+.contents .tabel .del a {
+  border: solid #b4b4ff;
+  text-decoration: none;
+  color: #b4b4ff;
+  padding: 5px 7px;
+  background: none;
+}
+.contents .tabel .del a:hover {
+  border: solid rgb(170, 50, 50);
+  text-decoration: none;
+  color: rgb(170, 50, 50);
+  padding: 5px 7px;
+  background: rgb(193, 193, 248, 0.7);
+}
+.contents .table .detail {
+  text-decoration: none;
+  border: solid #b4b4ff;
+  border-radius: 8px;
+  padding: 2px 5px;
+  margin: 0;
+}
+.contents .table .detail:hover {
+  color: #0002ff;
+  border: solid #0002ff;
+  background: rgb(193, 193, 248, 0.7);
+}
+.contents .tabel .tombol {
+  margin-top: 50px;
+  height: 25px;
+  width: 50px;
+  font-size: 12px;
+  margin-right: 80px;
+}
+.contents .tabel .back:hover {
+  color: #272247;
+  border: solid rgb(184, 184, 184);
+  background: rgb(193, 193, 248, 0.7);
+}
+.contents .tabel .input-group span {
+  background-color: rgb(193, 193, 248, 0.4);
+  margin-top: 5px;
+  color: #272247;
+}
+
+/* images */
+.contents .tabel .img-preview {
+  width: 65px;
+}
+.contents .tabel .uploadFoto {
+  margin-top: -70px;
+  margin-left: 73px;
+}
+.contents .tabel .foto {
+  margin-top: -10px;
+  margin-left: 73px;
+}
+
+/* form-floating */
+.contents .input-group.input-user {
+  margin: 50px 0 0 77px;
+  padding-right: 20%;
+}
+.contents .input-group.input-pw {
+  margin: 0 0 55px 77px;
+  padding-right: 20%;
+}
+.contents .input-group .form-floating input {
+  border: none;
+  border-radius: 8px;
+  background: none;
+}
+.contents .form-floating {
+  margin-right: 50px;
+}
+.contents .form-floating > label {
+  top: 6;
+}
+.contents .tabel .input-group .grup {
+  background-color: transparent;
+  border: none;
+}
+.contents .tabel .input-group .form-floating .form-control:focus {
+  color: none;
+  background-color: none;
+  border-color: none;
+  outline: 0;
+  box-shadow: none;
+}
+.contents
+  .tabel
+  .input-group
+  .form-floating
+  > .form-control:focus
+  ~ label::after {
+  height: 0;
+  background-color: none;
+  border-radius: none;
+}
+.contents .tabel .input-group .form-floating > .form-control:focus ~ label {
+  color: #fff;
+}
+/* table box selesai */
+
+.contents .garis {
+  color: white;
+  margin: 30px 0;
+}
+
+/* title login */
+.contents .tabel .title {
+  margin-left: 95px;
+  margin-top: 23px;
+}
+.contents .tabel .title-logo {
+  position: absolute;
+  text-align: start;
+  margin-left: 235px;
+  margin-top: -50px;
+}
+.contents .tabel .img-logo {
+  width: 250px;
+  position: absolute;
+}
+
+/* button */
+.contents .tabel .btn-long {
+  padding: 5px 150px;
+}
+.clik {
+  margin-bottom: 30px;
+}
+/* isi konten selesai */
+
+/* responsive */
+@media (max-width: 992px) {
+  /* button ahp */
+  .contents .btn-ahp {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* title login */
+  .contents .tabel .title {
+    margin-left: 50px;
+  }
+  .contents .tabel .title-logo {
+    margin-left: 150px;
+    margin-top: -55px;
+  }
+
+  /* profil */
+  .contents .tabel .img-preview {
+    width: 50px;
+  }
+  .contents .tabel .uploadFoto input {
+    font-size: 10px;
+    margin-left: -73px;
+    margin-top: 80px;
+    margin-right: 35px;
+  }
+  .contents .tabel .foto {
+    font-size: 10px;
+    margin-top: -100px;
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* sidebar off*/
+  .sidebar #btnside {
+    transform: translateY(-50%) rotate(180deg);
+    margin-left: -14px;
+  }
+  .sidebar {
+    max-width: 50px;
+    min-width: 50px;
+    position: fixed;
+    min-height: 100%;
+    z-index: 1;
+  }
+  .sidebar .header-box img {
+    width: 32px;
+    height: 32px;
+  }
+  .sidebar .btn-open {
+    margin-left: -19px;
+  }
+  .sidebar .profil button,
+  .sidebar .profil h1 {
+    display: none;
+  }
+  .sidebar .profil img {
+    width: 33px;
+    display: block;
+    margin-bottom: 15px;
+  }
+  .sidebar li a span {
+    display: none;
+  }
+  .sidebar span {
+    display: none;
+  }
+  .sidebar li a {
+    text-align: center;
+  }
+  .sidebar li i {
+    margin: 0;
+    font-size: 17px;
+  }
+  /* sidebar off selesai */
+
+  /* sidebar on */
+  .sidebar.aktif #btnside {
+    margin-left: 20px;
+    transform: translateY(-50%);
+  }
+  .sidebar.aktif {
+    min-width: 215px;
+    max-width: 215px;
+    position: absolute;
+  }
+  .sidebar.aktif .profil img {
+    width: 50px;
+  }
+  .sidebar.aktif .profil h1 {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+  .sidebar.aktif .profil button {
+    display: block;
+    border: 1.5px solid #595196;
+    position: absolute;
+    margin-top: -27px;
+    margin-left: 117px;
+    width: 20px;
+    height: 20px;
+  }
+  .sidebar.aktif .header-box img {
+    width: 33px;
+    margin-right: 15px;
+    margin-left: 0;
+  }
+  .sidebar.aktif li i {
+    display: none;
+  }
+  .sidebar.aktif .btn-open {
+    margin-left: 15px;
+  }
+  .sidebar.aktif li a span {
+    display: block;
+    padding: 0;
+  }
+  .sidebar.aktif li a {
+    text-align: center;
+    margin: 0;
+  }
+  .sidebar.aktif span {
+    display: block;
+  }
+  /* sidebar on selesai */
+
+  /* content */
+  .content {
+    margin-left: 50px;
+  }
+
+  /* table */
+  .contents table .ind {
+    width: 15%;
+  }
+  .content table .g {
+    width: 37%;
+  }
+  .contents table .aksi {
+    width: 30%;
+  }
+  .contents .tabel p {
+    font-size: 9px;
+  }
+
+  /* title login */
+  .contents .tabel .title {
+    margin-left: 35px;
+    margin-top: 10px;
+  }
+  .contents .tabel .title h3 {
+    font-size: 15px;
+  }
+  .contents .tabel .title-logo {
+    margin-left: 110px;
+    margin-top: -35px;
+  }
+  .contents .tabel .img-logo {
+    width: 170px;
+  }
+  .contents .tabel .input-user {
+    margin-top: 40px;
+    margin-left: 30px;
+    padding-right: 25px;
+  }
+  .contents .tabel .input-pw {
+    margin-left: 30px;
+    padding-right: 25px;
+    margin-bottom: 40px;
+  }
+  .contents .tabel .btn-long {
+    padding: 3px 70px;
+  }
+  .contents .clik {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* title */
+  .contents h3 {
+    font-size: 17px;
+  }
+  .contents h1 {
+    font-size: 25px;
+  }
+  .contents h4 {
+    font-size: 20px;
+  }
+  .contents .jdl {
+    font-size: 15px;
+  }
+
+  /* profil */
+  /* .contents .tabel .img-preview {
+    width: 30px;
+  }
+  .contents .tabel .uploadFoto input {
+    font-size: 9px;
+    margin-left: -73px;
+    margin-top: 80px;
+    margin-right: 127px;
+  }
+  .contents .tabel .foto {
+    font-size: 7px;
+    margin-top: -85px;
+    margin-left: 40px;
+  } */
+
+  /* button ahp */
+  .contents .btn-ahp a {
+    font-size: 9px;
+  }
+
+  /* table */
+  .contents table thead {
+    font-size: 9px;
+  }
+
+  /* card */
+  .contents .card {
+    width: 110px;
+    height: 60px;
+  }
+  .contents .card-body {
+    padding: 7px 1px;
+    height: 50px;
+  }
+  .contents .card-body .icon {
+    position: absolute;
+    margin-top: -25px;
+    font-size: 25px;
+    margin-left: 65px;
+    color: #272247;
+  }
+  .content .contents .card-body a {
+    padding: 4px 0;
+    font-size: 8px;
+  }
+  .content .contents .card-subtitle {
+    font-size: 8px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+  .content .contents .card-text {
+    font-size: 8px;
+    margin-right: 10px;
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+
+  /* table */
+  .contents table tbody {
+    font-size: 10px;
+  }
+
+  /* riwayat */
+  .contents .tabel .del a {
+    font-size: 10px;
+  }
+}
+/* responsive selesai */
