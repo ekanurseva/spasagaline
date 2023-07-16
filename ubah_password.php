@@ -27,17 +27,18 @@
             <!-- konten -->
             <div class="contents px-3 py-3 text-center text-white">
                 <div class="tabel glow tab px-2 py-4 text-center" style="margin: 8% 25%;">
-                    <div class="title text-start">
-                        <h3>Login</h3>
+                    <div class="title-pw text-center">
+                        <h4>Ubah</h4>
+                        <h4>Password</h4>
                     </div>
-                    <div class="title-logo">
+                    <div class="title-logo-pw">
                         <img src="img/Login.png" class="img-logo" alt="Logo">
                     </div>
                     <div class="input-group input-user">
                         <span class="input-group-text grup"><i class="fs-3 bi bi-person-bounding-box"></i></span>
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGroup1" placeholder=" ">
-                            <label for="floatingInputGroup1">Username</label>
+                            <input type="password" class="form-control" id="floatingInputGroup1" placeholder=" ">
+                            <label for="floatingInputGroup1">Password</label>
                             <hr style="margin-top: -7px;">
                         </div>
                     </div>
@@ -45,15 +46,14 @@
                         <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
                         <div class="form-floating">
                             <input type="password" class="form-control" id="floatingInputGroup2" placeholder=" ">
-                            <label for="floatingInputGroup2">Password</label>
+                            <label for="floatingInputGroup2">Konfirmasi Password</label>
                             <hr style="margin-top: -7px;">
                         </div>
                     </div>
 
                     <div class="clik">
-                        <a href="index.php" class="btn-long fw-medium text-decoration-none">
-                            <span>LOGIN</span>
-                            <i class="ms-3 bi bi-box-arrow-in-right"></i>
+                        <a href="#" class="btn-long fw-medium text-decoration-none">
+                            <span>SUBMIT</span>
                         </a>
                     </div>
                 </div>

@@ -15,32 +15,19 @@
     <title>SPASAGALINE</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- logo -->
-    <link rel="Icon" href="../img/Logo.png">
+    <link rel="Icon" href="img/Logo.png">
 </head>
 
 <body>
     <div class="main-container d-flex">
-        <!-- sidebar -->
-        <?php
-        require_once('../sidenav/sidebar.php');
-        ?>
-        <!-- sidebar selesai -->
-
-        <div class="content">
-            <!-- navbar -->
-            <?php
-            require_once('../sidenav/navbar.php');
-            ?>
-            <!-- navbar selesai -->
-
+        <div class="content" style="margin: 0;">
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">INPUT DATA PENGGUNA</h4>
-
-                <div class="tabel text-white px-5 py-4">
+                <div class="tabel text-white px-5 mt-4 py-4">
+                    <h4 class="text-white text-center pb-3">INPUT DATA PENGGUNA</h4>
                     <div class="row pb-1">
                         <div class="col-6">
                             <label for="nama" class="col-form-label">Nama</label>
@@ -77,7 +64,7 @@
                         <div class="col-6">
                             <label for="nama" class="col-form-label">Foto Profil</label>
                             <div class="foto-profil">
-                                <img src="../img/default.png" class="img-preview">
+                                <img src="img/default.png" class="img-preview">
                             </div>
                             <div class="col-10">
                                 <div class="input-group mb-3 uploadFoto">
@@ -121,7 +108,7 @@
         crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

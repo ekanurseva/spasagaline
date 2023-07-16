@@ -433,6 +433,12 @@ hr.hr-color {
 .contents .tabel .input-group .form-floating > .form-control:focus ~ label {
   color: #fff;
 }
+
+/* glow box */
+.contents .tabel.glow {
+  border: solid 1.5px rgb(0, 2, 255, 0.5);
+}
+
 /* table box selesai */
 
 .contents .garis {
@@ -440,7 +446,7 @@ hr.hr-color {
   margin: 30px 0;
 }
 
-/* title login */
+/* title login-password regist*/
 .contents .tabel .title {
   margin-left: 95px;
   margin-top: 23px;
@@ -454,6 +460,15 @@ hr.hr-color {
 .contents .tabel .img-logo {
   width: 250px;
   position: absolute;
+}
+.contents .tabel .title-pw {
+  margin-left: -300px;
+}
+.contents .tabel .title-logo-pw {
+  position: absolute;
+  text-align: start;
+  margin-left: 250px;
+  margin-top: -71px;
 }
 
 /* button */
@@ -474,15 +489,6 @@ hr.hr-color {
     padding: 0;
   }
 
-  /* title login */
-  .contents .tabel .title {
-    margin-left: 50px;
-  }
-  .contents .tabel .title-logo {
-    margin-left: 150px;
-    margin-top: -55px;
-  }
-
   /* profil */
   .contents .tabel .img-preview {
     width: 50px;
@@ -497,6 +503,41 @@ hr.hr-color {
     font-size: 10px;
     margin-top: -100px;
     margin-left: 60px;
+  }
+
+  /* title login-password regist*/
+  .contents .tabel .title {
+    margin-left: 55px;
+  }
+  .contents .tabel .title-logo {
+    margin-left: 170px;
+  }
+  .contents .tabel .img-logo {
+    width: 195px;
+    position: absolute;
+  }
+  .contents .input-group.input-user {
+    margin: 30px 0 0 70px;
+    padding-right: 27%;
+  }
+  .contents .input-group.input-pw {
+    margin: 0 0 45px 70px;
+    padding-right: 27%;
+  }
+  .contents .tabel .title-pw {
+    margin-left: -220px;
+  }
+  .contents .tabel .title-pw h4 {
+    font-size: 19px;
+  }
+  .contents .tabel .title-logo-pw {
+    margin-left: 180px;
+    margin-top: -60px;
+  }
+
+  /* button */
+  .contents .tabel .btn-long {
+    padding: 5px 120px;
   }
 }
 
@@ -645,6 +686,16 @@ hr.hr-color {
   .contents .clik {
     margin-bottom: 15px;
   }
+  .contents .tabel .title-pw {
+    margin-left: -180px;
+  }
+  .contents .tabel .title-pw h4 {
+    font-size: 17px;
+  }
+  .contents .tabel .title-logo-pw {
+    margin-left: 110px;
+    margin-top: -53px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -729,6 +780,47 @@ hr.hr-color {
   /* riwayat */
   .contents .tabel .del a {
     font-size: 10px;
+  }
+
+  /* title login-password regist*/
+  .contents .tabel .title {
+    margin-left: 20px;
+  }
+  .contents .tabel .title-logo {
+    margin-left: 75px;
+  }
+  .contents .tabel .img-logo {
+    width: 127px;
+  }
+  .contents .input-group.input-user {
+    margin: 30px 0 0 13px;
+    padding-right: 0;
+  }
+  .contents .input-group.input-pw {
+    margin: 0 0 45px 13px;
+    padding-right: 0;
+  }
+  .contents .input-group.input-pw label,
+  .contents .input-group.input-user label,
+  .contents .input-group.input-pw input,
+  .contents .input-group.input-user input {
+    font-size: 13px;
+  }
+  .contents .tabel .title-pw {
+    margin-left: -160px;
+  }
+  .contents .tabel .title-logo-pw {
+    margin-left: 115px;
+    margin-top: -50px;
+  }
+
+  /* button */
+  .contents .tabel .btn-long {
+    padding: 2px 53px;
+  }
+  .contents .tabel .btn-long span,
+  .contents .tabel .btn-long i {
+    font-size: 13px;
   }
 }
 /* responsive selesai */
