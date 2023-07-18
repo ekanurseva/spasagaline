@@ -438,7 +438,6 @@ hr.hr-color {
 .contents .tabel.glow {
   border: solid 1.5px rgb(0, 2, 255, 0.5);
 }
-
 /* table box selesai */
 
 .contents .garis {
@@ -477,6 +476,22 @@ hr.hr-color {
 }
 .clik {
   margin-bottom: 30px;
+}
+/* button selesai */
+
+/* hasil */
+.contents .tabel .judul {
+  text-align: center;
+  font-size: 15px;
+}
+.content .tabel .box-hasil {
+  border: solid #6358b7;
+  background: #595196;
+  border-radius: 8px;
+  padding: 20px 0;
+}
+.content .tabel .solusi .list {
+  margin-top: -10px;
 }
 /* isi konten selesai */
 
