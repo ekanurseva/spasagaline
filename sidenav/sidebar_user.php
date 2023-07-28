@@ -21,23 +21,26 @@
     <!-- menu -->
     <ul class="list-unstyled pt-2 fw-medium">
         <li class="">
-            <a href="diagnosa.php" class="text-decoration-none d-block text-center"><i
-                    class="bi bi-clipboard2-pulse"></i>
+            <a href="diagnosa.php" class="text-decoration-none d-block text-center">
+                <i class="bi bi-controller"></i>
                 <span>Mulai Deteksi</span>
             </a>
         </li>
         <li class="">
-            <a href="index.php" class="text-decoration-none d-block"><i class="bi bi-house-door"></i>
+            <a href="index.php" class="text-decoration-none d-block">
+                <i class="bi bi-house-door"></i>
                 <span>Home</span>
             </a>
         </li>
         <li class="">
-            <a href="riwayat.php" class="text-decoration-none d-block"><i class="bi bi-card-list"></i>
+            <a href="riwayat.php" class="text-decoration-none d-block">
+                <i class="bi bi-card-list"></i>
                 <span>Riwayat Diagnosa</span>
             </a>
         </li>
         <li class="">
-            <a href="about.php" class="text-decoration-none d-block"><i class="bi bi-question-square"></i>
+            <a href="about.php" class="text-decoration-none d-block">
+                <i class="bi bi-question-square"></i>
                 <span>About</span>
             </a>
         </li>
@@ -46,7 +49,8 @@
 
     <ul class="list-unstyled fw-medium">
         <li>
-            <a href="#" class="text-decoration-none d-block"><i class="bi bi-box-arrow-left"></i>
+            <a href="#" class="text-decoration-none d-block">
+                <i class="bi bi-box-arrow-left"></i>
                 <span>Logout</span>
             </a>
         </li>

@@ -23,7 +23,8 @@ body {
   transition: all ease-in 0.3s;
 }
 hr.hr-color {
-  background: #272247;
+  color: #272247;
+  opacity: 1;
 }
 .sidebar ul {
   padding: 0 11px;
@@ -177,7 +178,16 @@ hr.hr-color {
   background: rgb(121, 134, 199, 0.4);
   color: #ffffff;
 }
-.content .contents a:hover {
+.contents .tombol button {
+  border: solid #978fcc;
+  border-radius: 8px;
+  padding: 4px 35px;
+  background: rgb(121, 134, 199, 0.4);
+  color: #ffffff;
+  margin-top: -6.5px;
+}
+.content .contents a:hover,
+.contents .tombol button:hover {
   border: solid #0002ff;
   border-radius: 8px;
   color: #0002ff;
@@ -280,8 +290,13 @@ hr.hr-color {
   background: none;
   padding: 0;
   color: #b4b4ff;
+  margin: 0 6px;
 }
-.content .contents table tbody a:hover {
+.contents table tbody i {
+  color: #b4b4ff;
+}
+.content .contents table tbody a:hover,
+.contents table tbody i:hover {
   color: #0002ff;
   border: none;
 }
@@ -324,14 +339,17 @@ hr.hr-color {
 .contents .tabel .form-select option {
   background-color: #272247;
 }
-.contents .tabel::-webkit-input-placeholder,
-.contents .tabel:-moz-input-placeholder,
-.contents .tabel:-ms-input-placeholder,
-.contents .tabel .col-6:-ms-input-placeholder,
-.contents .tabel .col-6:-moz-input-placeholder,
-.contents .tabel .col-6::-webkit-input-placeholder {
+
+/* placeholder */
+/* .form-control::-webkit-input-placeholder,
+.form-control:-moz-input-placeholder,
+.form-control:-ms-input-placeholder,
+.form-control::placeholder {
   color: white;
-}
+  opacity: 1;
+} */
+/* placeholder */
+
 .contents .tabel .del a {
   border: solid #b4b4ff;
   text-decoration: none;
@@ -381,7 +399,7 @@ hr.hr-color {
   width: 65px;
 }
 .contents .tabel .uploadFoto {
-  margin-top: -70px;
+  margin-top: -64px;
   margin-left: 73px;
 }
 .contents .tabel .foto {
@@ -485,7 +503,7 @@ hr.hr-color {
   font-size: 15px;
 }
 .content .tabel .box-hasil {
-  border: solid #6358b7;
+  border: solid #272247;
   background: #595196;
   border-radius: 8px;
   padding: 20px 0;
@@ -729,20 +747,20 @@ hr.hr-color {
   }
 
   /* profil */
-  /* .contents .tabel .img-preview {
+  .contents .tabel .img-preview {
     width: 30px;
   }
   .contents .tabel .uploadFoto input {
     font-size: 9px;
     margin-left: -73px;
     margin-top: 80px;
-    margin-right: 127px;
+    margin-right: 50px;
   }
   .contents .tabel .foto {
     font-size: 7px;
     margin-top: -85px;
     margin-left: 40px;
-  } */
+  }
 
   /* button ahp */
   .contents .btn-ahp a {

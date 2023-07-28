@@ -21,38 +21,44 @@
     <!-- menu -->
     <ul class="list-unstyled pt-2 fw-medium">
         <li class="">
-            <a href="../diagnosa.php" class="text-decoration-none d-block text-center"><i
-                    class="bi bi-clipboard2-pulse"></i>
+            <a href="../diagnosa.php" class="text-decoration-none d-block text-center">
+                <i class="bi bi-controller"></i>
                 <span>Mulai Deteksi</span>
             </a>
         </li>
         <li class="">
-            <a href="../admin" class="text-decoration-none d-block"><i class="bi bi-house-door"></i>
+            <a href="../admin" class="text-decoration-none d-block">
+                <i class="bi bi-house-door"></i>
                 <span>Home</span>
             </a>
         </li>
         <li class="">
-            <a href="../riwayat" class="text-decoration-none d-block"><i class="bi bi-card-list"></i>
+            <a href="../riwayat" class="text-decoration-none d-block">
+                <i class="bi bi-card-list"></i>
                 <span>Riwayat Diagnosa</span>
             </a>
         </li>
         <li class="">
-            <a href="../pengguna" class="text-decoration-none d-block"><i class="bi bi-people"></i>
+            <a href="../pengguna" class="text-decoration-none d-block">
+                <i class="bi bi-people"></i>
                 <span>Manajemen Pengguna</span>
             </a>
         </li>
         <li class="">
-            <a href="../basis" class="text-decoration-none d-block"><i class="bi bi-journals"></i>
+            <a href="../basis" class="text-decoration-none d-block">
+                <i class="bi bi-journals"></i>
                 <span>Basis Pengetahuan</span>
             </a>
         </li>
         <li class="">
-            <a href="../pertanyaan" class="text-decoration-none d-block"><i class="bi bi-files-alt"></i>
+            <a href="../pertanyaan" class="text-decoration-none d-block">
+                <i class="bi bi-files-alt"></i>
                 <span>Manajemen Pertanyaan</span>
             </a>
         </li>
         <li class="">
-            <a href="../kategori_solusi" class="text-decoration-none d-block"><i class="bi bi-files"></i>
+            <a href="../kategori_solusi" class="text-decoration-none d-block">
+                <i class="bi bi-files"></i>
                 <span>Kategori & Solusi</span>
             </a>
         </li>
@@ -61,7 +67,8 @@
 
     <ul class="list-unstyled fw-medium">
         <li>
-            <a href="#" class="text-decoration-none d-block"><i class="bi bi-box-arrow-left"></i>
+            <a href="#" class="text-decoration-none d-block">
+                <i class="bi bi-box-arrow-left"></i>
                 <span>Logout</span>
             </a>
         </li>

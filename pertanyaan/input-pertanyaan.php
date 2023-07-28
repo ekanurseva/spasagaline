@@ -1,9 +1,19 @@
+<?php
+session_start();
+
+?>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- package sweet alert (swal) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -58,9 +68,9 @@
                                 placeholder="Masukkan Pertanyaan"></textarea>
                         </div>
                         <div class="col-2 tombol">
-                            <a href="#" class="fw-medium text-decoration-none">
-                                <span>SUBMIT</span>
-                            </a>
+                            <button type="submit" name="submit">
+                                <span class="fw-medium">SUBMIT</span>
+                            </button>
                         </div>
                         <div class="col-2 tombol">
                             <a href="index.php" class="back fw-medium text-decoration-none">

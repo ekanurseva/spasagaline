@@ -1,9 +1,19 @@
+<?php
+session_start();
+
+?>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- package sweet alert (swal) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -46,7 +56,7 @@
                         <p>Kriteria Gejala Kecanduan Game Online Anda Adalah:</p>
                     </div>
                     <div class="box-hasil"
-                        style="border: solid #6358b7; background: #595196;border-radius: 8px; padding: 20px 0;">
+                        style=" border: solid #e68574; background: #ef9b8c; border-radius: 8px; padding: 20px 0;">
                         <h4 class="text-uppercase text-center">Salience : 79%</h4>
                         <div class="desk text-center">
                             <p>merupakan kriteriakriteria dimana bermain game online menjadi aktivitas penting dan
@@ -56,8 +66,11 @@
                     </div>
 
                     <div class="solusi mt-4">
-                        <p>Solusi Dari Tingkat Kecanduan Tersebut, Yaitu:</p>
-                        <p class="list">* dkasbdsakdsa</p>
+                        <ul>Solusi Dari Tingkat Kecanduan Tersebut, Yaitu:</ul>
+                        <li>Mengurangi waktu bermain game online dengan lebih memperhatikan lingkungan sekitar dan fokus
+                            terhadap hal positif yang mendukung aktivitas dalam mengalihkan keinginan untuk bermain game
+                            online</li>
+                        <li>Sebaiknya konsultasi dengan psikolog/psikiater</li>
                     </div>
 
                     <div class="submit text-center pt-4">

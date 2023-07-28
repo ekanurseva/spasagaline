@@ -1,9 +1,25 @@
+<?php
+session_start();
+require_once 'controller/controller_user.php';
+
+if (isset($_POST["login"])) {
+    if (login($_POST) == 1) {
+        $error = true;
+    }
+
+}
+?>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- package sweet alert (swal) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -33,29 +49,39 @@
                     <div class="title-logo">
                         <img src="img/Login.png" class="img-logo" alt="Logo">
                     </div>
-                    <div class="input-group input-user">
-                        <span class="input-group-text grup"><i class="fs-3 bi bi-person-bounding-box"></i></span>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGroup1" placeholder=" ">
-                            <label for="floatingInputGroup1">Username</label>
-                            <hr style="margin-top: -7px;">
-                        </div>
-                    </div>
-                    <div class="input-group input-pw">
-                        <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingInputGroup2" placeholder=" ">
-                            <label for="floatingInputGroup2">Password</label>
-                            <hr style="margin-top: -7px;">
-                        </div>
-                    </div>
 
-                    <div class="clik">
-                        <a href="index.php" class="btn-long fw-medium text-decoration-none">
-                            <span>LOGIN</span>
-                            <i class="ms-3 bi bi-box-arrow-in-right"></i>
-                        </a>
-                    </div>
+                    <form action="" method="POST">
+                        <?php if (isset($error)): ?>
+                            <div class="alert alert-danger" role="alert">
+                                Username/Password Salah
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="input-group input-user">
+                            <span class="input-group-text grup"><i class="fs-3 bi bi-person-bounding-box"></i></span>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGroup1" placeholder=" "
+                                    name="username">
+                                <label for="floatingInputGroup1">Username</label>
+                                <hr style="margin-top: -7px;">
+                            </div>
+                        </div>
+                        <div class="input-group input-pw">
+                            <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="floatingInputGroup2" placeholder=" "
+                                    name="pwd">
+                                <label for="floatingInputGroup2">Password</label>
+                                <hr style="margin-top: -7px;">
+                            </div>
+                        </div>
+
+                        <div class="clik">
+                            <a href="index.php" class="btn-long fw-medium text-decoration-none">
+                                <span>LOGIN</span>
+                                <i class="ms-3 bi bi-box-arrow-in-right"></i>
+                            </a>
+                        </div>
                 </div>
             </div>
             <!-- konten selesai -->
@@ -73,3 +99,41 @@
 </body>
 
 </html>
+
+<?php
+if (isset($_SESSION["berhasil"])) {
+    $pesan = $_SESSION["berhasil"];
+
+    echo "
+              <script>
+                Swal.fire(
+                  'Berhasil!',
+                  '$pesan',
+                  'success'
+                )
+              </script>
+          ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+
+
+} elseif (isset($_SESSION['gagal'])) {
+    $pesan = $_SESSION["gagal"];
+
+    echo "
+            <script>
+                Swal.fire(
+                    'Gagal!',
+                    '$pesan',
+                    'error'
+                )
+            </script>
+        ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+
+}
+
+?>

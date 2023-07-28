@@ -1,9 +1,19 @@
+<?php
+session_start();
+
+?>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- package sweet alert (swal) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -41,8 +51,8 @@
                 <h4 class="text-white text-center">Eka Nurseva</h4>
                 <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
 
-                <a href="#" class="text-decoration-none fw-bold">
-                    <i class="bi bi-clipboard2-pulse"></i>
+                <a href="diagnosa.php" class="text-decoration-none fw-bold">
+                    <i class="bi bi-controller"></i>
                     <span>Mulai Deteksi</span>
                 </a>
                 <div class="kritera pt-3">
