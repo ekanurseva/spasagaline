@@ -126,27 +126,3 @@ require_once 'controller/controller_user.php';
 </body>
 
 </html>
-
-
-<?php
-if (isset($_POST['submit'])) {
-    if (register_user($_POST) > 0) {
-        $_SESSION["berhasil"] = "Registrasi Admin Berhasil!";
-        echo "
-              <script>
-                document.location.href='index.php';
-              </script>
-          ";
-    } elseif (register_user($_POST) == 0) {
-        echo "
-          <script>
-              Swal.fire(
-                'Gagal!',
-                'Registrasi Admin Gagal!',
-                'error'
-            )
-          </script>
-      ";
-    }
-}
-?>
