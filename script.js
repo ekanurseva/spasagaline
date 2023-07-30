@@ -53,6 +53,15 @@ function confirmDelete(id) {
 }
 // delete data selesai
 
+// data tables
+$(document).ready(function () {
+    $('#example').DataTable();
+});
+$(document).ready(function () {
+    $('#example2').DataTable();
+});
+// data tables selesai
+
 // sidebar-menu
 $(".sidebar ul li").on('click', function () {
     $(".sidebar ul li.active").removeClass('active');

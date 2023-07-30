@@ -19,6 +19,9 @@ session_start();
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <!-- package data tables bootstrap-5 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500&display=swap" rel="stylesheet">
 
@@ -74,17 +77,10 @@ session_start();
                     </div>
                 </div>
 
-                <form class="d-flex mt-4" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-
                 <!-- table Kategori -->
-                <h5 class="jdl">Table Kategori</h5>
+                <h5 class="jdl mt-4">Table Kategori</h5>
                 <div class="tabel mb-4">
-                    <table class="table table-hover text-center">
+                    <table id="example" class="table table-hover text-center">
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
@@ -111,7 +107,7 @@ session_start();
                 <!-- table solusi -->
                 <h5 class="jdl">Table Solusi</h5>
                 <div class="tabel">
-                    <table class="table table-hover text-center">
+                    <table id="example2" class="table table-hover text-center">
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
@@ -147,6 +143,7 @@ session_start();
         crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="../script.js"></script>
 </body>
 

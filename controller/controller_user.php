@@ -212,14 +212,13 @@ function register_admin($data)
 // Fungsi Edit Data Pengguna
 function update($data)
 {
-    var_dump($data);
     global $conn;
-
     $iduser = $data['iduser'];
-    $oldpassword = $data['oldpwd'];
+    $oldpassword = $data['oldpassword'];
     $oldusername = $data['oldusername'];
     $oldemail = $data['oldemail'];
     $oldfoto = $data['oldfoto'];
+
     $nama = htmlspecialchars($data['nama']);
     $username = strtolower(stripslashes($data["username"]));
     $password = mysqli_real_escape_string($conn, $data["pwd"]);
@@ -290,11 +289,11 @@ function update($data)
     $query = "UPDATE user SET 
                 nama = '$nama',
                 username = '$username',
-                pwd = '$password',
+                password = '$password',
                 email = '$email',
                 foto = '$foto',
                 level = '$level'
-              WHERE iduser = '$iduser'
+              WHERE iduser = $iduser
             ";
     mysqli_query($conn, $query);
 

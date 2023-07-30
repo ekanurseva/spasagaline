@@ -1,6 +1,6 @@
 <?php
 // koneksi ke database mysql
-$conn = mysqli_connect("localhost:8111", "root", "", "spasagaline");
+$conn = mysqli_connect("localhost", "root", "", "spasagaline");
 
 //cek jika koneksi ke mysql gagal, maka akan tampil pesan error
 if (mysqli_connect_errno()) {

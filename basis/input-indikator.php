@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../controller/controller_basis.php';
 
 ?>
 
@@ -51,38 +52,25 @@ session_start();
                 <h4 class="text-white text-center pb-3">INPUT DATA INDIKATOR</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <div class="row pb-1">
-                        <div class="col-6">
-                            <label for="nama" class="col-form-label">Kode Kriteria</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih Kode Kriteria</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                    <form method="post" action="">
+                        <label for="kriteria" class="col-form-label">Kode Indikator</label>
+                        <input type="text" value="I1" readonly class="form-control">
+                        <label for="deskripsi" class="col-form-label">Indikator Gejala</label>
+                        <textarea style="height: 70px" type="text" class="form-control"
+                            placeholder="Masukkan Indikator Gejala"></textarea>
+                        <div class="row" style="margin-top: -10px;">
+                            <div class="col-2 tombol">
+                                <button type="submit" name="submit">
+                                    <span class="fw-medium">SUBMIT</span>
+                                </button>
+                            </div>
+                            <div class="col-2 tombol">
+                                <a href="index.php" class="back fw-medium text-decoration-none">
+                                    <span>KEMBALI</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <label for="kriteria" class="col-form-label">Kode Indikator</label>
-                            <input type="text" value="I1" readonly class="form-control">
-                        </div>
-                    </div>
-                    <div class="row pb-1">
-                        <div class="col-6">
-                            <label for="deskripsi" class="col-form-label">Indikator Gejala</label>
-                            <textarea style="height: 70px" type="text" class="form-control"
-                                placeholder="Masukkan Indikator Gejala"></textarea>
-                        </div>
-                        <div class="col-2 tombol">
-                            <button type="submit" name="submit">
-                                <span class="fw-medium">SUBMIT</span>
-                            </button>
-                        </div>
-                        <div class="col-2 tombol">
-                            <a href="index.php" class="back fw-medium text-decoration-none">
-                                <span>KEMBALI</span>
-                            </a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>
@@ -101,3 +89,26 @@ session_start();
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['submit'])) {
+    if (input_kriteria($_POST) > 0) {
+
+        $_SESSION["berhasil"] = "Data Kriteria Berhasil Ditambahkan!";
+
+        echo "
+          <script>
+            document.location.href='index.php';
+          </script>
+      ";
+    } else {
+        $_SESSION["gagal"] = "Data Kriteria Gagal Ditambahkan!";
+
+        echo "
+          <script>
+            document.location.href='index.php';
+          </script>
+      ";
+    }
+}
+?>

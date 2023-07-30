@@ -187,7 +187,8 @@ hr.hr-color {
   margin-top: -6.5px;
 }
 .content .contents a:hover,
-.contents .tombol button:hover {
+.contents .tombol button:hover, 
+.contents .clik button:hover {
   border: solid #0002ff;
   border-radius: 8px;
   color: #0002ff;
@@ -210,7 +211,7 @@ hr.hr-color {
   margin-left: 117px;
   color: #272247;
 }
-.content .contents .card-body a {
+.content .contents .card-body a{
   border: none;
   background: none;
   text-decoration: none;
@@ -219,7 +220,16 @@ hr.hr-color {
   border-radius: none;
   color: #b4b4ff;
 }
-.content .contents .card-body a:hover {
+.contents .card-body button {
+  border: none;
+  background: none;
+  text-decoration: none;
+  text-align: left;
+  padding: 0;
+  border-radius: none;
+  color: #b4b4ff;
+}
+.content .contents .card-body a:hover, .contents .card-body button:hover {
   color: #0002ff;
 }
 .contents .card-subtitle {
@@ -366,15 +376,16 @@ hr.hr-color {
 }
 .contents .table .detail {
   text-decoration: none;
-  border: solid #b4b4ff;
-  border-radius: 8px;
+  border: 1.5px solid #b4b4ff;
+  border-radius: 5px;
   padding: 2px 5px;
   margin: 0;
 }
 .contents .table .detail:hover {
   color: #0002ff;
-  border: solid #0002ff;
+  border: 1.5px solid #0002ff;
   background: rgb(193, 193, 248, 0.7);
+  border-radius: 5px;
 }
 .contents .tabel .tombol {
   margin-top: 50px;
@@ -394,9 +405,42 @@ hr.hr-color {
   color: #272247;
 }
 
+/* data tables */
+.contents .tabel #example_wrapper,
+.contents .tabel #example2_wrapper {
+  padding: 5px 13px;
+}
+.contents .tabel .dataTables_length select{
+  color: black;
+}
+.contents .tabel .dataTables_length, 
+.tabel .dataTables_filter,
+.tabel .dataTables_info {
+  color: white;
+}
+.contents .tabel .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.tabel .dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #fff !important;
+}
+.contents .tabel .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+  color: #fff !important;
+  background: #978fcc;
+  border: 1px solid black;
+}
+.tabel .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+  background: #978fcc;
+}
+.tabel table.dataTable thead th{
+  text-align: center;
+}
+
 /* images */
 .contents .tabel .img-preview {
   width: 65px;
+}
+.contents .tabel .regt{
+  margin-left: 50px;
+  margin-right: 13%;
 }
 .contents .tabel .uploadFoto {
   margin-top: -64px;
@@ -415,6 +459,10 @@ hr.hr-color {
 .contents .input-group.input-pw {
   margin: 0 0 55px 77px;
   padding-right: 20%;
+}
+.contents .input-group.input-item{
+  padding-right: 20%;
+  margin: 0 77px;
 }
 .contents .input-group .form-floating input {
   border: none;
@@ -481,11 +529,19 @@ hr.hr-color {
 .contents .tabel .title-pw {
   margin-left: -300px;
 }
+.contents .tabel .title-regt{
+  margin-left: -300px;
+  margin-top: 30px;
+}
 .contents .tabel .title-logo-pw {
   position: absolute;
   text-align: start;
   margin-left: 250px;
   margin-top: -71px;
+}
+.contents .tabel .img-logo-regt{
+  margin-top: 23px;
+  width: 250px;
 }
 
 /* button */
@@ -494,6 +550,13 @@ hr.hr-color {
 }
 .clik {
   margin-bottom: 30px;
+}
+.contents .clik button {
+  border: solid #978fcc;
+  border-radius: 8px;
+  padding: 4px 35px;
+  background: rgb(121, 134, 199, 0.4);
+  color: #ffffff;
 }
 /* button selesai */
 

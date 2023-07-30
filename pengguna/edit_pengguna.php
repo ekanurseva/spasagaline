@@ -54,7 +54,7 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                 <h4 class="text-white text-center pb-3">INPUT DATA PENGGUNA</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <form method="post" action="">
+                    <form method="post" action="" enctype="multipart/form-data">
                         <input type="hidden" name="iduser" value="<?= $data['iduser']; ?>">
                         <input type="hidden" name="oldpassword" value="<?= $data['password']; ?>">
                         <input type="hidden" name="oldusername" value="<?= $data['username']; ?>">
@@ -179,23 +179,22 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
 if (isset($_POST['submit'])) {
     if (update($_POST) > 0) {
 
-        // $_SESSION["berhasil"] = "Data Pengguna Berhasil Diubah!";
+        $_SESSION["berhasil"] = "Data Pengguna Berhasil Diubah!";
 
-        // echo "
-        //       <script>
-        //         document.location.href='index.php';
-        //       </script>
-        //   ";
+        echo "
+              <script>
+                document.location.href='index.php';
+              </script>
+          ";
+    } else {
+
+        $_SESSION["gagal"] = "Data Pengguna Gagal Diubah!";
+
+        echo "
+              <script>
+                document.location.href='index.php';
+              </script>
+          ";
     }
-    // else {
-
-    //     $_SESSION["gagal"] = "Data Pengguna Gagal Diubah!";
-
-    //     echo "
-    //           <script>
-    //             document.location.href='index.php';
-    //           </script>
-    //       ";
-    // }
 }
 ?>
