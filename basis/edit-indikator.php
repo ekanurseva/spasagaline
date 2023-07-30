@@ -1,5 +1,10 @@
 <?php
-session_start();
+    session_start();
+    require_once '../controller/controller_indikator.php';
+
+    $id_indikator = dekripsi($_GET['id']);
+
+    $indikator = query("SELECT * FROM ind_gejala WHERE idindikator = $id_indikator")[0];
 
 ?>
 
@@ -51,33 +56,34 @@ session_start();
                 <h4 class="text-white text-center pb-3">INPUT DATA KRITERIA</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <div class="row pb-1">
-                        <div class="col-6">
-                            <label for="nama" class="col-form-label">Kode Kriteria</label>
-                            <input type="text" value="K1" class="form-control" readonly>
+                    <form action="" method="post">
+                        <input type="hidden" name="idindikator" id="" value="<?= $id_indikator; ?>">
+                        <div class="row pb-1">
+                            <div class="col-6">
+                                <label for="nama" class="col-form-label">Kode Kriteria</label>
+                                <input type="text" value="<?= $indikator['kode_indikator']; ?>" class="form-control" readonly name="kode_indikator">
+                            </div>
+                            <div class="col-6">
+                                <label for="kriteria" class="col-form-label">Kriteria</label>
+                                <input type="text" class="form-control" placeholder="Masukkan Jenis Kriteria" name="kriteria">
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <label for="kriteria" class="col-form-label">Kriteria</label>
-                            <input type="text" class="form-control" placeholder="Masukkan Jenis Kriteria">
+                        <div class="row pb-1">
+                            <div class="col-6">
+                                <label for="deskripsi" class="col-form-label">Deskripsi</label>
+                                <textarea style="height: 70px" type="text" class="form-control"
+                                    placeholder="Masukkan Deskripsi Kriteria" name="indikator"><?= $indikator['indikator']; ?></textarea>
+                            </div>
+                            <div class="col-2 tombol">
+                                <button type="submit" name="submit" class="fw-medium text-decoration-none">UPDATE</button>
+                            </div>
+                            <div class="col-2 tombol">
+                                <a href="index.php" class="back fw-medium text-decoration-none">
+                                    <span>KEMBALI</span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row pb-1">
-                        <div class="col-6">
-                            <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                            <textarea style="height: 70px" type="text" class="form-control"
-                                placeholder="Masukkan Deskripsi Kriteria"></textarea>
-                        </div>
-                        <div class="col-2 tombol">
-                            <a href="#" class="fw-medium text-decoration-none">
-                                <span>UPDATE</span>
-                            </a>
-                        </div>
-                        <div class="col-2 tombol">
-                            <a href="index.php" class="back fw-medium text-decoration-none">
-                                <span>KEMBALI</span>
-                            </a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>
@@ -96,3 +102,26 @@ session_start();
 </body>
 
 </html>
+
+<?php
+    if (isset($_POST['submit'])) {
+        if (edit_indikator($_POST) > 0) {
+
+            $_SESSION["berhasil"] = "Data Indikator Berhasil Diubah!";
+
+            echo "
+            <script>
+                document.location.href='index.php';
+            </script>
+        ";
+        } else {
+            $_SESSION["gagal"] = "Data Indikator Gagal Diubah!";
+
+            echo "
+            <script>
+                document.location.href='index.php';
+            </script>
+        ";
+        }
+    }
+?>

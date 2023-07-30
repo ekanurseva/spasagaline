@@ -1,9 +1,9 @@
 <?php
-session_start();
-require_once '../controller/controller_basis.php';
+    session_start();
+    require_once '../controller/controller_kriteria.php';
 
-$dekripsi = dekripsi($_GET['id']);
-$data = query("SELECT * FROM kriteria WHERE idkriteria = $dekripsi")[0];
+    $dekripsi = dekripsi($_GET['id']);
+    $data = query("SELECT * FROM kriteria WHERE idkriteria = $dekripsi")[0];
 
 ?>
 

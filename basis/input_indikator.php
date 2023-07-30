@@ -2,12 +2,11 @@
 session_start();
 require_once '../controller/controller_indikator.php';
 
-// $idkriteria = $_POST['kode_kriteria'];
+$idkriteria = $_POST['kriteria'];
 
-// $kriteria = query("SELECT * FROM kriteria WHERE idkriteria = $idkriteria")[0];
+$indikator = "SELECT * FROM ind_gejala WHERE idkriteria = $idkriteria";
 
-$kode = generateIndicatorCode($kriteria);
-
+$kode = kode($indikator, $idkriteria);
 ?>
 
 <html lang="en">
@@ -59,16 +58,16 @@ $kode = generateIndicatorCode($kriteria);
 
                 <div class="tabel text-white px-5 py-4">
                     <form method="post" action="">
-                        <!-- <input type="hidden" name="kriteria" value="<?= $idkriteria; ?>"> -->
+                        <input type="hidden" name="kriteria" value="<?= $idkriteria; ?>">
 
                         <label for="kriteria" class="col-form-label">Kode Indikator</label>
-                        <input type="text" value="<?= $kode; ?>" name="kode[]" readonly class="form-control">
+                        <input type="text" value="<?= $kode; ?>" name="kode_indikator" readonly class="form-control">
                         <label for="deskripsi" class="col-form-label">Indikator Gejala</label>
                         <textarea style="height: 70px" type="text" class="form-control"
-                            placeholder="Masukkan Indikator Gejala"></textarea>
+                            placeholder="Masukkan Indikator Gejala" name="indikator"></textarea>
                         <div class="row" style="margin-top: -10px;">
                             <div class="col-2 tombol">
-                                <button type="submit" name="submit">
+                                <button type="submit" name="submit_indikator">
                                     <span class="fw-medium">SUBMIT</span>
                                 </button>
                             </div>
@@ -99,24 +98,24 @@ $kode = generateIndicatorCode($kriteria);
 </html>
 
 <?php
-if (isset($_POST['submit'])) {
-    if (input_kriteria($_POST) > 0) {
+if (isset($_POST['submit_indikator'])) {
+    if (input_indikator($_POST) > 0) {
 
-        $_SESSION["berhasil"] = "Data Kriteria Berhasil Ditambahkan!";
+        $_SESSION["berhasil"] = "Data Indikator Berhasil Ditambahkan!";
 
         echo "
-          <script>
-            document.location.href='index.php';
-          </script>
-      ";
+            <script>
+                document.location.href='index.php';
+            </script>
+        ";
     } else {
-        $_SESSION["gagal"] = "Data Kriteria Gagal Ditambahkan!";
+        $_SESSION["gagal"] = "Data Indikator Gagal Ditambahkan!";
 
         echo "
-          <script>
-            document.location.href='index.php';
-          </script>
-      ";
+            <script>
+                document.location.href='index.php';
+            </script>
+        ";
     }
 }
 ?>

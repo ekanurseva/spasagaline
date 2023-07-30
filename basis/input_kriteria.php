@@ -1,6 +1,6 @@
 <?php
-session_start();
-require_once '../controller/controller_basis.php';
+    session_start();
+    require_once '../controller/controller_kriteria.php';
 
 ?>
 

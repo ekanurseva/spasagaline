@@ -1,15 +1,15 @@
 <?php
-session_start();
-require_once '../controller/controller_indikator.php';
-require_once '../controller/controller_kriteria.php';
+    session_start();
+    require_once '../controller/controller_indikator.php';
+    require_once '../controller/controller_kriteria.php';
 
-$jumlah_kriteria = jumlah_data("SELECT * FROM kriteria");
-$jumlah_ind = jumlah_data("SELECT * FROM ind_gejala");
+    $jumlah_kriteria = jumlah_data("SELECT * FROM kriteria");
+    $jumlah_ind = jumlah_data("SELECT * FROM ind_gejala");
 
-$krit = query("SELECT * FROM kriteria ORDER BY idkriteria DESC");
+    $krit = query("SELECT * FROM kriteria ORDER BY idkriteria DESC");
 
-$kriteria = query("SELECT * FROM kriteria");
-$indikator = query("SELECT * FROM ind_gejala");
+    $kriteria = query("SELECT * FROM kriteria");
+    $indikator = query("SELECT * FROM ind_gejala");
 ?>
 
 <html lang="en">
@@ -103,7 +103,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                                     aria-label="Close"></button>
                             </div>
 
-                            <form action="" method="post">
+                            <form action="input_indikator.php" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="kriteria" class="form-label">Pilih kriteria untuk menambahkan
@@ -206,18 +206,22 @@ $indikator = query("SELECT * FROM ind_gejala");
                         </thead>
                         <tbody>
                             <?php
-                            $i = 1; foreach ($indikator as $g):
+                                $j = 1; 
+                                foreach ($indikator as $g):
                                 $enkripsi = enkripsi($g['idindikator']);
-                                ?>
+                            ?>
                                 <tr>
                                     <th class="no">
-                                        <?php echo $i; ?>
+                                        <?php echo $j; ?>
                                     </th>
-                                    <td class="ind">S</td>
-                                    <td class="g">suatu kondisi di mana bermain game menjadi kegiatan utama yang paling
-                                        penting bagi seseorang, sehingga menguasai pikiran (ketergantungan), perasaan
-                                        (keinginan yang kuat), dan perilaku (penggunaan yang berlebihan)</td>
-                                    <td class="kg">I1</td>
+                                    <?php 
+                                        $idkriteria = $g['idkriteria'];
+                                        $kode_kriteria = query("SELECT kode_kriteria FROM kriteria WHERE idkriteria = $idkriteria")[0]; 
+                                    ?>
+
+                                    <td class="ind"><?= $kode_kriteria['kode_kriteria']; ?></td>
+                                    <td class="g"><?= $g['indikator']; ?></td>
+                                    <td class="kg"><?= $g['kode_indikator']; ?></td>
                                     <td class="aksi">
                                         <a href="edit-indikator.php?id=<?= $enkripsi; ?>"><i
                                                 class="bi bi-pencil-fill"></i></a> | <button
@@ -227,7 +231,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                                     </td>
                                 </tr>
                                 <?php
-                                $i++;
+                                $j++;
                             endforeach;
                             ?>
                         </tbody>
