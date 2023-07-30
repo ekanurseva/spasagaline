@@ -1,6 +1,12 @@
 <?php
 session_start();
-require_once '../controller/controller_basis.php';
+require_once '../controller/controller_indikator.php';
+
+// $idkriteria = $_POST['kode_kriteria'];
+
+// $kriteria = query("SELECT * FROM kriteria WHERE idkriteria = $idkriteria")[0];
+
+$kode = generateIndicatorCode($kriteria);
 
 ?>
 
@@ -49,27 +55,18 @@ require_once '../controller/controller_basis.php';
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">INPUT DATA KRITERIA</h4>
+                <h4 class="text-white text-center pb-3">INPUT DATA INDIKATOR</h4>
 
                 <div class="tabel text-white px-5 py-4">
                     <form method="post" action="">
-                        <div class="row pb-1">
-                            <div class="col-6">
-                                <label for="kode" class="col-form-label">Kode Kriteria</label>
-                                <input type="text" value="" id="kode" name="kode_kriteria" class="form-control">
-                            </div>
-                            <div class="col-6">
-                                <label for="kriteria" class="col-form-label">Kriteria</label>
-                                <input type="text" class="form-control" id="kriteria" name="nama_kriteria" value=""
-                                    placeholder="Masukkan Jenis Kriteria">
-                            </div>
-                        </div>
-                        <div class="row pb-1">
-                            <div class="col-6">
-                                <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                                <textarea style="height: 70px" type="text" class="form-control" id="deskripsi"
-                                    name="deskripsi" placeholder="Masukkan Deskripsi Kriteria"></textarea>
-                            </div>
+                        <!-- <input type="hidden" name="kriteria" value="<?= $idkriteria; ?>"> -->
+
+                        <label for="kriteria" class="col-form-label">Kode Indikator</label>
+                        <input type="text" value="<?= $kode; ?>" name="kode[]" readonly class="form-control">
+                        <label for="deskripsi" class="col-form-label">Indikator Gejala</label>
+                        <textarea style="height: 70px" type="text" class="form-control"
+                            placeholder="Masukkan Indikator Gejala"></textarea>
+                        <div class="row" style="margin-top: -10px;">
                             <div class="col-2 tombol">
                                 <button type="submit" name="submit">
                                     <span class="fw-medium">SUBMIT</span>

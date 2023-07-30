@@ -335,6 +335,10 @@ hr.hr-color {
   color: white;
   text-align: center;
   margin: 0;
+  border: 0.5 solid white;
+  background: rgb(193, 193, 248, 0.5);
+  border-radius: 8px;
+  padding: 4px;
 }
 .contents .tabel .del {
   margin: 20px;
@@ -351,13 +355,13 @@ hr.hr-color {
 }
 
 /* placeholder */
-/* .form-control::-webkit-input-placeholder,
-.form-control:-moz-input-placeholder,
-.form-control:-ms-input-placeholder,
-.form-control::placeholder {
+.contents .form-control::-webkit-input-placeholder,
+.contents .form-control:-moz-input-placeholder,
+.contents .form-control:-ms-input-placeholder,
+.contents .form-control::placeholder {
   color: white;
   opacity: 1;
-} */
+}
 /* placeholder */
 
 .contents .tabel .del a {
@@ -432,6 +436,9 @@ hr.hr-color {
 }
 .tabel table.dataTable thead th{
   text-align: center;
+}
+.tabel .dataTables_wrapper .dataTables_filter input {
+  width: 230px;
 }
 
 /* images */

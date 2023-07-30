@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../controller/controller_basis.php';
+require_once '../controller/controller_indikator.php';
+require_once '../controller/controller_kriteria.php';
 
 $jumlah_kriteria = jumlah_data("SELECT * FROM kriteria");
 $jumlah_ind = jumlah_data("SELECT * FROM ind_gejala");
@@ -65,7 +66,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                 <div class="row px-3">
                     <div class="card me-5">
                         <div class="card-body">
-                            <a href="input-kriteria.php" class="fw-medium">
+                            <a href="input_kriteria.php" class="fw-medium">
                                 <i class="bi bi-plus-square"></i>
                                 <span>Input Kriteria</span>
                             </a>
@@ -78,8 +79,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <button href="input-indikator.php" class="fw-medium" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
+                            <button class="fw-medium" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <i class="bi bi-plus-square"></i>
                                 <span>Input Indokator</span>
                             </button>
@@ -103,7 +103,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                                     aria-label="Close"></button>
                             </div>
 
-                            <form action="create_jawaban.php" method="post">
+                            <form action="" method="post">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="kriteria" class="form-label">Pilih kriteria untuk menambahkan
@@ -113,7 +113,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                                             <select id="kriteria" class="form-select"
                                                 aria-label="Default select example" name="kriteria">
                                                 <?php foreach ($krit as $ink): ?>
-                                                    <option value="<?= $ink['idkriteria']; ?>"><?= $ink['kriteria']; ?>
+                                                    <option value="<?= $ink['idkriteria']; ?>"><?= $ink['nama_kriteria']; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -122,7 +122,7 @@ $indikator = query("SELECT * FROM ind_gejala");
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Pilih</button>
+                                    <button type="submit" name="submit" class="btn btn-primary">Pilih</button>
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Kembali</button>
                                 </div>
@@ -177,8 +177,8 @@ $indikator = query("SELECT * FROM ind_gejala");
                                     <td class="aksi">
                                         <a href="edit-kriteria.php?id=<?= $enkripsi; ?>"><i
                                                 class="bi bi-pencil-fill"></i></a> | <button
-                                            style="border: none; background: none;" id="delete"
-                                            onclick="confirmDelete(<?= $k['idkriteria']; ?>)"><i
+                                            style="border: none; background: none;" id="deleteKriteria"
+                                            onclick="deleteKriteria(<?= $k['idkriteria']; ?>)"><i
                                                 class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
@@ -221,8 +221,8 @@ $indikator = query("SELECT * FROM ind_gejala");
                                     <td class="aksi">
                                         <a href="edit-indikator.php?id=<?= $enkripsi; ?>"><i
                                                 class="bi bi-pencil-fill"></i></a> | <button
-                                            style="border: none; background: none;" id="delete"
-                                            onclick="confirmDelete(<?= $u['idindikator']; ?>)"><i
+                                            style="border: none; background: none;" id="deleteIndikator"
+                                            onclick="deleteIndikator(<?= $g['idindikator']; ?>)"><i
                                                 class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
@@ -251,8 +251,21 @@ $indikator = query("SELECT * FROM ind_gejala");
 
 </html>
 
-
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Tangkap nilai kriteria dari input form
+    $kriteria = $_POST['kriteria'];
+    if (generateIndicatorCode($_POST) > 0) {
+        echo "
+              <script>
+                document.location.href='input_indikator.php';
+              </script>
+          ";
+    }
+    // Fungsi untuk menghasilkan kode indikator berikutnya berdasarkan kriteria yang dipilih
+
+}
+
 if (isset($_SESSION["berhasil"])) {
     $pesan = $_SESSION["berhasil"];
 
