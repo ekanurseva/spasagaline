@@ -1,6 +1,39 @@
 <?php
 require_once 'controller_main.php';
 
+// Fungsi login
+function login($data)
+{
+    global $conn;
+
+    $username = $data["username"];
+    $password = $data["pwd"];
+
+    //cek username apakah ada di database atau tidak
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+
+    if (mysqli_num_rows($result) === 1) {
+        //cek password
+        $row = mysqli_fetch_assoc($result);
+        //password_verify() untuk mengecek apakah sebuah password itu sama atau tidak dengan hash nya
+        //parameternya yaitu string yang belum diacak dan string yang sudah diacak
+        if (password_verify($password, $row["pwd"])) {
+            $enkripsi = enkripsi($row['iduser']);
+
+            setcookie('SPASAGALINENS', $enkripsi, time() + 10800);
+            echo "<script>
+                    document.location.href='index.php';
+                </script>";
+            exit;
+        }
+    }
+
+    $error = true;
+
+    return $error;
+}
+// Fungsi login selesai
+
 // Fungsi Delete Akun
 function delete($id)
 {
@@ -78,38 +111,6 @@ function uploadFoto()
 }
 // Fungsi Upload Foto Selesai
 
-// Fungsi login
-function login($data)
-{
-    global $conn;
-
-    $username = $data["username"];
-    $password = $data["pwd"];
-
-    //cek username apakah ada di database atau tidak
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
-
-    if (mysqli_num_rows($result) === 1) {
-        //cek password
-        $row = mysqli_fetch_assoc($result);
-        //password_verify() untuk mengecek apakah sebuah password itu sama atau tidak dengan hash nya
-        //parameternya yaitu string yang belum diacak dan string yang sudah diacak
-        if (password_verify($password, $row["pwd"])) {
-            $enkripsi = enkripsi($row['iduser']);
-
-            setcookie('SPASAGALINE', $enkripsi, time() + 10800);
-            echo "<script>
-                    document.location.href='index.php';
-                </script>";
-            exit;
-        }
-    }
-
-    $error = true;
-
-    return $error;
-}
-// Fungsi login selesai
 
 // Fungsi Registrasi User
 function register_user($data)

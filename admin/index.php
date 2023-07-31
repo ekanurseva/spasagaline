@@ -1,5 +1,11 @@
 <?php
 session_start();
+require_once('../controller/controller_main.php');
+validasi();
+
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">
@@ -47,7 +53,9 @@ session_start();
 
             <!-- konten -->
             <div class="contents px-3 py-3 text-center">
-                <h4 class="text-white text-center">Eka Nurseva</h4>
+                <h4 class="text-white text-center">
+                    <?= $user['nama']; ?>
+                </h4>
                 <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
 
                 <a href="#" class="text-decoration-none fw-bold">

@@ -1,6 +1,10 @@
 <?php
 session_start();
+require_once '../controller/controller_pertanyaan.php';
 
+$jumlah_pertanyaan = jumlah_data("SELECT * FROM pertanyaan");
+$pertanyaan = query("SELECT * FROM pertanyaan");
+$ind = query("SELECT * FROM ind_gejala ORDER BY idindikator DESC");
 ?>
 
 <html lang="en">
@@ -55,16 +59,59 @@ session_start();
                 <div class="row px-3">
                     <div class="card me-5">
                         <div class="card-body">
-                            <a href="input-pertanyaan.php" class="fw-medium">
+                            <button class="fw-medium" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <i class="bi bi-plus-square"></i>
                                 <span>Input Pertanyaan</span>
-                            </a>
+                            </button>
                             <h6 class="card-subtitle">Jumlah</h6>
-                            <p class="card-text fw-bold">1</p>
+                            <p class="card-text fw-bold">
+                                <?= $jumlah_pertanyaan; ?>
+                            </p>
                             <i class="icon bi bi-question-lg"></i>
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal Input Pertanyaan = Pilih Indikator -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Pilih Indikator</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <form action="input_pertanyaan.php" method="post">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="indikator" class="form-label">Pilih indikator untuk menambahkan
+                                            pertanyaan</label>
+
+                                        <div class="">
+                                            <select id="indikator" class="form-select"
+                                                aria-label="Default select example" name="indikator">
+                                                <?php foreach ($ind as $g): ?>
+                                                    <option value="<?= $g['idindikator']; ?>">
+                                                        <?= $g['kode_indikator']; ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" name="submit" class="btn btn-primary">Pilih</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Kembali</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Input Pertanyaan = Pilih Indikator Selesai -->
 
                 <div class="tabel mt-4">
                     <table id="example" class="table table-hover text-center">
@@ -78,18 +125,41 @@ session_start();
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="no" scope="row">1</th>
-                                <td class="ind">I1</td>
-                                <td class="g">selama 6 bulan terakhir, apakah sejak awal
-                                    anda mencoba bermain game online, anda
-                                    terus menambah durasi bermain game online hingga sekarang?</td>
-                                <td class="kg">G1</td>
-                                <td class="aksi">
-                                    <a href="edit-pertanyaan.php"><i class="bi bi-pencil-fill"></i></a> | <a href="#"><i
-                                            class="bi bi-trash-fill"></i></a>
-                                </td>
-                            </tr>
+                            <?php
+                            $i = 1; foreach ($pertanyaan as $p):
+                                $enkripsi = enkripsi($p['idpertanyaan']);
+                                ?>
+                                <tr>
+                                    <th class="no">
+                                        <?= $i; ?>
+                                    </th>
+
+                                    <?php
+                                    $idindikator = $p['idindikator'];
+                                    $kode_indikator = query("SELECT kode_indikator FROM ind_gejala WHERE idindikator = $idindikator")[0];
+                                    ?>
+
+                                    <td class="ind">
+                                        <?= $kode_indikator['kode_indikator']; ?>
+                                    </td>
+                                    <td class="g">
+                                        <?= $p['text_pertanyaan']; ?>
+                                    </td>
+                                    <td class="kg">
+                                        <?= $p['kode_pertanyaan']; ?>
+                                    </td>
+                                    <td class="aksi">
+                                        <a href="edit_pertanyaan.php?id=<?= $enkripsi; ?>"><i
+                                                class="bi bi-pencil-fill"></i></a> | <button
+                                            style="border: none; background: none;" id="deletePertanyaan"
+                                            onclick="deletePertanyaan(<?= $p['idpertanyaan']; ?>)"><i
+                                                class="bi bi-trash-fill"></i></button>
+                                    </td>
+                                </tr>
+                                <?php
+                                $i++;
+                            endforeach;
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -110,3 +180,39 @@ session_start();
 </body>
 
 </html>
+
+<?php
+if (isset($_SESSION["berhasil"])) {
+    $pesan = $_SESSION["berhasil"];
+
+    echo "
+              <script>
+                Swal.fire(
+                  'Berhasil!',
+                  '$pesan',
+                  'success'
+                )
+              </script>
+          ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+
+} elseif (isset($_SESSION['gagal'])) {
+    $pesan = $_SESSION["gagal"];
+
+    echo "
+            <script>
+                Swal.fire(
+                    'Gagal!',
+                    '$pesan',
+                    'error'
+                )
+            </script>
+        ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+}
+
+?>

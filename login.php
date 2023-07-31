@@ -50,7 +50,7 @@ if (isset($_POST["login"])) {
                         <img src="img/Login.png" class="img-logo" alt="Logo">
                     </div>
 
-                    <form action="" method="POST">
+                    <form action="" method="post">
                         <?php if (isset($error)): ?>
                             <div class="alert alert-danger" role="alert">
                                 Username/Password Salah

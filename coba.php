@@ -53,21 +53,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        /* Ganti nilai sesuai dengan kebutuhan Anda */
+        .select-wrapper {
+            width: 200px;
+            /* Lebar pilihan */
+            /* overflow: hidden; */
+        }
+
+        .select-wrapper select {
+            width: 100%;
+        }
+
+        .select-wrapper select option {
+            white-space: normal;
+            width: 200px;
+            max-width: 200px;
+            /* overflow: hidden; */
+            /* Menghindari teks yang melebihi lebar option */
+        }
+    </style>
 </head>
 
 <body>
     <!-- Formulir untuk memilih kriteria -->
     <form method="post">
         <label for="kriteria">Pilih Kriteria:</label>
-        <select name="kriteria" id="kriteria">
-            <option value="KR1">Kriteria 1</option>
-            <option value="KR2">Kriteria 2</option>
-            <option value="KR3">Kriteria 3</option>
-            <option value="KR4">Kriteria 4</option>
-            <option value="KR5">Kriteria 5</option>
-            <option value="KR6">Kriteria 6</option>
-            <!-- Tambahkan opsi kriteria lainnya sesuai kebutuhan -->
-        </select>
+        <div class="select-wrapper">
+            <select>
+                <option value="1">Pilihan 1 yang sangat panjang sekali yang sangat panjang sekali yang sangat panjang
+                    sekali yang sangat panjang sekali yang sangat panjang sekali</option>
+                <option value="2">Pilihan 2 yang juga cukup panjang</option>
+                <option value="3">Pilihan 3 dengan teks yang lumayan banyak</option>
+                <!-- Tambahkan pilihan lainnya sesuai kebutuhan -->
+            </select>
+        </div>
         <br>
         <input type="submit" value="Generate Kode Indikator">
     </form>

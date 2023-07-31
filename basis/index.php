@@ -1,15 +1,15 @@
 <?php
-    session_start();
-    require_once '../controller/controller_indikator.php';
-    require_once '../controller/controller_kriteria.php';
+session_start();
+require_once '../controller/controller_indikator.php';
+require_once '../controller/controller_kriteria.php';
 
-    $jumlah_kriteria = jumlah_data("SELECT * FROM kriteria");
-    $jumlah_ind = jumlah_data("SELECT * FROM ind_gejala");
+$jumlah_kriteria = jumlah_data("SELECT * FROM kriteria");
+$jumlah_ind = jumlah_data("SELECT * FROM ind_gejala");
 
-    $krit = query("SELECT * FROM kriteria ORDER BY idkriteria DESC");
+$krit = query("SELECT * FROM kriteria ORDER BY idkriteria DESC");
 
-    $kriteria = query("SELECT * FROM kriteria");
-    $indikator = query("SELECT * FROM ind_gejala");
+$kriteria = query("SELECT * FROM kriteria");
+$indikator = query("SELECT * FROM ind_gejala");
 ?>
 
 <html lang="en">
@@ -113,7 +113,8 @@
                                             <select id="kriteria" class="form-select"
                                                 aria-label="Default select example" name="kriteria">
                                                 <?php foreach ($krit as $ink): ?>
-                                                    <option value="<?= $ink['idkriteria']; ?>"><?= $ink['nama_kriteria']; ?>
+                                                    <option value="<?= $ink['idkriteria']; ?>">
+                                                        <?= $ink['kode_kriteria']; ?> - <?= $ink['nama_kriteria']; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -175,7 +176,7 @@
                                         <?= $k['kode_kriteria']; ?>
                                     </td>
                                     <td class="aksi">
-                                        <a href="edit-kriteria.php?id=<?= $enkripsi; ?>"><i
+                                        <a href="edit_kriteria.php?id=<?= $enkripsi; ?>"><i
                                                 class="bi bi-pencil-fill"></i></a> | <button
                                             style="border: none; background: none;" id="deleteKriteria"
                                             onclick="deleteKriteria(<?= $k['idkriteria']; ?>)"><i
@@ -206,24 +207,29 @@
                         </thead>
                         <tbody>
                             <?php
-                                $j = 1; 
-                                foreach ($indikator as $g):
+                            $j = 1; foreach ($indikator as $g):
                                 $enkripsi = enkripsi($g['idindikator']);
-                            ?>
+                                ?>
                                 <tr>
                                     <th class="no">
                                         <?php echo $j; ?>
                                     </th>
-                                    <?php 
-                                        $idkriteria = $g['idkriteria'];
-                                        $kode_kriteria = query("SELECT kode_kriteria FROM kriteria WHERE idkriteria = $idkriteria")[0]; 
+                                    <?php
+                                    $idkriteria = $g['idkriteria'];
+                                    $kode_kriteria = query("SELECT kode_kriteria FROM kriteria WHERE idkriteria = $idkriteria")[0];
                                     ?>
 
-                                    <td class="ind"><?= $kode_kriteria['kode_kriteria']; ?></td>
-                                    <td class="g"><?= $g['indikator']; ?></td>
-                                    <td class="kg"><?= $g['kode_indikator']; ?></td>
+                                    <td class="ind">
+                                        <?= $kode_kriteria['kode_kriteria']; ?>
+                                    </td>
+                                    <td class="g">
+                                        <?= $g['indikator']; ?>
+                                    </td>
+                                    <td class="kg">
+                                        <?= $g['kode_indikator']; ?>
+                                    </td>
                                     <td class="aksi">
-                                        <a href="edit-indikator.php?id=<?= $enkripsi; ?>"><i
+                                        <a href="edit_indikator.php?id=<?= $enkripsi; ?>"><i
                                                 class="bi bi-pencil-fill"></i></a> | <button
                                             style="border: none; background: none;" id="deleteIndikator"
                                             onclick="deleteIndikator(<?= $g['idindikator']; ?>)"><i
@@ -256,20 +262,6 @@
 </html>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Tangkap nilai kriteria dari input form
-    $kriteria = $_POST['kriteria'];
-    if (generateIndicatorCode($_POST) > 0) {
-        echo "
-              <script>
-                document.location.href='input_indikator.php';
-              </script>
-          ";
-    }
-    // Fungsi untuk menghasilkan kode indikator berikutnya berdasarkan kriteria yang dipilih
-
-}
-
 if (isset($_SESSION["berhasil"])) {
     $pesan = $_SESSION["berhasil"];
 

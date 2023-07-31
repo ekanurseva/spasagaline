@@ -32,7 +32,7 @@ function jumlah_data($data)
 }
 // Fungsi jumlah data selesai
 
-
+// Fungsi generateRandomKey
 function generateRandomKey()
 {
     $keyLength = 32;
@@ -45,7 +45,9 @@ function generateRandomKey()
 
     return base64_encode($randomBytes);
 }
+// Fungsi generateRandomKey selesai
 
+// Fungsi enkripsi
 function enkripsi($kata)
 {
     $key = generateRandomKey();
@@ -54,7 +56,9 @@ function enkripsi($kata)
 
     return $hasilEnkripsi;
 }
+// Fungsi enkripsi selesai
 
+// Fungsi dekripsi
 function dekripsi($kata)
 {
     $string = base64_decode($kata);
@@ -64,4 +68,60 @@ function dekripsi($kata)
 
     return $hasil;
 }
+// Fungsi dekripsi
+
+// Fungsi validasi user
+function validasi()
+{
+    global $conn;
+    if (!isset($_COOKIE['SPASAGALINENS'])) {
+        echo "<script>
+                document.location.href='logout.php';
+              </script>";
+        exit;
+    }
+
+    $id = dekripsi($_COOKIE['SPASAGALINENS']);
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE iduser = '$id'");
+
+    if (mysqli_num_rows($result) !== 1) {
+        echo "<script>
+                document.location.href='logout.php';
+              </script>";
+        exit;
+    }
+}
+// Fungsi validasi user selesai
+
+// Fungsi validasi admin
+function validasi_admin()
+{
+    global $conn;
+    if (!isset($_COOKIE['SPASAGALINENS'])) {
+        echo "<script>
+                document.location.href='../logout.php';
+              </script>";
+        exit;
+    }
+
+    $id = dekripsi($_COOKIE['SPASAGALINENS']);
+
+    $cek = query("SELECT * FROM user WHERE iduser = $id")[0];
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE iduser = '$id'");
+
+    if (mysqli_num_rows($result) !== 1) {
+        echo "<script>
+                document.location.href='../logout.php';
+              </script>";
+        exit;
+    } elseif ($cek['role'] !== "Admin") {
+        echo "<script>
+                document.location.href='../logout.php';
+              </script>";
+        exit;
+    }
+}
+// Fungsi validasi admin selesai
 ?>

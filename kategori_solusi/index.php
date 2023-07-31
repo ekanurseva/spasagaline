@@ -1,5 +1,13 @@
 <?php
 session_start();
+require_once('../controller/controller_kategori.php');
+require_once('../controller/controller_solusi.php');
+
+$jumlah_kategori = jumlah_data("SELECT * FROM kategori");
+$kategori = query("SELECT * FROM kategori");
+
+$jumlah_solusi = jumlah_data("SELECT * FROM solusi");
+$solusi = query("SELECT * FROM solusi");
 
 ?>
 
@@ -55,23 +63,27 @@ session_start();
                 <div class="row px-3">
                     <div class="card me-5">
                         <div class="card-body">
-                            <a href="input-kategori.php" class="fw-medium">
+                            <a href="input_kategori.php" class="fw-medium">
                                 <i class="bi bi-plus-square"></i>
                                 <span>Input Kategori</span>
                             </a>
                             <h6 class="card-subtitle">Jumlah</h6>
-                            <p class="card-text fw-bold">1</p>
+                            <p class="card-text fw-bold">
+                                <?= $jumlah_kategori; ?>
+                            </p>
                             <i class="icon bi bi-file-medical-fill"></i>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <a href="input-solusi.php" class="fw-medium">
+                            <a href="input_solusi.php" class="fw-medium">
                                 <i class="bi bi-plus-square"></i>
                                 <span>Input Solusi</span>
                             </a>
                             <h6 class="card-subtitle">Jumlah</h6>
-                            <p class="card-text fw-bold">1</p>
+                            <p class="card-text fw-bold">
+                                <?= $jumlah_solusi; ?>
+                            </p>
                             <i class="icon bi bi-file-text-fill"></i>
                         </div>
                     </div>
@@ -90,15 +102,34 @@ session_start();
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Ringan</td>
-                                <td>89764564</td>
-                                <td>
-                                    <a href="edit-kategori.php"><i class="bi bi-pencil-fill"></i></a> | <a href="#"><i
-                                            class="bi bi-trash-fill"></i></a>
-                                </td>
-                            </tr>
+                            <?php
+                            $i = 1;
+                            foreach ($kategori as $k):
+                                $enkripsi = enkripsi($k['idkategori']);
+                                ?>
+                                <tr>
+                                    <th>
+                                        <?= $i; ?>
+                                    </th>
+                                    <td>
+                                        <?= $k['nama_kategori']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $k['range_atas']; ?> -
+                                        <?= $k['range_bawah']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="edit_kategori.php?id=<?= $enkripsi; ?>"><i
+                                                class="bi bi-pencil-fill"></i></a> | <button
+                                            style="border: none; background: none;" id="deleteKategori"
+                                            onclick="deleteKategori(<?= $k['idkategori']; ?>)"><i
+                                                class="bi bi-trash-fill"></i></button>
+                                    </td>
+                                </tr>
+                                <?php
+                                $i++;
+                            endforeach;
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -117,17 +148,36 @@ session_start();
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="no" scope="row">1</th>
-                                <td class="ind">Ringan</td>
-                                <td class="sol">berhenti bermain cyvghbunjkmonibyuvtcrxecrty
-                                    vtybunimqwxwq
-                                    ubyvq</td>
-                                <td class="aksi">
-                                    <a href="edit-solusi.php"><i class="bi bi-pencil-fill"></i></a> | <a href="#"><i
-                                            class="bi bi-trash-fill"></i></a>
-                                </td>
-                            </tr>
+                            <?php
+                            $j = 1; foreach ($solusi as $s):
+                                $enkripsi = enkripsi($s['idsolusi']);
+                                ?>
+                                <tr>
+                                    <th class="no">
+                                        <?= $j; ?>
+                                    </th>
+
+                                    <?php
+                                    $idkategori = $s['idkategori'];
+                                    $ktg = query("SELECT * FROM kategori WHERE idkategori = $idkategori")[0];
+                                    ?>
+                                    <td class="ind">
+                                        <?= $ktg['nama_kategori']; ?>
+                                    </td>
+                                    <td class="sol">
+                                        <?= $s['nama_solusi']; ?>
+                                    </td>
+                                    <td class="aksi">
+                                        <a href="edit_solusi.php?id=<?= $enkripsi; ?>"><i class="bi bi-pencil-fill"></i></a>
+                                        | <button style="border: none; background: none;" id="deleteSolusi"
+                                            onclick="deleteSolusi(<?= $s['idsolusi']; ?>)"><i
+                                                class="bi bi-trash-fill"></i></button>
+                                    </td>
+                                </tr>
+                                <?php
+                                $j++;
+                            endforeach;
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -148,3 +198,39 @@ session_start();
 </body>
 
 </html>
+
+<?php
+if (isset($_SESSION["berhasil"])) {
+    $pesan = $_SESSION["berhasil"];
+
+    echo "
+              <script>
+                Swal.fire(
+                  'Berhasil!',
+                  '$pesan',
+                  'success'
+                )
+              </script>
+          ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+
+} elseif (isset($_SESSION['gagal'])) {
+    $pesan = $_SESSION["gagal"];
+
+    echo "
+            <script>
+                Swal.fire(
+                    'Gagal!',
+                    '$pesan',
+                    'error'
+                )
+            </script>
+        ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+}
+
+?>

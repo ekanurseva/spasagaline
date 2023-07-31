@@ -1,6 +1,8 @@
 <?php
 session_start();
+require_once('../controller/controller_solusi.php');
 
+$kategori = query("SELECT * FROM kategori");
 ?>
 
 <html lang="en">
@@ -48,32 +50,37 @@ session_start();
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">INPUT DATA KATEGORI</h4>
+                <h4 class="text-white text-center pb-3">INPUT DATA SOLUSI</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <div class="row pb-1">
-                        <div class="col-6">
+                    <form method="post" action="">
+                        <div class="row pb-1">
                             <label for="nama" class="col-form-label">Kategori</label>
-                            <input type="text" class="form-control">
+                            <select class="form-select" name="kategori" aria-label="Default select example">
+                                <option value="" selected hidden>--Pilih Kategori--</option>
+                                <?php foreach ($kategori as $data): ?>
+                                    <option value="<?= $data['idkategori']; ?>"><?= $data['nama_kategori']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                        <div class="col-6">
-                            <label for="kriteria" class="col-form-label">Rentang Bobot</label>
-                            <input type="text" class="form-control">
-                            <p>Masukkan rentang bobot dengan -</p>
+                        <div class="row mt-2">
+                            <label for="solusi" class="col-form-label">Solusi</label>
+                            <textarea style="height: 70px" type="text" id="solusi" name="nama_solusi"
+                                class="form-control" placeholder="Masukkan Solusi"></textarea>
                         </div>
-                    </div>
-                    <div class="row pb-1">
-                        <div style="margin-top: 20px" class="col-2 tombol">
-                            <button type="submit" name="submit">
-                                <span class="fw-medium">SUBMIT</span>
-                            </button>
+                        <div class="row pb-1" style="margin-top: -20px;">
+                            <div class="col-2 tombol">
+                                <button type="submit" name="submit_solusi">
+                                    <span class="fw-medium">SUBMIT</span>
+                                </button>
+                            </div>
+                            <div class="col-2 tombol">
+                                <a href="index.php" class="back fw-medium text-decoration-none">
+                                    <span>KEMBALI</span>
+                                </a>
+                            </div>
                         </div>
-                        <div style="margin-top: 2px" class="col-2 tombol">
-                            <a href="index.php" class="back fw-medium text-decoration-none">
-                                <span>KEMBALI</span>
-                            </a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
             </div>
@@ -92,3 +99,28 @@ session_start();
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['submit_solusi'])) {
+    if (input_solusi($_POST) > 0) {
+
+        $_SESSION["berhasil"] = "Data Solusi Berhasil Ditambahkan!";
+
+        echo "
+            <script>
+                document.location.href='index.php';
+            </script>
+        "
+        ;
+    } else {
+        $_SESSION["gagal"] = "Data Solusi Gagal Ditambahkan!";
+
+        echo "
+            <script>
+                document.location.href='index.php';
+            </script>
+        "
+        ;
+    }
+}
+?>
