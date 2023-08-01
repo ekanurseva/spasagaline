@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">

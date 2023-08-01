@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once '../controller/controller_user.php';
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">
@@ -33,7 +35,19 @@ require_once '../controller/controller_user.php';
 
 <body>
     <div class="main-container d-flex">
-        <div class="content" style="margin: 0;">
+        <!-- sidebar -->
+        <?php
+        require_once('../sidenav/sidebar.php');
+        ?>
+        <!-- sidebar selesai -->
+
+        <div class="content">
+            <!-- navbar -->
+            <?php
+            require_once('../sidenav/navbar.php');
+            ?>
+            <!-- navbar selesai -->
+
             <!-- konten -->
             <div class="contents px-4 py-3">
                 <h4 class="text-white text-center pb-3">INPUT DATA ADMIN</h4>
@@ -131,14 +145,14 @@ require_once '../controller/controller_user.php';
 
 <?php
 if (isset($_POST['submit'])) {
-    if (register_user($_POST) > 0) {
+    if (register_admin($_POST) > 0) {
         $_SESSION["berhasil"] = "Registrasi Admin Berhasil!";
         echo "
               <script>
                 document.location.href='index.php';
               </script>
           ";
-    } elseif (register_user($_POST) == 0) {
+    } elseif (register_admin($_POST) == 0) {
         echo "
           <script>
               Swal.fire(

@@ -12,34 +12,36 @@
 
     <!--PROFIL-->
     <div class="profil">
-        <img src="img/default.png" class="rounded-circle" alt="profi">
-        <button class="rounded-circle"><a href="#"></a><i class="bi bi-pencil-fill"></i></button>
-        <h1>Eka Nurseva</h1>
+        <img src="../profil/<?= $user['foto']; ?>" class="rounded-circle" alt="profi">
+        <a href="../pengguna/profil.php"><button class="rounded-circle"><i class="bi bi-pencil-fill"></i></button></a>
+        <h1>
+            <?= $user['nama']; ?>
+        </h1>
     </div>
     <!--PROFIL SELESAI-->
 
     <!-- menu -->
     <ul class="list-unstyled pt-2 fw-medium">
         <li class="">
-            <a href="diagnosa.php" class="text-decoration-none d-block text-center">
+            <a href="../diagnosa" class="text-decoration-none d-block text-center">
                 <i class="bi bi-controller"></i>
                 <span>Mulai Deteksi</span>
             </a>
         </li>
         <li class="">
-            <a href="index.php" class="text-decoration-none d-block">
+            <a href="../pengguna" class="text-decoration-none d-block">
                 <i class="bi bi-house-door"></i>
                 <span>Home</span>
             </a>
         </li>
         <li class="">
-            <a href="riwayat.php" class="text-decoration-none d-block">
+            <a href="../riwayat" class="text-decoration-none d-block">
                 <i class="bi bi-card-list"></i>
                 <span>Riwayat Diagnosa</span>
             </a>
         </li>
         <li class="">
-            <a href="about.php" class="text-decoration-none d-block">
+            <a href="../about" class="text-decoration-none d-block">
                 <i class="bi bi-question-square"></i>
                 <span>About</span>
             </a>
@@ -49,7 +51,7 @@
 
     <ul class="list-unstyled fw-medium">
         <li>
-            <a href="#" class="text-decoration-none d-block">
+            <a href="../logout.php" class="text-decoration-none d-block">
                 <i class="bi bi-box-arrow-left"></i>
                 <span>Logout</span>
             </a>

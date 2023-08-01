@@ -2,6 +2,9 @@
 session_start();
 require_once '../controller/controller_pertanyaan.php';
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
 $jumlah_pertanyaan = jumlah_data("SELECT * FROM pertanyaan");
 $pertanyaan = query("SELECT * FROM pertanyaan");
 $ind = query("SELECT * FROM ind_gejala ORDER BY idindikator DESC");

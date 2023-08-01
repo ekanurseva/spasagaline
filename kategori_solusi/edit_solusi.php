@@ -2,6 +2,9 @@
 session_start();
 require_once('../controller/controller_solusi.php');
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
 $id = $_GET['id'];
 $dekripsi = dekripsi($id);
 

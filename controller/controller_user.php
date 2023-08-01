@@ -7,7 +7,7 @@ function login($data)
     global $conn;
 
     $username = $data["username"];
-    $password = $data["pwd"];
+    $password = $data["password"];
 
     //cek username apakah ada di database atau tidak
     $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
@@ -15,14 +15,15 @@ function login($data)
     if (mysqli_num_rows($result) === 1) {
         //cek password
         $row = mysqli_fetch_assoc($result);
+        // var_dump($row);
         //password_verify() untuk mengecek apakah sebuah password itu sama atau tidak dengan hash nya
         //parameternya yaitu string yang belum diacak dan string yang sudah diacak
-        if (password_verify($password, $row["pwd"])) {
+        if (password_verify($password, $row["password"])) {
             $enkripsi = enkripsi($row['iduser']);
 
             setcookie('SPASAGALINENS', $enkripsi, time() + 10800);
             echo "<script>
-                    document.location.href='index.php';
+                    document.location.href='pengguna/index.php';
                 </script>";
             exit;
         }
@@ -301,4 +302,96 @@ function update($data)
     return mysqli_affected_rows($conn);
 }
 // Fungsi Edit Data Pengguna Selesai
+
+// Fungsi Edit Profil Pengguna
+function update_profil($data)
+{
+    global $conn;
+    $iduser = $data['iduser'];
+    $oldpassword = $data['oldpassword'];
+    $oldusername = $data['oldusername'];
+    $oldemail = $data['oldemail'];
+    $oldfoto = $data['oldfoto'];
+    $oldlevel = $data['oldlevel'];
+
+    $nama = htmlspecialchars($data['nama']);
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn, $data["pwd"]);
+    $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
+    $email = htmlspecialchars($data['email']);
+    $foto = uploadFoto();
+    if ($foto == "") {
+        $foto = $oldfoto;
+    }
+
+    if (isset($data['level'])) {
+        $level = $data['level'];
+    } else {
+        $level = $oldlevel;
+    }
+
+
+    if ($username !== $oldusername) {
+        $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
+
+        if (mysqli_fetch_assoc($result)) {
+            echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Username sudah digunakan, silahkan pakai username lain',
+                        'error'
+                    )
+                  </script>";
+            exit();
+        }
+    }
+
+    if ($password !== $oldpassword) {
+        if ($password !== $password2) {
+            echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Password tidak sesuai',
+                        'error'
+                    )
+                  </script>";
+            exit();
+        }
+
+        $password = password_hash($password2, PASSWORD_DEFAULT);
+    }
+
+    if ($email !== $oldemail) {
+        $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'");
+
+        if (mysqli_fetch_assoc($result)) {
+            echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Email sudah digunakan, silahkan pakai email lain',
+                        'error'
+                    )
+                  </script>";
+            exit();
+        }
+    }
+
+    if ($foto != $oldfoto && $oldfoto != "default.png") {
+        unlink("../profil/$oldfoto");
+    }
+
+    $query = "UPDATE user SET 
+                nama = '$nama',
+                username = '$username',
+                password = '$password',
+                email = '$email',
+                foto = '$foto',
+                level = '$level'
+              WHERE iduser = $iduser
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+// Fungsi Edit Profil Pengguna Selesai
 ?>

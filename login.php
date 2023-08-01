@@ -2,7 +2,15 @@
 session_start();
 require_once 'controller/controller_user.php';
 
+if (isset($_COOKIE['SPASAGALINENS'])) {
+    echo "<script>
+            document.location.href='pengguna/index.php';
+          </script>";
+    exit;
+}
+
 if (isset($_POST["login"])) {
+    // login($_POST);
     if (login($_POST) == 1) {
         $error = true;
     }
@@ -70,18 +78,18 @@ if (isset($_POST["login"])) {
                             <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
                             <div class="form-floating">
                                 <input type="password" class="form-control" id="floatingInputGroup2" placeholder=" "
-                                    name="pwd">
+                                    name="password">
                                 <label for="floatingInputGroup2">Password</label>
                                 <hr style="margin-top: -7px;">
                             </div>
                         </div>
 
                         <div class="clik">
-                            <a href="index.php" class="btn-long fw-medium text-decoration-none">
-                                <span>LOGIN</span>
-                                <i class="ms-3 bi bi-box-arrow-in-right"></i>
-                            </a>
+                            <button type="submit" class="btn-long" name="login">
+                                <span class="fw-medium">LOGIN</span>
+                            </button>
                         </div>
+                    </form>
                 </div>
             </div>
             <!-- konten selesai -->

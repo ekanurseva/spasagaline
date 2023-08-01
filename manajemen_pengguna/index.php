@@ -1,17 +1,18 @@
 <?php
 session_start();
-require_once('../controller/controller_kategori.php');
-require_once('../controller/controller_solusi.php');
+require_once '../controller/controller_user.php';
+// validasi_admin();
+
+$jumlah_user = jumlah_data("SELECT * FROM user WHERE level = 'User'");
+$jumlah_admin = jumlah_data("SELECT * FROM user WHERE level = 'Admin'");
+
+$users = query("SELECT * FROM user");
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
-$jumlah_kategori = jumlah_data("SELECT * FROM kategori");
-$kategori = query("SELECT * FROM kategori");
-
-$jumlah_solusi = jumlah_data("SELECT * FROM solusi");
-$solusi = query("SELECT * FROM solusi");
-
+// $id = dekripsi($_COOKIE['SPASAGALINENS']);
+// $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">
@@ -62,123 +63,80 @@ $solusi = query("SELECT * FROM solusi");
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">MANAJEMEN KATEGORI & SOLUSI</h4>
+                <h4 class="text-white text-center pb-3">MANAJEMEN DATA PENGGUNA</h4>
                 <div class="row px-3">
                     <div class="card me-5">
                         <div class="card-body">
-                            <a href="input_kategori.php" class="fw-medium">
+                            <a href="input_user.php" class="fw-medium">
                                 <i class="bi bi-plus-square"></i>
-                                <span>Input Kategori</span>
+                                <span>Input Data User</span>
                             </a>
-                            <h6 class="card-subtitle">Jumlah</h6>
+                            <h6 class="card-subtitle">Jumlah User</h6>
                             <p class="card-text fw-bold">
-                                <?= $jumlah_kategori; ?>
+                                <?= $jumlah_user; ?>
                             </p>
-                            <i class="icon bi bi-file-medical-fill"></i>
+                            <i class="icon bi bi-person-fill-check"></i>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <a href="input_solusi.php" class="fw-medium">
+                            <a href="input_admin.php" class="fw-medium">
                                 <i class="bi bi-plus-square"></i>
-                                <span>Input Solusi</span>
+                                <span>Input Data Admin</span>
                             </a>
-                            <h6 class="card-subtitle">Jumlah</h6>
+                            <h6 class="card-subtitle">Jumlah Admin</h6>
                             <p class="card-text fw-bold">
-                                <?= $jumlah_solusi; ?>
+                                <?= $jumlah_admin; ?>
                             </p>
-                            <i class="icon bi bi-file-text-fill"></i>
+                            <i class="icon bi bi-person-fill-gear"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- table Kategori -->
-                <h5 class="jdl mt-4">Table Kategori</h5>
-                <div class="tabel mb-4">
+                <div class="tabel mt-4">
                     <table id="example" class="table table-hover text-center">
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
-                                <th scope="col">KATEGORI</th>
-                                <th scope="col">BOBOT</th>
+                                <th scope="col">USERNAME</th>
+                                <th scope="col">NAMA</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">LEVEL</th>
                                 <th scope="col">AKSI</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $i = 1;
-                            foreach ($kategori as $k):
-                                $enkripsi = enkripsi($k['idkategori']);
+                            foreach ($users as $u):
+                                $enkripsi = enkripsi($u['iduser']);
                                 ?>
                                 <tr>
                                     <th>
-                                        <?= $i; ?>
+                                        <?php echo $i; ?>
                                     </th>
                                     <td>
-                                        <?= $k['nama_kategori']; ?>
+                                        <?= $u['username']; ?>
                                     </td>
                                     <td>
-                                        <?= $k['range_atas']; ?> -
-                                        <?= $k['range_bawah']; ?>
+                                        <?= $u['nama']; ?>
                                     </td>
                                     <td>
-                                        <a href="edit_kategori.php?id=<?= $enkripsi; ?>"><i
+                                        <?= $u['email']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $u['level']; ?>
+                                    </td>
+                                    <td>
+                                        <a href="edit_pengguna.php?id=<?= $enkripsi; ?>"><i
                                                 class="bi bi-pencil-fill"></i></a> | <button
-                                            style="border: none; background: none;" id="deleteKategori"
-                                            onclick="deleteKategori(<?= $k['idkategori']; ?>)"><i
+                                            style="border: none; background: none;" id="delete"
+                                            onclick="confirmDelete(<?= $u['iduser']; ?>)"><i
                                                 class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                                 <?php
                                 $i++;
-                            endforeach;
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <hr class="garis">
-
-                <!-- table solusi -->
-                <h5 class="jdl">Table Solusi</h5>
-                <div class="tabel">
-                    <table id="example2" class="table table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">KATEGORI</th>
-                                <th scope="col">SOLUSI</th>
-                                <th scope="col">AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $j = 1; foreach ($solusi as $s):
-                                $enkripsi = enkripsi($s['idsolusi']);
-                                ?>
-                                <tr>
-                                    <th class="no">
-                                        <?= $j; ?>
-                                    </th>
-
-                                    <?php
-                                    $idkategori = $s['idkategori'];
-                                    $ktg = query("SELECT * FROM kategori WHERE idkategori = $idkategori")[0];
-                                    ?>
-                                    <td class="ind">
-                                        <?= $ktg['nama_kategori']; ?>
-                                    </td>
-                                    <td class="sol">
-                                        <?= $s['nama_solusi']; ?>
-                                    </td>
-                                    <td class="aksi">
-                                        <a href="edit_solusi.php?id=<?= $enkripsi; ?>"><i class="bi bi-pencil-fill"></i></a>
-                                        | <button style="border: none; background: none;" id="deleteSolusi"
-                                            onclick="deleteSolusi(<?= $s['idsolusi']; ?>)"><i
-                                                class="bi bi-trash-fill"></i></button>
-                                    </td>
-                                </tr>
-                                <?php
-                                $j++;
                             endforeach;
                             ?>
                         </tbody>

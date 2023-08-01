@@ -8,6 +8,8 @@ $indikator = query("SELECT * FROM ind_gejala WHERE idindikator = $idindikator")[
 
 $kode_pertanyaan = kode_pertanyaan($idindikator);
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">

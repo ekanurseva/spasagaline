@@ -1,7 +1,9 @@
 <?php
-    session_start();
-    require_once '../controller/controller_kriteria.php';
+session_start();
+require_once '../controller/controller_kriteria.php';
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">

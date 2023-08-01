@@ -53,6 +53,7 @@ hr.hr-color {
 }
 .sidebar .profil img {
   width: 55px;
+  height: 55px;
   margin-left: auto;
   margin-right: auto;
   padding: 7px 0;
@@ -121,6 +122,8 @@ hr.hr-color {
 }
 .sidebar.hide .profil img {
   width: 35px;
+  height: 35px;
+  object-fit: cover;
   display: block;
   margin-bottom: 15px;
 }
@@ -493,6 +496,9 @@ hr.hr-color {
   outline: 0;
   box-shadow: none;
 }
+.contents .tabel .input-group .form-floating>.form-control:not(:placeholder-shown)~label::after{
+  background-color: rgba(157, 136, 206, 0.6);
+}
 .contents
   .tabel
   .input-group
@@ -670,6 +676,8 @@ hr.hr-color {
   }
   .sidebar .profil img {
     width: 33px;
+    height: 33px;
+    object-fit: cover;
     display: block;
     margin-bottom: 15px;
   }
@@ -700,6 +708,8 @@ hr.hr-color {
   }
   .sidebar.aktif .profil img {
     width: 50px;
+    height: 50px;
+    object-fit: cover;
   }
   .sidebar.aktif .profil h1 {
     display: block;

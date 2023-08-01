@@ -1,11 +1,6 @@
 <?php
 session_start();
-require_once('../controller/controller_main.php');
-validasi();
 
-$id = dekripsi($_COOKIE['SPASAGALINENS']);
-
-$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 ?>
 
 <html lang="en">
@@ -14,11 +9,6 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- package sweet alert (swal) -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -40,7 +30,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        require_once('../sidenav/sidebar.php');
+        require_once('../sidenav/sidebar_user.php');
         ?>
         <!-- sidebar selesai -->
 
@@ -53,17 +43,26 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
             <!-- konten -->
             <div class="contents px-3 py-3 text-center">
-                <h4 class="text-white text-center">
-                    <?= $user['nama']; ?>
-                </h4>
-                <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
+                <h4 class="text-white text-center">TENTANG APLIKASI</h4>
 
-                <a href="#" class="text-decoration-none fw-bold">
-                    <i class="bi bi-controller"></i>
-                    <span>Mulai Deteksi</span>
-                </a>
-                <div class="kritera pt-3">
-                    <img style="width: 93%" src="../img/Home.png" alt="kriteria kecanduan game online">
+                <div class="tabel text-center text-white px-5 py-4">
+                    <img style="width: 55px;" src="../img/Logo.png" alt="Logo SPASAGALINE">
+                    <h3 class="py-2">SPASAGALINE</h3>
+                    <p class="py-2">merupakan Sistem Pakar Diagnosa Gejala Kecanduan Game Online yang dirancang dan
+                        dibuat dengan
+                        tujuan memudahkan pengguna dalam melakukan diagnosa gejala kecanduan game online dengan cepat
+                        dan akurat berdasarkan pakar, dan menampilkan solusi penanganan awal gejala dengan tepat.</p>
+                    <div class="row pt-2">
+                        <div class="col-6">
+                            <h6>Terdapat 7 Kriteria Gejala Kecanduan Game Online</h6>
+                            <img style="width: 70%; margin-top: -10px;" src="../img/kriteria-strmwcp.png" alt="">
+                        </div>
+                        <div class="col-6">
+                            <h6>Dengan 3 Kategori Kecanduan Game Online</h6>
+                            <img style="width: 25%; margin-top: -7px;" src="../img/kategori.png" alt="">
+                        </div>
+                    </div>
+                    <p class="fst-italic">Sumber Pakar: M. Azka Maulana. S.Psi., M.Psi, Psikolog</p>
                 </div>
 
             </div>

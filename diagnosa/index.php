@@ -1,5 +1,9 @@
 <?php
 session_start();
+validasi();
+
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
 ?>
 
@@ -25,24 +29,24 @@ session_start();
     <title>SPASAGALINE</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 
     <!-- logo -->
-    <link rel="Icon" href="../img/Logo.png">
+    <link rel="Icon" href="img/Logo.png">
 </head>
 
 <body>
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        require_once('../sidenav/sidebar.php');
+        require_once('sidebar.php');
         ?>
         <!-- sidebar selesai -->
 
         <div class="content">
             <!-- navbar -->
             <?php
-            require_once('../sidenav/navbar.php');
+            require_once('sidenav/navbar.php');
             ?>
             <!-- navbar selesai -->
 
@@ -62,7 +66,7 @@ session_start();
                     </div>
                     <div class="row">
                         <div class="col-auto" style="margin-right: 10px;">
-                            <label for="nama" placeholder="Masukkan Usia Anda" class="col-form-label">Usia</label>
+                            <label for="usia" placeholder="Masukkan Usia Anda" class="col-form-label">Usia</label>
                         </div>
                         <div class="col-6">
                             <input style="height: 30px;" type="text" id="nama" class="form-control">
@@ -74,14 +78,14 @@ session_start();
                         <div class="col-6">
                             <p>1. pertanyaan 1 ............................?</p>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                <input class="form-check-input" type="radio" name="flexRadioDefault1"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Ya
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                <input class="form-check-input" type="radio" name="flexRadioDefault1"
                                     id="flexRadioDefault2" checked>
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Tidak
@@ -125,7 +129,7 @@ session_start();
         crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

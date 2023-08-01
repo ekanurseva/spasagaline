@@ -1,11 +1,12 @@
 <?php
 session_start();
-require_once '../controller/controller_user.php';
+require_once('../controller/controller_main.php');
+validasi();
 
-$jumlah_user = jumlah_data("SELECT * FROM user WHERE level = 'User'");
-$jumlah_admin = jumlah_data("SELECT * FROM user WHERE level = 'Admin'");
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
+// var_dump($user);
 
-$user = query("SELECT * FROM user");
 ?>
 
 <html lang="en">
@@ -24,9 +25,6 @@ $user = query("SELECT * FROM user");
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <!-- package data tables bootstrap-5 -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500&display=swap" rel="stylesheet">
 
@@ -43,7 +41,15 @@ $user = query("SELECT * FROM user");
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        require_once('../sidenav/sidebar.php');
+        // Cek peran pengguna dan masukkan file sidebar yang sesuai
+        if ($user['level'] === "User") {
+            require_once('../sidnav/sidebar_user.php');
+        } elseif ($user['level'] === "Admin") {
+            require_once('../sidenav/sidebar.php');
+        } else {
+            // Jika peran tidak dikenali, Anda dapat menambahkan pesan error atau tindakan lain sesuai kebutuhan
+            echo "Error: Peran pengguna tidak valid.";
+        }
         ?>
         <!-- sidebar selesai -->
 
@@ -55,86 +61,20 @@ $user = query("SELECT * FROM user");
             <!-- navbar selesai -->
 
             <!-- konten -->
-            <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">MANAJEMEN DATA PENGGUNA</h4>
-                <div class="row px-3">
-                    <div class="card me-5">
-                        <div class="card-body">
-                            <a href="input_user.php" class="fw-medium">
-                                <i class="bi bi-plus-square"></i>
-                                <span>Input Data User</span>
-                            </a>
-                            <h6 class="card-subtitle">Jumlah User</h6>
-                            <p class="card-text fw-bold">
-                                <?= $jumlah_user; ?>
-                            </p>
-                            <i class="icon bi bi-person-fill-check"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="input_admin.php" class="fw-medium">
-                                <i class="bi bi-plus-square"></i>
-                                <span>Input Data Admin</span>
-                            </a>
-                            <h6 class="card-subtitle">Jumlah Admin</h6>
-                            <p class="card-text fw-bold">
-                                <?= $jumlah_admin; ?>
-                            </p>
-                            <i class="icon bi bi-person-fill-gear"></i>
-                        </div>
-                    </div>
+            <div class="contents px-3 py-3 text-center">
+                <h4 class="text-white text-center">
+                    <?= $user['nama']; ?>
+                </h4>
+                <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
+
+                <a href="diagnosa.php" class="text-decoration-none fw-bold">
+                    <i class="bi bi-controller"></i>
+                    <span>Mulai Deteksi</span>
+                </a>
+                <div class="kritera pt-3">
+                    <img style="width: 93%" src="../img/Home.png" alt="kriteria kecanduan game online">
                 </div>
 
-                <div class="tabel mt-4">
-                    <table id="example" class="table table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">USERNAME</th>
-                                <th scope="col">NAMA</th>
-                                <th scope="col">EMAIL</th>
-                                <th scope="col">LEVEL</th>
-                                <th scope="col">AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $i = 1;
-                            foreach ($user as $u):
-                                $enkripsi = enkripsi($u['iduser']);
-                                ?>
-                                <tr>
-                                    <th>
-                                        <?php echo $i; ?>
-                                    </th>
-                                    <td>
-                                        <?= $u['username']; ?>
-                                    </td>
-                                    <td>
-                                        <?= $u['nama']; ?>
-                                    </td>
-                                    <td>
-                                        <?= $u['email']; ?>
-                                    </td>
-                                    <td>
-                                        <?= $u['level']; ?>
-                                    </td>
-                                    <td>
-                                        <a href="edit_pengguna.php?id=<?= $enkripsi; ?>"><i
-                                                class="bi bi-pencil-fill"></i></a> | <button
-                                            style="border: none; background: none;" id="delete"
-                                            onclick="confirmDelete(<?= $u['iduser']; ?>)"><i
-                                                class="bi bi-trash-fill"></i></button>
-                                    </td>
-                                </tr>
-                                <?php
-                                $i++;
-                            endforeach;
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
             </div>
             <!-- konten selesai -->
         </div>
@@ -147,44 +87,7 @@ $user = query("SELECT * FROM user");
         crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="../script.js"></script>
 </body>
 
 </html>
-
-<?php
-if (isset($_SESSION["berhasil"])) {
-    $pesan = $_SESSION["berhasil"];
-
-    echo "
-              <script>
-                Swal.fire(
-                  'Berhasil!',
-                  '$pesan',
-                  'success'
-                )
-              </script>
-          ";
-    $_SESSION = [];
-    session_unset();
-    session_destroy();
-
-} elseif (isset($_SESSION['gagal'])) {
-    $pesan = $_SESSION["gagal"];
-
-    echo "
-            <script>
-                Swal.fire(
-                    'Gagal!',
-                    '$pesan',
-                    'error'
-                )
-            </script>
-        ";
-    $_SESSION = [];
-    session_unset();
-    session_destroy();
-}
-
-?>

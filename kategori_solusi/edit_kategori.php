@@ -2,6 +2,9 @@
 session_start();
 require_once('../controller/controller_kategori.php');
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
 $dekripsi = dekripsi($_GET['id']);
 $kategori = query("SELECT * FROM kategori WHERE idkategori = $dekripsi")[0];
 ?>

@@ -5,9 +5,9 @@ $_SESSION = [];
 session_unset();
 session_destroy();
 
-// //menghapus cookie
-// // setcookie('key cookie', ''(dikosongkan), 'waktu yang sudah lalu')
-// setcookie('VRK21ZA', '', time() - 3600);
+//menghapus cookie
+// setcookie('key cookie', ''(dikosongkan), 'waktu yang sudah lalu')
+setcookie('SPASAGALINENS', '', time() - 3600);
 
 header("Location: login.php");
 exit;

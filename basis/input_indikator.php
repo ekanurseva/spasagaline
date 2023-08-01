@@ -2,6 +2,9 @@
 session_start();
 require_once '../controller/controller_indikator.php';
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
 $idkriteria = $_POST['kriteria'];
 
 $indikator = "SELECT * FROM ind_gejala WHERE idkriteria = $idkriteria";

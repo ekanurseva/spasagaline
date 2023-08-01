@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once '../controller/controller_indikator.php';
-require_once '../controller/controller_kriteria.php';
+require_once('../controller/controller_indikator.php');
+require_once('../controller/controller_kriteria.php');
+
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
 $jumlah_kriteria = jumlah_data("SELECT * FROM kriteria");
 $jumlah_ind = jumlah_data("SELECT * FROM ind_gejala");

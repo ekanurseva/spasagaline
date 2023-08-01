@@ -2,6 +2,9 @@
 session_start();
 require_once('../controller/controller_pertanyaan.php');
 
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
 $id_pertanyaan = dekripsi($_GET['id']);
 
 $pertanyaan = query("SELECT * FROM pertanyaan WHERE idpertanyaan = $id_pertanyaan")[0];
