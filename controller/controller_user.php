@@ -35,6 +35,59 @@ function login($data)
 }
 // Fungsi login selesai
 
+// Fungsi update password
+function update_password($data)
+{
+    global $conn;
+
+    $iduser = $data['iduser'];
+    $password = mysqli_real_escape_string($conn, $data["password"]);
+    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+
+    if ($password == "") {
+        echo "<script>
+                Swal.fire(
+                    'Gagal!',
+                    'Password tidak boleh kosong',
+                    'error'
+                )
+              </script>";
+        exit();
+    } elseif ($password2 == "") {
+        echo "<script>
+                Swal.fire(
+                    'Gagal!',
+                    'Silahkan isi konfirmasi password',
+                    'error'
+                )
+              </script>";
+        exit();
+    }
+
+
+    if ($password !== $password2) {
+        echo "<script>
+                Swal.fire(
+                    'Gagal!',
+                    'Password tidak sesuai',
+                    'error'
+                )
+              </script>";
+        exit();
+    }
+
+    $password = password_hash($password2, PASSWORD_DEFAULT);
+
+    $query = "UPDATE user SET 
+                password = '$password'
+              WHERE iduser = '$iduser'
+            ";
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+// Fungsi update password selesai
+
 // Fungsi Delete Akun
 function delete($id)
 {

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../controller/controller_user.php');
+validasi();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
@@ -41,7 +42,15 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        require_once('../sidenav/sidebar.php');
+        // Cek peran pengguna dan masukkan file sidebar yang sesuai
+        if ($user['level'] === "User") {
+            require_once('../sidenav/sidebar_user.php');
+        } elseif ($user['level'] === "Admin") {
+            require_once('../sidenav/sidebar.php');
+        } else {
+            // Jika peran tidak dikenali, Anda dapat menambahkan pesan error atau tindakan lain sesuai kebutuhan
+            echo "Error: Peran pengguna tidak valid.";
+        }
         ?>
         <!-- sidebar selesai -->
 

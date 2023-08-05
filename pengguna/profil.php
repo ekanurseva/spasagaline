@@ -40,7 +40,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         <?php
         // Cek peran pengguna dan masukkan file sidebar yang sesuai
         if ($user['level'] === "User") {
-            require_once('../sidnav/sidebar_user.php');
+            require_once('../sidenav/sidebar_user.php');
         } elseif ($user['level'] === "Admin") {
             require_once('../sidenav/sidebar.php');
         }
@@ -164,22 +164,21 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 <?php
 if (isset($_POST['submit_profil'])) {
     if (update_profil($_POST) > 0) {
-        $_SESSION["berhasil"] = "Registrasi Admin Berhasil!";
+        $_SESSION["berhasil"] = "Update Profil Berhasil!";
+
         echo "
-              <script>
+            <script>
                 document.location.href='index.php';
-              </script>
-          ";
-    } elseif (update_profil($_POST) == 0) {
+            </script>
+        ";
+    } else {
+        $_SESSION["gagal"] = "Update Profil Gagal!";
+
         echo "
-          <script>
-              Swal.fire(
-                'Gagal!',
-                'Registrasi Admin Gagal!',
-                'error'
-            )
-          </script>
-      ";
+            <script>
+                document.location.href='index.php';
+            </script>
+        ";
     }
 }
 ?>

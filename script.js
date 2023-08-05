@@ -1,3 +1,13 @@
+// show password
+function togglePasswordVisibility() {
+  var passwordInput = document.getElementById("password");
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+  } else {
+    passwordInput.type = "password";
+  }
+}
+
 // delete data pengguna
 function confirmDelete(id) {
   // Menampilkan Sweet Alert dengan tombol Yes dan No

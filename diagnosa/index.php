@@ -1,10 +1,10 @@
 <?php
 session_start();
+require_once('../controller/controller_user.php');
 validasi();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
-
 ?>
 
 <html lang="en">
@@ -29,24 +29,32 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
     <title>SPASAGALINE</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
     <!-- logo -->
-    <link rel="Icon" href="img/Logo.png">
+    <link rel="Icon" href="../img/Logo.png">
 </head>
 
 <body>
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        require_once('sidebar.php');
+        // Cek peran pengguna dan masukkan file sidebar yang sesuai
+        if ($user['level'] === "User") {
+            require_once('../sidenav/sidebar_user.php');
+        } elseif ($user['level'] === "Admin") {
+            require_once('../sidenav/sidebar.php');
+        } else {
+            // Jika peran tidak dikenali, Anda dapat menambahkan pesan error atau tindakan lain sesuai kebutuhan
+            echo "Error: Peran pengguna tidak valid.";
+        }
         ?>
         <!-- sidebar selesai -->
 
         <div class="content">
             <!-- navbar -->
             <?php
-            require_once('sidenav/navbar.php');
+            require_once('../sidenav/navbar.php');
             ?>
             <!-- navbar selesai -->
 
@@ -60,7 +68,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                             <label for="nama" class="col-form-label">Nama</label>
                         </div>
                         <div class="col-6">
-                            <input style="height: 30px;" type="text" readonly id="nama" value="Eka Nurseva"
+                            <input style="height: 30px;" type="text" readonly id="nama" value="<?= $user['nama']; ?>"
                                 class="form-control">
                         </div>
                     </div>
@@ -111,7 +119,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         </div>
                     </div>
                     <div class="submit text-center pt-4">
-                        <a href="hasil.php" class="fw-medium text-decoration-none">
+                        <a href="../hasil" class="fw-medium text-decoration-none">
                             <span>SUBMIT</span>
                         </a>
                     </div>
@@ -129,7 +137,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

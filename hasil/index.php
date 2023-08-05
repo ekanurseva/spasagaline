@@ -1,6 +1,10 @@
 <?php
 session_start();
+require_once('../controller/controller_main.php');
 validasi();
+
+$id = dekripsi($_COOKIE['SPASAGALINENS']);
+$user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
 ?>
 

@@ -53,7 +53,7 @@ hr.hr-color {
 }
 .sidebar .profil img {
   width: 55px;
-  height: 55px;
+  height: 66px;
   margin-left: auto;
   margin-right: auto;
   padding: 7px 0;
@@ -122,7 +122,7 @@ hr.hr-color {
 }
 .sidebar.hide .profil img {
   width: 35px;
-  height: 35px;
+  height: 46px;
   object-fit: cover;
   display: block;
   margin-bottom: 15px;
@@ -463,11 +463,11 @@ hr.hr-color {
 
 /* form-floating */
 .contents .input-group.input-user {
-  margin: 50px 0 0 77px;
+  /* margin: 50px 0 0 77px; */
   padding-right: 20%;
 }
 .contents .input-group.input-pw {
-  margin: 0 0 55px 77px;
+  margin: 0 0 5px 77px;
   padding-right: 20%;
 }
 .contents .input-group.input-item{
@@ -516,6 +516,7 @@ hr.hr-color {
 /* glow box */
 .contents .tabel.glow {
   border: solid 1.5px rgb(0, 2, 255, 0.5);
+  width: 500px;
 }
 /* table box selesai */
 
@@ -526,18 +527,15 @@ hr.hr-color {
 
 /* title login-password regist*/
 .contents .tabel .title {
-  margin-left: 95px;
   margin-top: 23px;
 }
 .contents .tabel .title-logo {
-  position: absolute;
   text-align: start;
-  margin-left: 235px;
+  margin-left: 180px;
   margin-top: -50px;
 }
 .contents .tabel .img-logo {
-  width: 250px;
-  position: absolute;
+  width: 200px;
 }
 .contents .tabel .title-pw {
   margin-left: -300px;
@@ -547,7 +545,6 @@ hr.hr-color {
   margin-top: 30px;
 }
 .contents .tabel .title-logo-pw {
-  position: absolute;
   text-align: start;
   margin-left: 250px;
   margin-top: -71px;
@@ -570,6 +567,25 @@ hr.hr-color {
   padding: 4px 35px;
   background: rgb(121, 134, 199, 0.4);
   color: #ffffff;
+}
+.contents .login a {
+  text-decoration: none;
+  border: none;
+  background: none;
+  font-weight: medium;
+}
+.contents .login a:hover {
+  border: none;
+  background: rgb(121, 134, 199, 0.4);
+}
+
+/* show password */
+.contents .input-pw .password-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 /* button selesai */
 
@@ -626,12 +642,10 @@ hr.hr-color {
     position: absolute;
   }
   .contents .input-group.input-user {
-    margin: 30px 0 0 70px;
-    padding-right: 27%;
+    padding-left: 30px;
   }
   .contents .input-group.input-pw {
-    margin: 0 0 45px 70px;
-    padding-right: 27%;
+    padding-left: 30px;
   }
   .contents .tabel .title-pw {
     margin-left: -220px;
@@ -676,7 +690,7 @@ hr.hr-color {
   }
   .sidebar .profil img {
     width: 33px;
-    height: 33px;
+    height: 46px;
     object-fit: cover;
     display: block;
     margin-bottom: 15px;
@@ -708,7 +722,7 @@ hr.hr-color {
   }
   .sidebar.aktif .profil img {
     width: 50px;
-    height: 50px;
+    height: 63px;
     object-fit: cover;
   }
   .sidebar.aktif .profil h1 {
@@ -720,7 +734,7 @@ hr.hr-color {
     display: block;
     border: 1.5px solid #595196;
     position: absolute;
-    margin-top: -27px;
+    margin-top: -40px;
     margin-left: 117px;
     width: 20px;
     height: 20px;
@@ -906,12 +920,10 @@ hr.hr-color {
     width: 127px;
   }
   .contents .input-group.input-user {
-    margin: 30px 0 0 13px;
-    padding-right: 0;
+    padding-left: 30px;
   }
   .contents .input-group.input-pw {
-    margin: 0 0 45px 13px;
-    padding-right: 0;
+    padding-left: 30px;
   }
   .contents .input-group.input-pw label,
   .contents .input-group.input-user label,

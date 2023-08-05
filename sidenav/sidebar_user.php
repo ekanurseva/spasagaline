@@ -1,6 +1,6 @@
 <div class="sidebar" id="side_nav">
     <div class="header-box px-2 pt-3 pb-3 d-flex">
-        <img src="img/Logo.png" alt="logo spasagaline">
+        <img src="../img/Logo.png" alt="logo spasagaline">
         <span class="fs-5 fw-bold text-white" style="margin-top: 1.6px;">SPASAGALINE</span>
 
         <!-- button sidebar -->

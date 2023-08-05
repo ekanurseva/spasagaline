@@ -5,7 +5,6 @@ validasi();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
-// var_dump($user);
 
 ?>
 
@@ -43,7 +42,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         <?php
         // Cek peran pengguna dan masukkan file sidebar yang sesuai
         if ($user['level'] === "User") {
-            require_once('../sidnav/sidebar_user.php');
+            require_once('../sidenav/sidebar_user.php');
         } elseif ($user['level'] === "Admin") {
             require_once('../sidenav/sidebar.php');
         } else {
@@ -67,7 +66,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 </h4>
                 <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
 
-                <a href="diagnosa.php" class="text-decoration-none fw-bold">
+                <a href="../diagnosa" class="text-decoration-none fw-bold">
                     <i class="bi bi-controller"></i>
                     <span>Mulai Deteksi</span>
                 </a>
@@ -91,3 +90,39 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 </body>
 
 </html>
+
+<?php
+if (isset($_SESSION["berhasil"])) {
+    $pesan = $_SESSION["berhasil"];
+
+    echo "
+              <script>
+                Swal.fire(
+                  'Berhasil!',
+                  '$pesan',
+                  'success'
+                )
+              </script>
+          ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+
+} elseif (isset($_SESSION['gagal'])) {
+    $pesan = $_SESSION["gagal"];
+
+    echo "
+            <script>
+                Swal.fire(
+                    'Gagal!',
+                    '$pesan',
+                    'error'
+                )
+            </script>
+        ";
+    $_SESSION = [];
+    session_unset();
+    session_destroy();
+}
+
+?>
