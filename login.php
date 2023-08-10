@@ -37,6 +37,7 @@ if (isset($_POST["login"])) {
 
     <title>SPASAGALINE</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- css -->
     <link rel="stylesheet" href="style.css">
 
@@ -50,7 +51,7 @@ if (isset($_POST["login"])) {
             <!-- konten -->
             <div class="contents px-3 py-3 text-white">
                 <div class="row justify-content-center">
-                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4">
+                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4 my-5">
                         <div class="row">
                             <div class="title ms-3 text-start">
                                 <h3>Login</h3>
@@ -84,17 +85,17 @@ if (isset($_POST["login"])) {
                                         name="password" id="password">
                                     <label for="floatingInputGroup2">Password</label>
                                     <hr style="margin-top: -7px;">
+                                    <i class="password-icon fas fa-eye" id="show"></i>
                                 </div>
-                                <i class="password-icon fas fa-eye" onclick="togglePasswordVisibility()"></i>
                             </div>
 
                             <div class="row mb-4">
                                 <div class="col-6 login">
-                                    <a href="registrasi.php">Registrasi</a>
+                                    <a type="button" href="registrasi.php">Registrasi</a>
                                 </div>
                                 <div class="col-6 login">
                                     <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                        Forgot Password?
+                                        Lupa Password?
                                     </a>
                                 </div>
                             </div>
@@ -151,6 +152,21 @@ if (isset($_POST["login"])) {
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        window.onload = function () {
+            // show password
+            const showpw = document.getElementById("show");
+            const passwordInput = document.getElementById("password");
+
+            showpw.onclick = function () {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                } else {
+                    passwordInput.type = "password";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

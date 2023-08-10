@@ -59,51 +59,56 @@ if (isset($_GET['key'])) {
         <div class="content" style="margin: 0;">
             <!-- konten -->
             <div class="contents px-3 py-3 text-center text-white">
-                <div class="tabel glow tab px-2 py-4 text-center" style="margin: 8% 25%;">
-                    <div class="title-pw text-center">
-                        <h4>Ubah</h4>
-                        <h4>Password</h4>
-                    </div>
-                    <div class="title-logo-pw">
-                        <img src="img/Login.png" class="img-logo" alt="Logo">
-                    </div>
-                    <form method="post" action="">
-                        <input type="hidden" name="iduser" value="<?= $data['iduser']; ?>">
-
-                        <div class="input-group input-pw">
-                            <span class="input-group-text grup"><i class="fs-3 bi bi-person-bounding-box"></i></span>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInputGroup3" placeholder=" "
-                                    value="<?= $data['nama']; ?>" aria-label="Disabled input example" readonly>
-                                <label for="floatingInputGroup1">Nama</label>
-                                <hr style="margin-top: -7px;">
-                            </div>
+                <div class="row justify-content-center">
+                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4 my-5">
+                        <div class="title-pw ms-3 text-start">
+                            <h5>Ubah</h5>
+                            <h5 style="margin-top: -10px">Password</h5>
                         </div>
-                        <div class="input-group input-user">
-                            <span class="input-group-text grup"><i class="fs-3 bi bi-person-bounding-box"></i></span>
-                            <div class="form-floating">
-                                <input type="password" name="password" class="form-control" id="floatingInputGroup1"
-                                    placeholder=" ">
-                                <label for="floatingInputGroup1">Password</label>
-                                <hr style="margin-top: -7px;">
-                            </div>
-                        </div>
-                        <div class="input-group input-pw">
-                            <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
-                            <div class="form-floating">
-                                <input type="password" name="password2" class="form-control" id="floatingInputGroup2"
-                                    placeholder=" ">
-                                <label for="floatingInputGroup2">Konfirmasi Password</label>
-                                <hr style="margin-top: -7px;">
-                            </div>
+                        <div class="title-logo-pw">
+                            <img src="img/Login.png" class="img-logo" alt="Logo">
                         </div>
 
-                        <div class="clik">
-                            <button type="submit" name="update_password">
-                                <span class="fw-medium">SUBMIT</span>
-                            </button>
-                        </div>
-                    </form>
+                        <form method="post" action="">
+                            <input type="hidden" name="iduser" value="<?= $data['iduser']; ?>">
+
+                            <div class="input-group input-user">
+                                <span class="input-group-text grup"><i
+                                        class="fs-3 bi bi-person-bounding-box"></i></span>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGroup3" placeholder=" "
+                                        value="<?= $data['nama']; ?>" aria-label="Disabled input example" readonly>
+                                    <label for="floatingInputGroup1">Nama</label>
+                                    <hr style="margin-top: -7px;">
+                                </div>
+                            </div>
+                            <div class="input-group input-pw">
+                                <span class="input-group-text grup"><i
+                                        class="fs-3 bi bi-person-bounding-box"></i></span>
+                                <div class="form-floating">
+                                    <input type="password" name="password" class="form-control" id="floatingInputGroup1"
+                                        placeholder=" ">
+                                    <label for="floatingInputGroup1">Password</label>
+                                    <hr style="margin-top: -7px;">
+                                </div>
+                            </div>
+                            <div class="input-group input-pw">
+                                <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
+                                <div class="form-floating">
+                                    <input type="password" name="password2" class="form-control"
+                                        id="floatingInputGroup2" placeholder=" ">
+                                    <label for="floatingInputGroup2">Konfirmasi Password</label>
+                                    <hr style="margin-top: -7px;">
+                                </div>
+                            </div>
+
+                            <div class="clik mt-4 mb-4">
+                                <button class="btn-long" type="submit" name="update_password">
+                                    <span class="fw-medium">SUBMIT</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <!-- konten selesai -->

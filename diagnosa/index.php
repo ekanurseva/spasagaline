@@ -84,8 +84,10 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         Solusi</p>
                     <div class="row pt-2">
                         <div class="col-6">
-                            <p>1. pertanyaan 1 ............................?</p>
-                            <div class="form-check">
+                            <p>1. apakah anda terus-menerus memikirkan game online, bahkan ketika anda sedang tidak
+                                bermain selama 6 bulan terakhir?
+                            </p>
+                            <div class="form-check" style="margin-top: -10px;">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault1"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
@@ -101,8 +103,10 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                             </div>
                         </div>
                         <div class="col-6">
-                            <p>2. pertanyaan 2 ............................?</p>
-                            <div class="form-check">
+                            <p>2. selama 6 bulan terakhir, apakah anda lebih memilih terus bermain game online
+                                dibandingkan melakukan ibadah?
+                            </p>
+                            <div class="form-check" style="margin-top: -10px;">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault2"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
@@ -118,7 +122,47 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                             </div>
                         </div>
                     </div>
-                    <div class="submit text-center pt-4">
+                    <div class="row pt-3">
+                        <div class="col-6">
+                            <p>3. selama 6 bulan terakhir, jika sedang marah, apakah anda akan bermain game online untuk
+                                meredakan emosi?
+                            </p>
+                            <div class="form-check" style="margin-top: -10px;">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault3"
+                                    id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Ya
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault3"
+                                    id="flexRadioDefault4" checked>
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                    Tidak
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <p>4. selama 6 bulan terakhir, apakah anda terus bermain game online meski anda mengetahui
+                                dampak negatifnya?
+                            </p>
+                            <div class="form-check" style="margin-top: -10px;">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault4"
+                                    id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    Ya
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault4"
+                                    id="flexRadioDefault4" checked>
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                    Tidak
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit text-center pt-4 btn-long">
                         <a href="../hasil" class="fw-medium text-decoration-none">
                             <span>SUBMIT</span>
                         </a>

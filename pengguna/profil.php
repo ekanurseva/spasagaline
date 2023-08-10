@@ -60,6 +60,13 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
                 <div class="tabel text-white px-5 py-4">
                     <form method="post" action="" enctype="multipart/form-data">
+                        <div class="mt-2 mb-3">
+                            <button type="submit" style="font-size: 13px;" class="fw-bold btn btn-outline-danger"
+                                id="delete" onclick="confirmDeleteProfil(<?= $user['iduser']; ?>)">
+                                HAPUS AKUN
+                            </button>
+                        </div>
+
                         <input type="hidden" name="iduser" value="<?= $user['iduser']; ?>">
                         <input type="hidden" name="oldpassword" value="<?= $user['password']; ?>">
                         <input type="hidden" name="oldusername" value="<?= $user['username']; ?>">
@@ -96,11 +103,31 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                 </div>
                             </div>
                             <div class="col-6">
+                                <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="date" class="form-control" id="tgl_lahir"
+                                        value="<?= $user['tgl_lahir']; ?>" name="tgl_lahir"
+                                        placeholder="Masukkan Alamat Tanggal Lahir">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-1">
+                            <div class="col-6">
                                 <label for="password" class="col-form-label">Password</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
                                     <input type="password" class="form-control" id="password"
                                         value="<?= $user['password']; ?>" name="pwd" placeholder="Masukkan Password">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="password2" class="col-form-label">Konfirmasi Password</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="password" class="form-control" id="password2"
+                                        value="<?= $user['password']; ?>" name="pwd2"
+                                        placeholder="Masukkan Ulang Password">
                                 </div>
                             </div>
                         </div>
@@ -117,29 +144,20 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                 </div>
                                 <label for="foto" class="foto">*kosongkan jika tidak ingin mengganti foto</label>
                             </div>
-                            <div class="col-6">
-                                <label for="password2" class="col-form-label">Konfirmasi Password</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="password" class="form-control" id="password2"
-                                        value="<?= $user['password']; ?>" name="pwd2"
-                                        placeholder="Masukkan Ulang Password">
+                            <div class="row pb-1 pt-3 justify-content-end">
+                                <div class="col-2">
+                                    <div style="margin-top: 5px" class="col-2 tombol">
+                                        <button type="submit" name="submit_profil">
+                                            <span class="fw-medium">SUBMIT</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row pb-1 pt-3 justify-content-end">
-                            <div class="col-2">
-                                <div style="margin-top: 5px" class="col-2 tombol">
-                                    <button type="submit" name="submit_profil">
-                                        <span class="fw-medium">SUBMIT</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div style="margin-top: 5px" class="col-2 tombol">
-                                    <a href="index.php" class="back fw-medium text-decoration-none">
-                                        <span>KEMBALI</span>
-                                    </a>
+                                <div class="col-2">
+                                    <div style="margin-top: 5px" class="col-2 tombol">
+                                        <a href="index.php" class="back fw-medium text-decoration-none">
+                                            <span>KEMBALI</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

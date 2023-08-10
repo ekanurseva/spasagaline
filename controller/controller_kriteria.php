@@ -71,6 +71,13 @@ function input_kriteria($data)
                     (NULL, '$kode', '$kriteria', '$deskripsi')";
     mysqli_query($conn, $query);
 
+    $conn->query("INSERT INTO rel_kriteria(ID1, ID2, nilai) SELECT '$kode', kode_kriteria, 1 FROM kriteria");
+    $conn->query("INSERT INTO rel_kriteria(ID1, ID2, nilai) SELECT kode_kriteria, '$kode', 1 FROM kriteria WHERE kode_kriteria<>'$kode'");
+
+    $rows = $conn->get_results("SELECT kode_indikator FROM ind_gejala");
+    foreach ($rows as $row) {
+        $conn->query("INSERT INTO rel_indikator(kode1, kode2, kode_kriteria, nilai) SELECT '$row->kode_indikator', kode_indikator, '$kode', 1 FROM ind_gejala");
+    }
     return mysqli_affected_rows($conn);
 
 }

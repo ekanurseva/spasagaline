@@ -93,6 +93,18 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                 </div>
                             </div>
                             <div class="col-6">
+                                <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="date" class="form-control" id="tgl_lahir"
+                                        value="<?= $data['tgl_lahir']; ?>" name="tgl_lahir"
+                                        placeholder="Masukkan Alamat Tanggal Lahir">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row pb-1">
+                            <div class="col-6">
                                 <label for="password" class="col-form-label">Password</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
@@ -100,9 +112,18 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                         value="<?= $data['password']; ?>" name="pwd" placeholder="Masukkan Password">
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <label for="password2" class="col-form-label">Konfirmasi Password</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="password" class="form-control" id="password2"
+                                        value="<?= $data['password']; ?>" name="pwd2"
+                                        placeholder="Masukkan Ulang Password">
+                                </div>
+                            </div>
                         </div>
                         <div class="row pb-1">
-                            <div class="col-6">
+                            <div class="col-6 me-5">
                                 <label for="profil" class="col-form-label">Foto Profil</label>
                                 <div class="foto-profil">
                                     <img src="../profil/<?= $data['foto']; ?>" class="img-preview">
@@ -114,13 +135,18 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                 </div>
                                 <label for="foto" class="foto">*kosongkan jika tidak ingin mengganti foto</label>
                             </div>
-                            <div class="col-6">
-                                <label for="password2" class="col-form-label">Konfirmasi Password</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="password" class="form-control" id="password2"
-                                        value="<?= $data['password']; ?>" name="pwd2"
-                                        placeholder="Masukkan Ulang Password">
+                            <div class="col-2 ms-5">
+                                <div style="margin-top: 33px" class="col-2 tombol">
+                                    <button type="submit" name="submit">
+                                        <span class="fw-medium">SUBMIT</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div style="margin-top: 33px" class="col-2 tombol">
+                                    <a href="index.php" class="back fw-medium text-decoration-none">
+                                        <span>KEMBALI</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -141,20 +167,6 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                             echo 'checked';
                                         } ?>>
                                     <label class="form-check-label" for="admin">Admin</label>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div style="margin-top: 5px" class="col-2 tombol">
-                                    <button type="submit" name="submit">
-                                        <span class="fw-medium">SUBMIT</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div style="margin-top: 5px" class="col-2 tombol">
-                                    <a href="index.php" class="back fw-medium text-decoration-none">
-                                        <span>KEMBALI</span>
-                                    </a>
                                 </div>
                             </div>
                         </div>

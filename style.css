@@ -277,10 +277,6 @@ hr.hr-color {
   border: solid #0002ff;
 }
 
-.contents form button {
-  background: rgb(168, 177, 224);
-}
-
 /* table box*/
 .content .contents table {
   --bs-table-color: #fff;
@@ -366,6 +362,11 @@ hr.hr-color {
   opacity: 1;
 }
 /* placeholder */
+
+/* Radio-check */
+.tabel .form-check-input:checked[type=radio]{
+  background: white;
+}
 
 .contents .tabel .del a {
   border: solid #b4b4ff;
@@ -463,16 +464,17 @@ hr.hr-color {
 
 /* form-floating */
 .contents .input-group.input-user {
-  /* margin: 50px 0 0 77px; */
-  padding-right: 20%;
+  margin-top: 27px;
+  margin-left: 30px;
+  padding-right: 25px;
 }
 .contents .input-group.input-pw {
-  margin: 0 0 5px 77px;
-  padding-right: 20%;
+  margin-left: 30px;
+  padding-right: 25px;
 }
 .contents .input-group.input-item{
-  padding-right: 20%;
-  margin: 0 77px;
+  margin-left: 30px;
+  padding-right: 25px;
 }
 .contents .input-group .form-floating input {
   border: none;
@@ -535,19 +537,18 @@ hr.hr-color {
   margin-top: -50px;
 }
 .contents .tabel .img-logo {
-  width: 200px;
+  width: 230px;
 }
 .contents .tabel .title-pw {
-  margin-left: -300px;
+  margin-top: 20px;
 }
 .contents .tabel .title-regt{
-  margin-left: -300px;
   margin-top: 30px;
 }
 .contents .tabel .title-logo-pw {
   text-align: start;
-  margin-left: 250px;
-  margin-top: -71px;
+  margin-left: 150px;
+  margin-top: -60px;
 }
 .contents .tabel .img-logo-regt{
   margin-top: 23px;
@@ -595,10 +596,10 @@ hr.hr-color {
   font-size: 15px;
 }
 .content .tabel .box-hasil {
-  border: solid #272247;
-  background: #595196;
+  border: 0.5px solid #595196;
+  background: #272247d2;
   border-radius: 8px;
-  padding: 20px 0;
+  padding: 20px 13px;
 }
 .content .tabel .solusi .list {
   margin-top: -10px;
@@ -646,9 +647,6 @@ hr.hr-color {
   }
   .contents .input-group.input-pw {
     padding-left: 30px;
-  }
-  .contents .tabel .title-pw {
-    margin-left: -220px;
   }
   .contents .tabel .title-pw h4 {
     font-size: 19px;
@@ -813,9 +811,6 @@ hr.hr-color {
   .contents .clik {
     margin-bottom: 15px;
   }
-  .contents .tabel .title-pw {
-    margin-left: -180px;
-  }
   .contents .tabel .title-pw h4 {
     font-size: 17px;
   }
@@ -930,9 +925,6 @@ hr.hr-color {
   .contents .input-group.input-pw input,
   .contents .input-group.input-user input {
     font-size: 13px;
-  }
-  .contents .tabel .title-pw {
-    margin-left: -160px;
   }
   .contents .tabel .title-logo-pw {
     margin-left: 115px;

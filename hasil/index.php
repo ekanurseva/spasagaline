@@ -30,24 +30,32 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
     <title>SPASAGALINE</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 
     <!-- logo -->
-    <link rel="Icon" href="img/Logo.png">
+    <link rel="Icon" href="../img/Logo.png">
 </head>
 
 <body>
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        require_once('sidebar.php');
+        // Cek peran pengguna dan masukkan file sidebar yang sesuai
+        if ($user['level'] === "User") {
+            require_once('../sidenav/sidebar_user.php');
+        } elseif ($user['level'] === "Admin") {
+            require_once('../sidenav/sidebar.php');
+        } else {
+            // Jika peran tidak dikenali, Anda dapat menambahkan pesan error atau tindakan lain sesuai kebutuhan
+            echo "Error: Peran pengguna tidak valid.";
+        }
         ?>
         <!-- sidebar selesai -->
 
         <div class="content">
             <!-- navbar -->
             <?php
-            require_once('sidenav/navbar.php');
+            require_once('../sidenav/navbar.php');
             ?>
             <!-- navbar selesai -->
 
@@ -56,29 +64,32 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 <h4 class="text-white text-center pb-3">HASIL DIAGNOSA</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <h6 class="text-center">Eka Nurseva Saniyah (22thn)</h6>
+                    <h6 class="text-center">
+                        <?php echo $user['nama']; ?> (22 tahun)
+                    </h6>
                     <div class="judul">
                         <p>Kriteria Gejala Kecanduan Game Online Anda Adalah:</p>
                     </div>
-                    <div class="box-hasil"
-                        style=" border: solid #e68574; background: #ef9b8c; border-radius: 8px; padding: 20px 0;">
-                        <h4 class="text-uppercase text-center">Salience : 79%</h4>
+                    <div class="box-hasil">
+                        <h4 class="text-uppercase text-center fw-bold">Salience : 73%</h4>
                         <div class="desk text-center">
-                            <p>merupakan kriteriakriteria dimana bermain game online menjadi aktivitas penting dan
+                            <p>Salience merupakan kriteria dimana bermain game online menjadi aktivitas penting dan
                                 mendominasi pikirannya</p>
                         </div>
-                        <h6 class="text-center">Tingkat Kecanduan Sedang</h6>
+                        <h4 class="text-center">Kategori Tingkat Kecanduan <span class="fw-bold">Ringan</span>
+                        </h4>
                     </div>
 
                     <div class="solusi mt-4">
-                        <ul>Solusi Dari Tingkat Kecanduan Tersebut, Yaitu:</ul>
-                        <li>Mengurangi waktu bermain game online dengan lebih memperhatikan lingkungan sekitar dan fokus
+                        <ul class="fw-medium">Solusi Dari Tingkat Kecanduan Tersebut, Yaitu:</ul>
+                        <li class="ms-5">Mengurangi waktu bermain game online dengan lebih memperhatikan lingkungan
+                            sekitar dan fokus
                             terhadap hal positif yang mendukung aktivitas dalam mengalihkan keinginan untuk bermain game
                             online</li>
-                        <li>Sebaiknya konsultasi dengan psikolog/psikiater</li>
+                        <li class="ms-5">Sebaiknya konsultasi dengan psikolog/psikiater</li>
                     </div>
 
-                    <div class="submit text-center pt-4">
+                    <div class="submit text-center mt-4 pt-4">
                         <a href="#" class="fw-medium text-decoration-none">
                             <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
                         </a>
@@ -97,7 +108,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         crossorigin="anonymous"></script>
     <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

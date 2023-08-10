@@ -67,7 +67,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 <div class="row px-3">
                     <div class="card me-5">
                         <div class="card-body">
-                            <a href="input_user.php" class="fw-medium">
+                            <a href="../registrasi.php" class="fw-medium">
                                 <i class="bi bi-plus-square"></i>
                                 <span>Input Data User</span>
                             </a>
