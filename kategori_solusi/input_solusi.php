@@ -60,7 +60,7 @@ $kategori = query("SELECT * FROM kategori");
                         <div class="row pb-1">
                             <label for="nama" class="col-form-label">Kategori</label>
                             <select class="form-select" name="kategori" aria-label="Default select example">
-                                <option value="" selected hidden>--Pilih Kategori--</option>
+                                <option value="" selected hidden>Pilih Kategori</option>
                                 <?php foreach ($kategori as $data): ?>
                                     <option value="<?= $data['idkategori']; ?>"><?= $data['nama_kategori']; ?></option>
                                 <?php endforeach; ?>
@@ -68,8 +68,8 @@ $kategori = query("SELECT * FROM kategori");
                         </div>
                         <div class="row mt-2">
                             <label for="solusi" class="col-form-label">Solusi</label>
-                            <textarea style="height: 70px" type="text" id="solusi" name="nama_solusi"
-                                class="form-control" placeholder="Masukkan Solusi"></textarea>
+                            <textarea rows="5" type="text" id="solusi" name="nama_solusi" class="form-control"
+                                placeholder="Masukkan Solusi"></textarea>
                         </div>
                         <div class="row pb-1" style="margin-top: -20px;">
                             <div class="col-2 tombol">
@@ -87,10 +87,15 @@ $kategori = query("SELECT * FROM kategori");
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

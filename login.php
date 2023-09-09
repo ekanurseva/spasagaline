@@ -13,7 +13,6 @@ if (isset($_POST["login"])) {
     if (login($_POST) == 1) {
         $error = true;
     }
-
 }
 ?>
 <html lang="en">
@@ -43,17 +42,25 @@ if (isset($_POST["login"])) {
 
     <!-- logo -->
     <link rel="Icon" href="img/Logo.png">
+
+    <style>
+        body {
+            background-image: url(img/BG_1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
     <div class="main-container d-flex">
-        <div class="content" style="margin: 0;">
+        <div class="content d-flex justify-content-center">
             <!-- konten -->
-            <div class="contents px-3 py-3 text-white">
-                <div class="row justify-content-center">
-                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4 my-5">
+            <div class="contents px-3 py-3 text-white d-flex align-items-center justify-content-center">
+                <div class="row">
+                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4">
                         <div class="row">
-                            <div class="title ms-3 text-start">
+                            <div class="title ms-4 text-start">
                                 <h3>Login</h3>
                             </div>
                             <div class="title-logo">
@@ -81,9 +88,9 @@ if (isset($_POST["login"])) {
                             <div class="input-group input-pw">
                                 <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="floatingInputGroup2" placeholder=" "
-                                        name="password" id="password">
-                                    <label for="floatingInputGroup2">Password</label>
+                                    <input type="password" class="form-control" placeholder=" " name="password"
+                                        id="password">
+                                    <label for="password">Password</label>
                                     <hr style="margin-top: -7px;">
                                     <i class="password-icon fas fa-eye" id="show"></i>
                                 </div>
@@ -140,9 +147,15 @@ if (isset($_POST["login"])) {
                 </div>
                 <!-- Modal Forgot Password = Input Email Selesai -->
             </div>
+
             <!-- konten selesai -->
         </div>
+
     </div>
+    <!-- Footer -->
+    <?php
+    require_once('sidenav/footer2.php');
+    ?>
 
 
     <!-- bootstrap js -->

@@ -78,7 +78,7 @@ $kriteria = query("SELECT * FROM kriteria WHERE idkriteria = $idkriteria")[0];
                         <div class="row pb-1">
                             <div class="col-6">
                                 <label for="indikator" class="col-form-label">Indikator</label>
-                                <textarea style="height: 70px" type="text" class="form-control"
+                                <textarea rows="5" type="text" class="form-control"
                                     placeholder="Masukkan Indikator Kriteria"
                                     name="indikator"><?= $indikator['indikator']; ?></textarea>
                             </div>
@@ -96,10 +96,15 @@ $kriteria = query("SELECT * FROM kriteria WHERE idkriteria = $idkriteria")[0];
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

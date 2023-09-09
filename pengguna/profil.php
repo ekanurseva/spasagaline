@@ -60,11 +60,10 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
                 <div class="tabel text-white px-5 py-4">
                     <form method="post" action="" enctype="multipart/form-data">
-                        <div class="mt-2 mb-3">
-                            <button type="submit" style="font-size: 13px;" class="fw-bold btn btn-outline-danger"
-                                id="delete" onclick="confirmDeleteProfil(<?= $user['iduser']; ?>)">
-                                HAPUS AKUN
-                            </button>
+                        <div class="mt-2 mb-3 delete">
+                            <a class="btn delete" id="delete" onclick="confirmDelete(<?= $user['iduser']; ?>)">
+                                HAPUS DATA
+                            </a>
                         </div>
 
                         <input type="hidden" name="iduser" value="<?= $user['iduser']; ?>">
@@ -95,25 +94,6 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         </div>
                         <div class="row pb-1">
                             <div class="col-6">
-                                <label for="email" class="col-form-label">Email</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="email" class="form-control" id="email" value="<?= $user['email']; ?>"
-                                        name="email" placeholder="Masukkan Alamat Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="date" class="form-control" id="tgl_lahir"
-                                        value="<?= $user['tgl_lahir']; ?>" name="tgl_lahir"
-                                        placeholder="Masukkan Alamat Tanggal Lahir">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row pb-1">
-                            <div class="col-6">
                                 <label for="password" class="col-form-label">Password</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
@@ -133,6 +113,14 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         </div>
                         <div class="row pb-1">
                             <div class="col-6">
+                                <label for="email" class="col-form-label">Email</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="email" class="form-control" id="email" value="<?= $user['email']; ?>"
+                                        name="email" placeholder="Masukkan Alamat Email">
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <label for="profil" class="col-form-label">Foto Profil</label>
                                 <div class="foto-profil">
                                     <img src="../profil/<?= $user['foto']; ?>" class="img-preview">
@@ -144,37 +132,43 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                 </div>
                                 <label for="foto" class="foto">*kosongkan jika tidak ingin mengganti foto</label>
                             </div>
-                            <div class="row pb-1 pt-3 justify-content-end">
-                                <div class="col-2">
-                                    <div style="margin-top: 5px" class="col-2 tombol">
-                                        <button type="submit" name="submit_profil">
-                                            <span class="fw-medium">SUBMIT</span>
-                                        </button>
-                                    </div>
+                        </div>
+                        <div class="row pb-1 justify-content-end" style="margin-top: -20px; margin-bottom: 30px;">
+                            <div class="col-2 me-3">
+                                <div style="margin-top: 33px" class="col-2 tombol">
+                                    <button type="submit" name="submit_profil">
+                                        <span class="fw-medium">UPDATE</span>
+                                    </button>
                                 </div>
-                                <div class="col-2">
-                                    <div style="margin-top: 5px" class="col-2 tombol">
-                                        <a href="index.php" class="back fw-medium text-decoration-none">
-                                            <span>KEMBALI</span>
-                                        </a>
-                                    </div>
+                            </div>
+                            <div class="col-2">
+                                <div style="margin-top: 33px" class="col-2 tombol">
+                                    <a href="index.php" class="back fw-medium text-decoration-none">
+                                        <span>KEMBALI</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
+
                 <!-- konten selesai -->
             </div>
         </div>
+    </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
-        <!-- bootstrap js -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
-        <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="../script.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

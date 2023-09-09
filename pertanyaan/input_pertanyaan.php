@@ -6,7 +6,7 @@ $idindikator = $_POST['indikator'];
 
 $indikator = query("SELECT * FROM ind_gejala WHERE idindikator = $idindikator")[0];
 
-$kode_pertanyaan = kode_pertanyaan($idindikator);
+$kode_pertanyaan = kode_pertanyaan();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
@@ -70,8 +70,8 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                             </div>
                             <div class="col-8">
                                 <label for="indikator" class="col-form-label">Indikator</label>
-                                <input type="text" id="indikator" value="<?= $indikator['indikator']; ?>"
-                                    class="form-control" readonly>
+                                <textarea name="" id="indikator" class="form-control" readonly cols="30"
+                                    rows="3"><?= $indikator['indikator']; ?></textarea>
                             </div>
                         </div>
                         <div class="row pb-1">
@@ -82,7 +82,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                             </div>
                             <div class="col-8">
                                 <label for="deskripsi" class="col-form-label">Pertanyaan</label>
-                                <textarea style="height: 70px" type="text" id="deskripsi" name="text_pertanyaan"
+                                <textarea rows="3" type="text" id="deskripsi" name="text_pertanyaan"
                                     class="form-control" placeholder="Masukkan Pertanyaan"></textarea>
                             </div>
                         </div>
@@ -106,6 +106,10 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -120,7 +124,9 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
 <?php
 if (isset($_POST['submit_pertanyaan'])) {
+
     if (input_pertanyaan($_POST) > 0) {
+        create_kategori();
 
         $_SESSION["berhasil"] = "Data Pertanyaan Berhasil Ditambahkan!";
 

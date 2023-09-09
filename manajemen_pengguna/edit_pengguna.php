@@ -85,26 +85,6 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                         </div>
                         <div class="row pb-1">
                             <div class="col-6">
-                                <label for="email" class="col-form-label">Email</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="email" class="form-control" id="email" value="<?= $data['email']; ?>"
-                                        name="email" placeholder="Masukkan Alamat Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="date" class="form-control" id="tgl_lahir"
-                                        value="<?= $data['tgl_lahir']; ?>" name="tgl_lahir"
-                                        placeholder="Masukkan Alamat Tanggal Lahir">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row pb-1">
-                            <div class="col-6">
                                 <label for="password" class="col-form-label">Password</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
@@ -119,6 +99,37 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                     <input type="password" class="form-control" id="password2"
                                         value="<?= $data['password']; ?>" name="pwd2"
                                         placeholder="Masukkan Ulang Password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-1">
+                            <div class="col-6">
+                                <label for="email" class="col-form-label">Email</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="email" class="form-control" id="email" value="<?= $data['email']; ?>"
+                                        name="email" placeholder="Masukkan Alamat Email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col-form-label">Level Pengguna</label>
+                                    <div class="input-group mt-3">
+                                        <div class="form-check me-5">
+                                            <input class="form-check-input" type="radio" name="level" id="user"
+                                                value="User" <?php if ($data['level'] === 'User') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label" for="user">User</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="level" id="admin"
+                                                value="Admin" <?php if ($data['level'] === 'Admin') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label" for="admin">Admin</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +149,7 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                             <div class="col-2 ms-5">
                                 <div style="margin-top: 33px" class="col-2 tombol">
                                     <button type="submit" name="submit">
-                                        <span class="fw-medium">SUBMIT</span>
+                                        <span class="fw-medium">UPDATE</span>
                                     </button>
                                 </div>
                             </div>
@@ -150,34 +161,19 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                 </div>
                             </div>
                         </div>
-                        <div class="row pb-1 pt-3">
-                            <div class="col-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="level" id="user" value="User"
-                                        <?php if ($data['level'] === 'User') {
-                                            echo 'checked';
-                                        } ?>>
-                                    <label class="form-check-label" for="user">User</label>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="level" id="admin" value="Admin"
-                                        <?php if ($data['level'] === 'Admin') {
-                                            echo 'checked';
-                                        } ?>>
-                                    <label class="form-check-label" for="admin">Admin</label>
-                                </div>
-                            </div>
-                        </div>
                     </form>
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

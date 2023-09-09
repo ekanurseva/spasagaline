@@ -70,8 +70,8 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         <div class="row pb-1">
                             <div class="col-6">
                                 <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                                <textarea style="height: 70px" type="text" class="form-control" id="deskripsi"
-                                    name="deskripsi" placeholder="Masukkan Deskripsi Kriteria"></textarea>
+                                <textarea type="text" class="form-control" id="deskripsi" name="deskripsi"
+                                    placeholder="Masukkan Deskripsi Kriteria" rows="5"></textarea>
                             </div>
                             <div class="col-2 tombol">
                                 <button type="submit" name="submit">
@@ -88,10 +88,15 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -107,22 +112,22 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 <?php
 if (isset($_POST['submit'])) {
     if (input_kriteria($_POST) > 0) {
-
+        create_field($_POST);
         $_SESSION["berhasil"] = "Data Kriteria Berhasil Ditambahkan!";
 
         echo "
-          <script>
-            document.location.href='index.php';
-          </script>
-      ";
+              <script>
+                document.location.href='index.php';
+              </script>
+          ";
     } else {
         $_SESSION["gagal"] = "Data Kriteria Gagal Ditambahkan!";
 
         echo "
-          <script>
-            document.location.href='index.php';
-          </script>
-      ";
+              <script>
+                document.location.href='index.php';
+              </script>
+          ";
     }
 }
 ?>

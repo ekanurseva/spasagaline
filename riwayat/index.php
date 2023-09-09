@@ -1,10 +1,13 @@
 <?php
 session_start();
-require_once('../controller/controller_user.php');
+require_once('../controller/controller_hasil.php');
 validasi();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
+$data_hasil = query("SELECT * FROM hasil");
+
 ?>
 
 <html lang="en">
@@ -63,7 +66,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">RIWAYAT HASIL DIAGNOSA</h4>
+                <h4 class="text-white text-center pb-3">RIWAYAT HASIL DIAGNOSIS</h4>
                 <div class="px-3">
                     <div class="tabel">
                         <div class="del">
@@ -77,40 +80,71 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                 <tr>
                                     <th scope="col">NO</th>
                                     <th scope="col">NAMA</th>
-                                    <th scope="col">USIA</th>
-                                    <th scope="col">WAKTU, TANGGAL</th>
+                                    <th scope="col">WAKTU</th>
                                     <th scope="col">HASIL</th>
                                     <th scope="col">AKSI</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Eka Nurseva Saniyah</td>
-                                    <td>22</td>
-                                    <td>18.00 | 21 Juni 2023</td>
-                                    <td>Kecanduan Sedang (Mood Modification | 79%)</td>
-                                    <td>
-                                        <a class="detail" href="#">DETAIL</i></a>
-                                    </td>
-                                </tr>
+                                <?php
+                                $i = 1;
+                                foreach ($data_hasil as $h):
+                                    $enkripsi_hasil = enkripsi($h['idhasil']);
+                                    $iduser = $h['iduser'];
+                                    $waktu = strftime('%H:%M:%S | %d %B %Y', strtotime($h['tanggal']));
+                                    $nama = query("SELECT nama FROM user WHERE iduser = $iduser")[0];
+                                    ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <?= $i; ?>
+                                        </th>
+                                        <td>
+                                            <?= $nama['nama']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $waktu; ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                            $nama_kategori = $h['hsl_kategori'];
+                                            $kategori = query("SELECT nama_kategori FROM kategori WHERE nama_kategori = '$nama_kategori'")[0];
+                                            ?>
+                                            Kecanduan
+                                            <?= $kategori['nama_kategori']; ?>
+                                        </td>
+                                        <td>
+                                            <a class="detail" href="../hasil?idhasil=<?= $enkripsi_hasil ?>">
+                                                DETAIL
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    $i++;
+                                endforeach;
+                                ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
                 <!-- konten selesai -->
             </div>
         </div>
+    </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
-        <!-- bootstrap js -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
-        <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-        <script src="../script.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

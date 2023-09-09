@@ -1,65 +1,4 @@
-// // show password
-// function togglePasswordVisibility() {
-//   var passwordInput = document.getElementById("password");
-//   if (passwordInput.type === "password") {
-//     passwordInput.type = "text";
-//   } else {
-//     passwordInput.type = "password";
-//   }
-// }
-
 // delete data pengguna
-function confirmDeleteProfil(id) {
-  // Menampilkan Sweet Alert dengan tombol Yes dan No
-  Swal.fire({
-    title: "Konfirmasi",
-    text: "Apakah Anda yakin ingin menghapus data?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes",
-    cancelButtonText: "No",
-    focusCancel: true,
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // Memanggil fungsi PHP menggunakan AJAX saat tombol Yes diklik
-      $.ajax({
-        url: "../controller/controller_user.php",
-        type: "POST",
-        data: {
-          action: "delete",
-          id: id,
-        },
-        success: function (_response) {
-          // Menampilkan pesan sukses jika data berhasil dihapus
-          Swal.fire({
-            icon: "success",
-            title: "Data User Berhasil Dihapus!",
-            confirmButtonText: "Ok",
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              document.location.href = "profil.php";
-            }
-          });
-        },
-        error: function (_xhr, _status, error) {
-          // Menampilkan pesan error jika terjadi kesalahan dalam penghapusan data
-          Swal.fire({
-            title: "Error",
-            text: "Terjadi kesalahan dalam menghapus data: " + error,
-            icon: "error",
-          });
-        },
-      });
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      // Menampilkan pesan jika tombol No diklik
-      Swal.fire("Batal", "Penghapusan data dibatalkan", "info");
-    }
-  });
-}
-// delete data pengguna selesai
-
-// delete data profil
 function confirmDelete(id) {
   // Menampilkan Sweet Alert dengan tombol Yes dan No
   Swal.fire({
@@ -108,7 +47,7 @@ function confirmDelete(id) {
     }
   });
 }
-// delete data profil selesai
+// delete data pengguna selesai
 
 // data tables
 $(document).ready(function () {
@@ -264,7 +203,7 @@ function deletePertanyaan(id) {
           // Menampilkan pesan sukses jika data berhasil dihapus
           Swal.fire({
             icon: "success",
-            title: "Data pertanyaan Berhasil Dihapus!",
+            title: "Data Pertanyaan Berhasil Dihapus!",
             confirmButtonText: "Ok",
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -290,8 +229,8 @@ function deletePertanyaan(id) {
 }
 // delete data pertanyaan selesai
 
-// delete data kategori
-function deleteKategori(id) {
+// delete data Solusi
+function deleteSolusi(id) {
   // Menampilkan Sweet Alert dengan tombol Yes dan No
   Swal.fire({
     title: "Konfirmasi",
@@ -305,7 +244,7 @@ function deleteKategori(id) {
     if (result.isConfirmed) {
       // Memanggil fungsi PHP menggunakan AJAX saat tombol Yes diklik
       $.ajax({
-        url: "../controller/controller_kategori.php",
+        url: "../controller/controller_solusi.php",
         type: "POST",
         data: {
           action: "delete",
@@ -315,7 +254,7 @@ function deleteKategori(id) {
           // Menampilkan pesan sukses jika data berhasil dihapus
           Swal.fire({
             icon: "success",
-            title: "Data kategori Berhasil Dihapus!",
+            title: "Data Solusi Berhasil Dihapus!",
             confirmButtonText: "Ok",
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -339,4 +278,4 @@ function deleteKategori(id) {
     }
   });
 }
-// delete data kategori selesai
+// delete data Solusi selesai

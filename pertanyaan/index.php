@@ -153,10 +153,12 @@ $ind = query("SELECT * FROM ind_gejala ORDER BY idindikator DESC");
                                     </td>
                                     <td class="aksi">
                                         <a href="edit_pertanyaan.php?id=<?= $enkripsi; ?>"><i
-                                                class="bi bi-pencil-fill"></i></a> | <button
-                                            style="border: none; background: none;" id="deletePertanyaan"
-                                            onclick="deletePertanyaan(<?= $p['idpertanyaan']; ?>)"><i
-                                                class="bi bi-trash-fill"></i></button>
+                                                class="bi bi-pencil-fill"></i></a>
+                                        |
+                                        <button style="border: none; background: none;" id="deletePertanyaan"
+                                            onclick="deletePertanyaan(<?= $p['idpertanyaan']; ?>)">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <?php
@@ -167,10 +169,16 @@ $ind = query("SELECT * FROM ind_gejala ORDER BY idindikator DESC");
                     </table>
                 </div>
             </div>
+
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

@@ -27,17 +27,25 @@ session_start();
     <!-- css -->
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        body {
+            background-image: url(img/BG_1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
     <!-- logo -->
     <link rel="Icon" href="img/Logo.png">
 </head>
 
 <body>
     <div class="main-container d-flex">
-        <div class="content" style="margin: 0;">
+        <div class="content d-flex justify-content-center">
             <!-- konten -->
-            <div class="contents px-3 py-3 text-center text-white">
-                <div class="row justify-content-center">
-                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4 my-5">
+            <div class="contents px-3 py-3 text-white d-flex align-items-center justify-content-center">
+                <div class="row">
+                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4">
                         <div class="title-regt text-start ms-2">
                             <h4>Registrasi</h4>
                         </div>
@@ -55,7 +63,7 @@ session_start();
                                     <hr style="margin-top: -7px;">
                                 </div>
                             </div>
-                            <div class="input-group input-item ms-2" style="padding-right: 0;">
+                            <div class="input-group input-item ms-2" style="padding-right: 0; margin-top: -17px;">
                                 <span class="input-group-text grup"><i
                                         class="fs-3 bi bi-person-bounding-box"></i></span>
                                 <div class="form-floating">
@@ -65,7 +73,7 @@ session_start();
                                     <hr style="margin-top: -7px;">
                                 </div>
                             </div>
-                            <div class="input-group input-item ms-2" style="padding-right: 0;">
+                            <div class="input-group input-item ms-2" style="padding-right: 0; margin-top: -17px;">
                                 <span class="input-group-text grup"><i class="fs-3 bi bi-key"></i></span>
                                 <div class="form-floating">
                                     <input type="password" class="form-control" id="password" name="pwd" placeholder=" "
@@ -74,7 +82,7 @@ session_start();
                                     <hr style="margin-top: -7px;">
                                 </div>
                             </div>
-                            <div class="input-group input-item ms-2" style="padding-right: 0;">
+                            <div class="input-group input-item ms-2" style="padding-right: 0; margin-top: -17px;">
                                 <span class="input-group-text grup"><i class="fs-3 bi bi-key-fill"></i></span>
                                 <div class="form-floating">
                                     <input type="password" class="form-control" id="password2" name="pwd2"
@@ -83,17 +91,8 @@ session_start();
                                     <hr style="margin-top: -7px;">
                                 </div>
                             </div>
-                            <div class="input-group input-item ms-2" style="padding-right: 0;">
+                            <div class="input-group input-item ms-2" style="padding-right: 0; margin-top: -17px;">
                                 <span class="input-group-text grup"><i class="fs-3 bi bi-envelope-at-fill"></i></span>
-                                <div class="form-floating">
-                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                        placeholder=" " required>
-                                    <label for="tgl_lahir">Tanggal Lahir</label>
-                                    <hr style="margin-top: -7px;">
-                                </div>
-                            </div>
-                            <div class="input-group input-item ms-2" style="padding-right: 0;">
-                                <span class="input-group-text grup"><i class="fs-3 bi bi-calendar-date"></i></i></span>
                                 <div class="form-floating">
                                     <input type="email" class="form-control" id="email" name="email" placeholder=" "
                                         required>
@@ -101,7 +100,7 @@ session_start();
                                     <hr style="margin-top: -7px;">
                                 </div>
                             </div>
-                            <div class="input-group input-pw ms-2" style="padding-right: 0;">
+                            <div class="input-group input-pw ms-2" style="padding-right: 0; margin-top: -5px;">
                                 <span class="input-group-text grup"><i class="fs-3 bi bi-camera-fill"></i></span>
                                 <div class="foto-profil">
                                     <img src="img/default.png" class="img-preview">
@@ -128,9 +127,14 @@ session_start();
                     </div>
                 </div>
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
+    <!-- Footer -->
+    <?php
+    require_once('sidenav/footer2.php');
+    ?>
 
 
     <!-- bootstrap js -->

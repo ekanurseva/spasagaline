@@ -85,7 +85,7 @@ $indikator = query("SELECT * FROM ind_gejala WHERE idindikator = $idindikator")[
                             </div>
                             <div class="col-8">
                                 <label for="deskripsi" class="col-form-label">Pertanyaan</label>
-                                <textarea style="height: 70px" type="text" id="deskripsi" name="text_pertanyaan"
+                                <textarea rows="3" type="text" id="deskripsi" name="text_pertanyaan"
                                     class="form-control"
                                     placeholder="Masukkan Pertanyaan"><?= $pertanyaan['text_pertanyaan']; ?></textarea>
                             </div>
@@ -106,10 +106,15 @@ $indikator = query("SELECT * FROM ind_gejala WHERE idindikator = $idindikator")[
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

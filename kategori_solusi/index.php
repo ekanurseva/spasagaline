@@ -62,21 +62,8 @@ $solusi = query("SELECT * FROM solusi");
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">MANAJEMEN KATEGORI & SOLUSI</h4>
+                <h4 class="text-white text-center pb-3">MANAJEMEN SOLUSI</h4>
                 <div class="row px-3">
-                    <div class="card me-5">
-                        <div class="card-body">
-                            <a href="input_kategori.php" class="fw-medium">
-                                <i class="bi bi-plus-square"></i>
-                                <span>Input Kategori</span>
-                            </a>
-                            <h6 class="card-subtitle">Jumlah</h6>
-                            <p class="card-text fw-bold">
-                                <?= $jumlah_kategori; ?>
-                            </p>
-                            <i class="icon bi bi-file-medical-fill"></i>
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-body">
                             <a href="input_solusi.php" class="fw-medium">
@@ -92,56 +79,10 @@ $solusi = query("SELECT * FROM solusi");
                     </div>
                 </div>
 
-                <!-- table Kategori -->
-                <h5 class="jdl mt-4">Table Kategori</h5>
-                <div class="tabel mb-4">
-                    <table id="example" class="table table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">NO</th>
-                                <th scope="col">KATEGORI</th>
-                                <th scope="col">BOBOT</th>
-                                <th scope="col">AKSI</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $i = 1;
-                            foreach ($kategori as $k):
-                                $enkripsi = enkripsi($k['idkategori']);
-                                ?>
-                                <tr>
-                                    <th>
-                                        <?= $i; ?>
-                                    </th>
-                                    <td>
-                                        <?= $k['nama_kategori']; ?>
-                                    </td>
-                                    <td>
-                                        <?= $k['range_atas']; ?> -
-                                        <?= $k['range_bawah']; ?>
-                                    </td>
-                                    <td>
-                                        <a href="edit_kategori.php?id=<?= $enkripsi; ?>"><i
-                                                class="bi bi-pencil-fill"></i></a> | <button
-                                            style="border: none; background: none;" id="deleteKategori"
-                                            onclick="deleteKategori(<?= $k['idkategori']; ?>)"><i
-                                                class="bi bi-trash-fill"></i></button>
-                                    </td>
-                                </tr>
-                                <?php
-                                $i++;
-                            endforeach;
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <hr class="garis">
-
                 <!-- table solusi -->
-                <h5 class="jdl">Table Solusi</h5>
+                <h5 class="jdl mt-4">Table Solusi</h5>
                 <div class="tabel">
-                    <table id="example2" class="table table-hover text-center">
+                    <table id="example" class="table table-hover text-center">
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
@@ -152,7 +93,8 @@ $solusi = query("SELECT * FROM solusi");
                         </thead>
                         <tbody>
                             <?php
-                            $j = 1; foreach ($solusi as $s):
+                            $j = 1;
+                            foreach ($solusi as $s):
                                 $enkripsi = enkripsi($s['idsolusi']);
                                 ?>
                                 <tr>
@@ -167,7 +109,7 @@ $solusi = query("SELECT * FROM solusi");
                                     <td class="ind">
                                         <?= $ktg['nama_kategori']; ?>
                                     </td>
-                                    <td class="sol">
+                                    <td class="sol text-start">
                                         <?= $s['nama_solusi']; ?>
                                     </td>
                                     <td class="aksi">
@@ -185,10 +127,15 @@ $solusi = query("SELECT * FROM solusi");
                     </table>
                 </div>
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -198,6 +145,56 @@ $solusi = query("SELECT * FROM solusi");
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="../script.js"></script>
+    <script>
+        function deleteSolusi(id) {
+            // Menampilkan Sweet Alert dengan tombol Yes dan No
+            Swal.fire({
+                title: "Konfirmasi",
+                text: "Apakah Anda yakin ingin menghapus data?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                focusCancel: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Memanggil fungsi PHP menggunakan AJAX saat tombol Yes diklik
+                    $.ajax({
+                        url: "../controller/controller_solusi.php",
+                        type: "POST",
+                        data: {
+                            action: "delete",
+                            id: id,
+                        },
+                        success: function (_response) {
+                            // Menampilkan pesan sukses jika data berhasil dihapus
+                            Swal.fire({
+                                icon: "success",
+                                title: "Data Solusi Berhasil Dihapus!",
+                                confirmButtonText: "Ok",
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                    document.location.href = "index.php";
+                                }
+                            });
+                        },
+                        error: function (_xhr, _status, error) {
+                            // Menampilkan pesan error jika terjadi kesalahan dalam penghapusan data
+                            Swal.fire({
+                                title: "Error",
+                                text: "Terjadi kesalahan dalam menghapus data: " + error,
+                                icon: "error",
+                            });
+                        },
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // Menampilkan pesan jika tombol No diklik
+                    Swal.fire("Batal", "Penghapusan data dibatalkan", "info");
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 require_once 'controller_main.php';
+require_once 'controller_indikator.php';
 
 // Fungsi Kode Indikator
 function kode($query, $idkriteria)
@@ -70,13 +71,85 @@ function input_indikator($data)
 
     $query = "INSERT INTO ind_gejala
                         VALUES 
-                        (NULL, '$kode_indikator', '$indikator', '$idkriteria')";
+                        (NULL, '$kode_indikator', '$indikator', '$idkriteria', '')";
+
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 
 }
 // Fungsi Input Indikator Selesai
+
+// Fungsi input nilai kode indikator dari pilih kriteria
+function input_kode_indikator($kode)
+{
+    global $conn;
+    $indikator = query("SELECT * FROM ind_gejala WHERE idkriteria = $kode");
+
+    foreach ($indikator as $ind) {
+        $kode_ind[] = $ind["kode_indikator"];
+    }
+
+    for ($i = 0; $i < count($kode_ind); $i++) {
+        for ($j = 0; $j < count($kode_ind); $j++) {
+            $kode1 = $kode_ind[$i];
+            $kode2 = $kode_ind[$j];
+
+            $cek = jumlah_data("SELECT * FROM rel_indikator WHERE kode1 = '$kode1' AND kode2 = '$kode2'");
+
+            if ($cek == 0) {
+                $query = "INSERT INTO rel_indikator
+                        VALUES 
+                        (NULL, '$kode', '$kode1', '$kode2', 1)";
+                mysqli_query($conn, $query);
+            }
+            $combinations[] = $kode_ind[$i] . $kode_ind[$j];
+        }
+    }
+
+}
+// Fungsi input nilai kode indikator dari pilih kriteria Selesai
+
+// Fungsi edit nilai kode indikator dari pilih kriteria
+function edit_kode_indikator($data)
+{
+    global $conn;
+
+    $idKode1 = $data['kode1'];
+    $idKode2 = $data['kode2'];
+    $idNilai = $data['nilai'];
+
+    $data_kode1 = query("SELECT kode_indikator FROM ind_gejala WHERE idindikator = $idKode1;")[0];
+    $data_kode2 = query("SELECT kode_indikator FROM ind_gejala WHERE idindikator = $idKode2;")[0];
+
+    $kode1 = $data_kode1['kode_indikator'];
+    $kode2 = $data_kode2['kode_indikator'];
+
+    if ($kode1 != $kode2) {
+        $data_rel1 = query("SELECT * FROM rel_indikator WHERE kode1 = '$kode1' AND kode2 = '$kode2'")[0];
+        $nilai1 = $idNilai;
+        $id_rel1 = $data_rel1['ID'];
+
+        $query = "UPDATE rel_indikator SET 
+                        nilai = '$nilai1'
+                    WHERE ID = '$id_rel1'
+                    ";
+        mysqli_query($conn, $query);
+
+        $data_rel2 = query("SELECT * FROM rel_indikator WHERE kode1 = '$kode2' AND kode2 = '$kode1'")[0];
+        $nilai2 = 1 / $idNilai;
+        $id_rel2 = $data_rel2['ID'];
+
+        $query2 = "UPDATE rel_indikator SET 
+                        nilai = '$nilai2'
+                    WHERE ID = '$id_rel2'
+                    ";
+        mysqli_query($conn, $query2);
+    }
+
+}
+// Fungsi edit nilai kode indikator dari pilih kriteria Selesai
+
 
 // Fungsi Edit Indikator 
 function edit_indikator($data)

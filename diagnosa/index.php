@@ -1,10 +1,34 @@
 <?php
 session_start();
-require_once('../controller/controller_user.php');
+require_once('../controller/controller_hasil.php');
 validasi();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
+$jumlah_pertanyaan = jumlah_data("SELECT * FROM pertanyaan");
+
+$jumper1 = ceil($jumlah_pertanyaan / 2);
+$jumper2 = $jumlah_pertanyaan - $jumper1;
+
+$pertanyaan1 = query("SELECT * FROM pertanyaan LIMIT $jumper1");
+$pertanyaan2 = query("SELECT * FROM pertanyaan LIMIT $jumper2 OFFSET $jumper1");
+
+if (isset($_POST['submit_hitung'])) {
+    if (hitung($_POST) > 0) {
+        echo "
+            <script>
+              document.location.href='../hasil';
+            </script>
+        ";
+      } else {
+        echo "
+            <script>
+              document.location.href='index.php';
+            </script>
+        ";
+      }
+}
 ?>
 
 <html lang="en">
@@ -60,120 +84,99 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">DIAGNOSA GEJALA KECANDUAN GAME ONLINE</h4>
+                <h4 class="text-white text-center pb-3">DIAGNOSIS GEJALA KECANDUAN GAME ONLINE</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <div class="row pb-2">
-                        <div class="col-auto" style="margin-right: 0.5px;">
-                            <label for="nama" class="col-form-label">Nama</label>
-                        </div>
-                        <div class="col-6">
-                            <input style="height: 30px;" type="text" readonly id="nama" value="<?= $user['nama']; ?>"
-                                class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-auto" style="margin-right: 10px;">
-                            <label for="usia" placeholder="Masukkan Usia Anda" class="col-form-label">Usia</label>
-                        </div>
-                        <div class="col-6">
-                            <input style="height: 30px;" type="text" id="nama" class="form-control">
-                        </div>
-                    </div>
-                    <p class="text-center py-3">Silahkan Jawab Pertanyaan Di Bawah Untuk Mendapatkan Hasil Diagnosa &
-                        Solusi</p>
-                    <div class="row pt-2">
-                        <div class="col-6">
-                            <p>1. apakah anda terus-menerus memikirkan game online, bahkan ketika anda sedang tidak
-                                bermain selama 6 bulan terakhir?
-                            </p>
-                            <div class="form-check" style="margin-top: -10px;">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault1"
-                                    id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Ya
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault1"
-                                    id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Tidak
-                                </label>
+                    <form method="post" action="">
+                        <div class="row pb-2 d-flex justify-content-center">
+                            <div class="col-12">
+                                <input style="height: 30px;" type="text" readonly id="nama" value="<?= $user['nama']; ?>"
+                                    class="form-control fw-medium text-center">
                             </div>
                         </div>
-                        <div class="col-6">
-                            <p>2. selama 6 bulan terakhir, apakah anda lebih memilih terus bermain game online
-                                dibandingkan melakukan ibadah?
-                            </p>
-                            <div class="form-check" style="margin-top: -10px;">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault2"
-                                    id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Ya
-                                </label>
+                        <p class="text-center py-3">Silahkan Jawab Pertanyaan Di Bawah Untuk Mendapatkan Hasil Diagnosis &
+                            Solusi</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <?php
+                                $i = 1;
+                                foreach ($pertanyaan1 as $p1):
+                                    ?>
+                                    <h6 class="m-0 fw-medium">
+                                        <?= $i; ?>.
+                                        <?= $p1['text_pertanyaan']; ?>
+                                    </h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="1"
+                                            id="<?= 'iya_' . $p1['kode_pertanyaan']; ?>" name="<?= $p1['kode_pertanyaan']; ?>"
+                                            required>
+                                        <label class="form-check-label" for="<?= 'iya_' . $p1['kode_pertanyaan']; ?>">
+                                            Iya
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-4">
+                                        <input class="form-check-input" type="radio" value="0.5"
+                                            id="<?= 'tidak_' . $p1['kode_pertanyaan']; ?>" name="<?= $p1['kode_pertanyaan']; ?>"
+                                            required>
+                                        <label class="form-check-label" for="<?= 'tidak_' . $p1['kode_pertanyaan']; ?>">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <?php
+                                    $i++;
+                                endforeach;
+                                ?>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault2"
-                                    id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Tidak
-                                </label>
+    
+                            <div class="col-6">
+                                <?php foreach ($pertanyaan2 as $p2):
+                                    ?>
+                                    <h6 class="m-0 fw-medium">
+                                        <?= $i; ?>.
+                                        <?= $p2['text_pertanyaan']; ?>
+                                    </h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" value="1"
+                                            id="<?= 'iya_' . $p2['kode_pertanyaan']; ?>" name="<?= $p2['kode_pertanyaan']; ?>"
+                                            required>
+                                        <label class="form-check-label" for="<?= 'iya_' . $p2['kode_pertanyaan']; ?>">
+                                            Iya
+                                        </label>
+                                    </div>
+                                    <div class="form-check  mb-4">
+                                        <input class="form-check-input" type="radio" value="0.5"
+                                            id="<?= 'tidak_' . $p2['kode_pertanyaan']; ?>" name="<?= $p2['kode_pertanyaan']; ?>"
+                                            required>
+                                        <label class="form-check-label" for="<?= 'tidak_' . $p2['kode_pertanyaan']; ?>">
+                                            Tidak
+                                        </label>
+                                    </div>
+                                    <?php
+                                    $i++;
+                                endforeach;
+                                ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="row pt-3">
-                        <div class="col-6">
-                            <p>3. selama 6 bulan terakhir, jika sedang marah, apakah anda akan bermain game online untuk
-                                meredakan emosi?
-                            </p>
-                            <div class="form-check" style="margin-top: -10px;">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault3"
-                                    id="flexRadioDefault3">
-                                <label class="form-check-label" for="flexRadioDefault3">
-                                    Ya
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault3"
-                                    id="flexRadioDefault4" checked>
-                                <label class="form-check-label" for="flexRadioDefault4">
-                                    Tidak
-                                </label>
-                            </div>
+    
+                        <div class="submit text-center pt-4 btn-long">
+                            <a href="../hasil" class="fw-medium text-decoration-none">
+                                <button style="border: none; background: none; font-weight: 500;" type="submit"
+                                    name="submit_hitung">SUBMIT</button>
+                            </a>
                         </div>
-                        <div class="col-6">
-                            <p>4. selama 6 bulan terakhir, apakah anda terus bermain game online meski anda mengetahui
-                                dampak negatifnya?
-                            </p>
-                            <div class="form-check" style="margin-top: -10px;">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault4"
-                                    id="flexRadioDefault3">
-                                <label class="form-check-label" for="flexRadioDefault3">
-                                    Ya
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault4"
-                                    id="flexRadioDefault4" checked>
-                                <label class="form-check-label" for="flexRadioDefault4">
-                                    Tidak
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="submit text-center pt-4 btn-long">
-                        <a href="../hasil" class="fw-medium text-decoration-none">
-                            <span>SUBMIT</span>
-                        </a>
-                    </div>
+                    </form>
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

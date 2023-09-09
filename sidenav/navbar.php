@@ -11,7 +11,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active text-white fw-semibold" aria-current="page">Sistem Pakar
-                        Diagnosa Gejala Kecanduan Game Online</a>
+                        Diagnosis Gejala Kecanduan Game Online</a>
                 </li>
             </ul>
         </div>

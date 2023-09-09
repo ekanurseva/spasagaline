@@ -52,15 +52,23 @@ if (isset($_GET['key'])) {
 
     <!-- logo -->
     <link rel="Icon" href="img/Logo.png">
+
+    <style>
+        body {
+            background-image: url(img/BG_1.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
     <div class="main-container d-flex">
-        <div class="content" style="margin: 0;">
+        <div class="content d-flex justify-content-center">
             <!-- konten -->
-            <div class="contents px-3 py-3 text-center text-white">
-                <div class="row justify-content-center">
-                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4 my-5">
+            <div class="contents px-3 py-3 text-white d-flex align-items-center justify-content-center">
+                <div class="row">
+                    <div class="tabel glow tab px-5 table-bordered table-striped text-center py-4">
                         <div class="title-pw ms-3 text-start">
                             <h5>Ubah</h5>
                             <h5 style="margin-top: -10px">Password</h5>
@@ -114,6 +122,10 @@ if (isset($_GET['key'])) {
             <!-- konten selesai -->
         </div>
     </div>
+    <!-- Footer -->
+    <?php
+    require_once('sidenav/footer2.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

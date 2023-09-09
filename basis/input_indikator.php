@@ -66,8 +66,8 @@ $kode = kode($indikator, $idkriteria);
                         <label for="kriteria" class="col-form-label">Kode Indikator</label>
                         <input type="text" value="<?= $kode; ?>" name="kode_indikator" readonly class="form-control">
                         <label for="deskripsi" class="col-form-label">Indikator Gejala</label>
-                        <textarea style="height: 70px" type="text" class="form-control"
-                            placeholder="Masukkan Indikator Gejala" name="indikator"></textarea>
+                        <textarea rows="5" type="text" class="form-control" placeholder="Masukkan Indikator Gejala"
+                            name="indikator"></textarea>
                         <div class="row" style="margin-top: -10px;">
                             <div class="col-2 tombol">
                                 <button type="submit" name="submit_indikator">
@@ -84,10 +84,15 @@ $kode = kode($indikator, $idkriteria);
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

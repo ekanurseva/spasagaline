@@ -177,7 +177,6 @@ function register_user($data)
     $password = mysqli_real_escape_string($conn, $data["pwd"]);
     $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
     $email = htmlspecialchars($data['email']);
-    $tgl_lahir = $data['tgl_lahir'];
     $foto = uploadFoto();
     if ($foto == "") {
         $foto = "default.png";
@@ -211,12 +210,9 @@ function register_user($data)
     //enkripsi password
     $password = password_hash($password2, PASSWORD_DEFAULT);
 
+
     //jika password sama, masukkan data ke database
-    mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$nama', '$username', '$password', '$email', '$tgl_lahir', '$foto', '$level')");
-    // Menghitung usia berdasarkan tgl_lahir
-    // $tgl_lahir_obj = new DateTime($tgl_lahir);
-    // $tanggal_hari_ini = new DateTime();
-    // $selisih_tahun = $tanggal_hari_ini->diff($tgl_lahir_obj)->y;
+    mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$nama', '$username', '$password', '$email', '$foto', '$level')");
 
     return mysqli_affected_rows($conn);
 }
@@ -232,7 +228,6 @@ function register_admin($data)
     $password = mysqli_real_escape_string($conn, $data["pwd"]);
     $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
     $email = htmlspecialchars($data['email']);
-    $tgl_lahir = $data['tgl_lahir'];
     $foto = uploadFoto();
     if ($foto == "") {
         $foto = "default.png";
@@ -267,12 +262,8 @@ function register_admin($data)
     $password = password_hash($password2, PASSWORD_DEFAULT);
 
     //jika password sama, masukkan data ke database
-    mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$nama', '$username', '$password', '$email', '$tgl_lahir', '$foto', '$level')");
+    mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$nama', '$username', '$password', '$email', '$foto', '$level')");
 
-    // Menghitung usia berdasarkan tgl_lahir
-    // $tgl_lahir_obj = new DateTime($tgl_lahir);
-    // $tanggal_hari_ini = new DateTime();
-    // $selisih_tahun = $tanggal_hari_ini->diff($tgl_lahir_obj)->y;
 
     return mysqli_affected_rows($conn);
 }
@@ -293,7 +284,6 @@ function update($data)
     $password = mysqli_real_escape_string($conn, $data["pwd"]);
     $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
     $email = htmlspecialchars($data['email']);
-    $tgl_lahir = $data['tgl_lahir'];
     $foto = uploadFoto();
     if ($foto == "") {
         $foto = $oldfoto;
@@ -361,17 +351,12 @@ function update($data)
                 username = '$username',
                 password = '$password',
                 email = '$email',
-                tgl_lahir = '$tgl_lahir',
                 foto = '$foto',
                 level = '$level'
               WHERE iduser = $iduser
             ";
     mysqli_query($conn, $query);
 
-    // Menghitung usia berdasarkan tgl_lahir
-    // $tgl_lahir_obj = new DateTime($tgl_lahir);
-    // $tanggal_hari_ini = new DateTime();
-    // $selisih_tahun = $tanggal_hari_ini->diff($tgl_lahir_obj)->y;
 
     return mysqli_affected_rows($conn);
 }
@@ -393,7 +378,6 @@ function update_profil($data)
     $password = mysqli_real_escape_string($conn, $data["pwd"]);
     $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
     $email = htmlspecialchars($data['email']);
-    $tgl_lahir = $data['tgl_lahir'];
     $foto = uploadFoto();
     if ($foto == "") {
         $foto = $oldfoto;
@@ -460,17 +444,12 @@ function update_profil($data)
                 username = '$username',
                 password = '$password',
                 email = '$email',
-                tgl_lahir = '$tgl_lahir',
                 foto = '$foto',
                 level = '$level'
               WHERE iduser = $iduser
             ";
     mysqli_query($conn, $query);
 
-    // Menghitung usia berdasarkan tgl_lahir
-    // $tgl_lahir_obj = new DateTime($tgl_lahir);
-    // $tanggal_hari_ini = new DateTime();
-    // $selisih_tahun = $tanggal_hari_ini->diff($tgl_lahir_obj)->y;
 
     return mysqli_affected_rows($conn);
 }

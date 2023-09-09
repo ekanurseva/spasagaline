@@ -47,12 +47,12 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
             <!-- konten -->
             <div class="contents px-3 py-3 text-center">
-                <h4 class="text-white text-center">TENTANG APLIKASI</h4>
+                <h4 class="text-white text-center">TENTANG SISTEM PAKAR DIAGNOSIS KECANDUAN GAME ONLINE</h4>
 
                 <div class="tabel text-center text-white px-5 py-4">
                     <img style="width: 55px;" src="../img/Logo.png" alt="Logo SPASAGALINE">
                     <h3 class="py-2">SPASAGALINE</h3>
-                    <p class="py-2">merupakan Sistem Pakar Diagnosa Gejala Kecanduan Game Online yang dirancang dan
+                    <p class="py-2">merupakan Sistem Pakar Diagnosis Gejala Kecanduan Game Online yang dirancang dan
                         dibuat dengan
                         tujuan memudahkan pengguna dalam melakukan diagnosa gejala kecanduan game online dengan cepat
                         dan akurat berdasarkan pakar, dan menampilkan solusi penanganan awal gejala dengan tepat.</p>
@@ -70,10 +70,15 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

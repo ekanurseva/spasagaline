@@ -61,7 +61,7 @@
         <li class="">
             <a href="../kategori_solusi" class="text-decoration-none d-block">
                 <i class="bi bi-files"></i>
-                <span>Kategori & Solusi</span>
+                <span>Manajemen Solusi</span>
             </a>
         </li>
     </ul>
@@ -75,4 +75,5 @@
             </a>
         </li>
     </ul>
+
 </div>

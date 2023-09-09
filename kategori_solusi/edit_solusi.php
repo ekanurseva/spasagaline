@@ -79,7 +79,7 @@ $nama_kategori = query("SELECT * FROM kategori WHERE idkategori = $idkategori")[
                         </div>
                         <div class="row mt-2">
                             <label for="solusi" class="col-form-label">Solusi</label>
-                            <textarea style="height: 70px" type="text" id="solusi" name="solusi" class="form-control"
+                            <textarea rows="5" type="text" id="solusi" name="solusi" class="form-control"
                                 placeholder="Masukkan Solusi"><?= $solusi['nama_solusi']; ?></textarea>
                         </div>
                         <div class="row pb-1" style="margin-top: -20px;">
@@ -98,10 +98,15 @@ $nama_kategori = query("SELECT * FROM kategori WHERE idkategori = $idkategori")[
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

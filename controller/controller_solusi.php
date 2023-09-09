@@ -70,31 +70,31 @@ function edit_solusi($data)
 }
 // Fungsi Edit Solusi Selesai
 
-// Fungsi Delete Kategori
-// function delete_kategori($id)
-// {
-//     global $conn;
-//     mysqli_query($conn, "DELETE FROM kategori  WHERE idkategori = $id");
+// Fungsi Delete solusi
+function delete_solusi($id)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM solusi  WHERE idsolusi = $id");
 
-//     $deleted = true;
+    $deleted = true;
 
-//     return $deleted;
-// }
+    return $deleted;
+}
 
-// // Mengecek apakah ada permintaan penghapusan data
-// if (isset($_POST['action']) && $_POST['action'] === 'delete') {
-//     // Mengambil nilai parameter id dari data POST
-//     $id = $_POST['id'];
+// Mengecek apakah ada permintaan penghapusan data
+if (isset($_POST['action']) && $_POST['action'] === 'delete') {
+    // Mengambil nilai parameter id dari data POST
+    $id = $_POST['id'];
 
-//     // Memanggil fungsi delete untuk menghapus data
-//     $status = delete_kategori($id);
+    // Memanggil fungsi delete untuk menghapus data
+    $status = delete_solusi($id);
 
-//     // Mengirimkan respons ke JavaScript
-//     if ($status) {
-//         echo 'success';
-//     } else {
-//         echo 'error';
-//     }
-// }
-// Fungsi Delete Kategori Selesai
+    // Mengirimkan respons ke JavaScript
+    if ($status) {
+        echo 'success';
+    } else {
+        echo 'error';
+    }
+}
+// Fungsi Delete solusi Selesai
 ?>

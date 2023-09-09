@@ -54,7 +54,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">INPUT DATA KRITERIA</h4>
+                <h4 class="text-white text-center pb-3">EDIT DATA KRITERIA</h4>
 
                 <div class="tabel text-white px-5 py-4">
                     <form method="post" action="">
@@ -78,8 +78,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         <div class="row pb-1">
                             <div class="col-6">
                                 <label for="deskripsi" class="col-form-label">Deskripsi</label>
-                                <textarea style="height: 70px" type="text" class="form-control" id="deskripsi"
-                                    name="deskripsi"
+                                <textarea rows="5" type="text" class="form-control" id="deskripsi" name="deskripsi"
                                     placeholder="Masukkan Deskripsi Kriteria"><?= $data['deskripsi']; ?></textarea>
                             </div>
                             <div class="col-2 tombol">
@@ -97,10 +96,15 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -116,6 +120,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 <?php
 if (isset($_POST['update'])) {
     if (edit_kriteria($_POST) > 0) {
+        update_field($_POST);
         $_SESSION["berhasil"] = "Data Kriteria Berhasil Diubah!";
 
         echo "

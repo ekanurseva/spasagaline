@@ -74,24 +74,6 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         </div>
                         <div class="row pb-1">
                             <div class="col-6">
-                                <label for="email" class="col-form-label">Email</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Masukkan Alamat Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="tgl_lahir" class="col-form-label">Tanggal Lahir</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                                        placeholder="Masukkan Alamat Tanggal Lahir">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row pb-1">
-                            <div class="col-6">
                                 <label for="password" class="col-form-label">Password</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
@@ -110,6 +92,14 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         </div>
                         <div class="row pb-1">
                             <div class="col-6">
+                                <label for="email" class="col-form-label">Email</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Masukkan Alamat Email">
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <label for="profil" class="col-form-label">Foto Profil</label>
                                 <div class="foto-profil">
                                     <img src="../profil/default.png" class="img-preview">
@@ -122,7 +112,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                 <label for="foto" class="foto">*kosongkan jika tidak ingin mengganti foto</label>
                             </div>
                         </div>
-                        <div class="row justify-content-end" style="margin-top: -115px; margin-bottom: 50px;">
+                        <div class="row justify-content-end" style="margin-top: -20px; margin-bottom: 30px;">
                             <div class="col-2 me-3" style="margin-top: 33px;">
                                 <div style="margin-top: 20px" class="col-2 tombol">
                                     <button type="submit" name="submit">
@@ -142,10 +132,15 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

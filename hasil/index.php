@@ -1,10 +1,36 @@
 <?php
 session_start();
-require_once('../controller/controller_main.php');
+require_once('../controller/controller_hasil.php');
 validasi();
 
 $id = dekripsi($_COOKIE['SPASAGALINENS']);
 $user = query("SELECT * FROM user WHERE iduser = $id")[0];
+
+
+if (isset($_GET['idhasil'])) {
+    $idhasil = dekripsi($_GET['idhasil']);
+
+    $data_hasil = query("SELECT * FROM hasil WHERE idhasil = $idhasil")[0];
+} else {
+    $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id AND idhasil = (SELECT MAX(idhasil) FROM hasil WHERE iduser = $id)")[0];
+}
+$idhasil = enkripsi($data_hasil['idhasil']);
+
+$iduser = $data_hasil['iduser'];
+$nama = query("SELECT * FROM user WHERE iduser = '$iduser'")[0];
+
+$kriteria_cf = kriteria_cf($data_hasil);
+$hasil_cf = hasil_cf($data_hasil);
+
+$kriteria_besar = $kriteria_cf[0];
+
+$kriteria = query("SELECT * FROM kriteria WHERE nama_kriteria = '$kriteria_besar'")[0];
+
+$nama_kategori = $data_hasil['hsl_kategori'];
+$kategori = query("SELECT * FROM kategori WHERE nama_kategori = '$nama_kategori'")[0];
+
+$idkategori = $kategori['idkategori'];
+$solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
 
 ?>
 
@@ -61,46 +87,67 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
 
             <!-- konten -->
             <div class="contents px-4 py-3">
-                <h4 class="text-white text-center pb-3">HASIL DIAGNOSA</h4>
+                <h4 class="text-white text-center pb-3">HASIL DIAGNOSIS</h4>
 
                 <div class="tabel text-white px-5 py-4">
-                    <h6 class="text-center">
-                        <?php echo $user['nama']; ?> (22 tahun)
+                    <h6 class="text-center text-uppercase">
+                        <?php echo $nama['nama']; ?>
                     </h6>
                     <div class="judul">
                         <p>Kriteria Gejala Kecanduan Game Online Anda Adalah:</p>
                     </div>
                     <div class="box-hasil">
-                        <h4 class="text-uppercase text-center fw-bold">Salience : 73%</h4>
-                        <div class="desk text-center">
-                            <p>Salience merupakan kriteria dimana bermain game online menjadi aktivitas penting dan
-                                mendominasi pikirannya</p>
-                        </div>
-                        <h4 class="text-center">Kategori Tingkat Kecanduan <span class="fw-bold">Ringan</span>
+                        <?php for ($j = 0; $j < count($kriteria_cf); $j++) { ?>
+                            <?php if ($kriteria_cf[$j] == $kriteria['nama_kriteria']): ?>
+                                <h4 class="text-uppercase text-center fw-bold">
+                                    <?= $kriteria_cf[$j]; ?> :
+                                    <?= $hasil_cf[$j]; ?>%
+                                </h4>
+                                <div class="desk text-center mb-2 mt-2 fw-medium" style="font-size: 17px;">
+                                    <p>
+                                        <?= $kriteria['deskripsi']; ?>
+                                    </p>
+                                </div>
+                            <?php else: ?>
+                                <h5 class="text-uppercase text-center fw-bold">
+                                    <?= $kriteria_cf[$j]; ?> :
+                                    <?= $hasil_cf[$j]; ?>%
+                                </h5>
+                            <?php endif; ?>
+                        <?php } ?>
+                        <h4 class="text-center mt-4">Kategori Tingkat Kecanduan <span class="fw-bold">
+                                <?= $data_hasil['hsl_kategori']; ?>
+                            </span>
                         </h4>
                     </div>
 
                     <div class="solusi mt-4">
-                        <ul class="fw-medium">Solusi Dari Tingkat Kecanduan Tersebut, Yaitu:</ul>
-                        <li class="ms-5">Mengurangi waktu bermain game online dengan lebih memperhatikan lingkungan
-                            sekitar dan fokus
-                            terhadap hal positif yang mendukung aktivitas dalam mengalihkan keinginan untuk bermain game
-                            online</li>
-                        <li class="ms-5">Sebaiknya konsultasi dengan psikolog/psikiater</li>
+                        <ul class="fw-medium mb-0 justify">Solusi Dari Tingkat Kecanduan Tersebut, Yaitu:</ul>
+                        <?php foreach ($solusi as $ds): ?>
+                            <li class="ms-4">
+                                <?= $ds['nama_solusi']; ?>
+                            </li>
+                        <?php endforeach; ?>
                     </div>
 
                     <div class="submit text-center mt-4 pt-4">
-                        <a href="#" class="fw-medium text-decoration-none">
+                        <a href="../print.php?id=<?= $idhasil; ?>" target="_blank"
+                            class="fw-medium text-decoration-none">
                             <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
                         </a>
                     </div>
                 </div>
 
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

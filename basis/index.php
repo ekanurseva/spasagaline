@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once('../controller/controller_indikator.php');
 require_once('../controller/controller_kriteria.php');
 
@@ -138,14 +139,73 @@ $indikator = query("SELECT * FROM ind_gejala");
 
                 <!-- button ahp -->
                 <div class="btn-ahp">
-                    <div href="#" class="ahp fw-medium">
-                        <a style="padding: 7px 15px;"><i class="bi bi-table"></i>Analisis Hierarki
-                            Kriteria</a>
+                    <span style="font-size: 9px; color: white; margin-left: 10px;">Lakukan Analisis Hierarki Kriteria
+                        Terlebih Dahulu</span>
+                    <div class="ahp fw-medium mt-2">
+                        <button style="background: none; border: none;">
+                            <a href="ahp_kriteria.php" style="padding-right: 20px;">
+                                <i class="bi bi-table"></i>
+                                Analisis Hierarki Kriteria
+                            </a>
+                        </button>
                     </div>
-                    <div href="#" class="ahp fw-medium mt-3">
-                        <a><i class="bi bi-table"></i>Analisis Hierarki Indikator</a>
+                    <div class="ahp fw-medium mt-2">
+                        <button style="background: none; border: none;">
+                            <a data-bs-toggle="modal" data-bs-target="#ahpindikator">
+                                <i class="bi bi-table"></i>
+                                Analisis Hierarki Indikator
+                            </a>
+                        </button>
                     </div>
                 </div>
+
+                <!-- Modal Input Kode Untuk AHP = Pilih Kriteria -->
+                <div class="modal fade" id="ahpindikator" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="ahpindikatorLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="ahpindikatorLabel">Pilih Kriteria</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+                            <form action="ahp_indikator.php" method="post">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="kriteria" class="form-label">Pilih kriteria untuk memulai analisis
+                                            Indikator</label>
+
+                                        <div class="">
+                                            <select id="kriteria" class="form-select"
+                                                aria-label="Default select example" name="kriteria">
+                                                <?php foreach ($krit as $ink): ?>
+                                                    <?php
+                                                    $idkrit = $ink['idkriteria'];
+                                                    $jumlah_data = jumlah_data("SELECT * FROM ind_gejala WHERE idkriteria = $idkrit");
+                                                    if ($jumlah_data > 1):
+                                                        ?>
+                                                        <option value="<?= $ink['idkriteria']; ?>">
+                                                            <?= $ink['kode_kriteria']; ?> - <?= $ink['nama_kriteria']; ?>
+                                                        </option>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" name="submit" class="btn btn-primary">Pilih</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Kembali
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Input Kode Untuk AHP = Pilih Kriteria Selesai -->
 
                 <!-- table Kriteria -->
                 <h5 class="jdl mt-4">Table Kriteria</h5>
@@ -247,10 +307,15 @@ $indikator = query("SELECT * FROM ind_gejala");
                     </table>
                 </div>
             </div>
+
             <!-- konten selesai -->
         </div>
     </div>
 
+    <!-- Footer -->
+    <?php
+    require_once('../sidenav/footer.php');
+    ?>
 
     <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

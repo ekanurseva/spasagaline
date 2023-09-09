@@ -35,7 +35,7 @@
             </a>
         </li>
         <li class="">
-            <a href="../riwayat" class="text-decoration-none d-block">
+            <a href="../riwayat/riwayat.php" class="text-decoration-none d-block">
                 <i class="bi bi-card-list"></i>
                 <span>Riwayat Diagnosa</span>
             </a>
