@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Waktu pembuatan: 27 Agu 2023 pada 16.58
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.0.15
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 10 Sep 2023 pada 02.06
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,12 +29,29 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `hasil` (
   `idhasil` int(11) NOT NULL,
-  `hsl_kategori` varchar(45) NOT NULL,
-  `hsl_kriteria` varchar(45) NOT NULL,
-  `bobot` double NOT NULL,
+  `iduser` int(11) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `iduser` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `hsl_kategori` varchar(45) NOT NULL,
+  `salience` double NOT NULL,
+  `tolerance` double NOT NULL,
+  `mood_modification` double NOT NULL,
+  `relapse` double NOT NULL,
+  `withdrawal` double NOT NULL,
+  `conflict` double NOT NULL,
+  `problem` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `hasil`
+--
+
+INSERT INTO `hasil` (`idhasil`, `iduser`, `tanggal`, `hsl_kategori`, `salience`, `tolerance`, `mood_modification`, `relapse`, `withdrawal`, `conflict`, `problem`) VALUES
+(11, 1, '2023-09-07 09:58:10', 'Ringan', 80.179, 54.476, 52.147, 78.587, 43.75, 68.359, 31.918),
+(12, 1, '2023-09-08 07:24:44', 'Berat', 96.093, 54.476, 64.838, 96.02, 62.5, 90.625, 44.559),
+(13, 2, '2023-09-09 05:52:56', 'Sedang', 77.971, 66.678, 58.98, 91.002, 75, 68.359, 48.227),
+(14, 5, '2023-09-09 13:52:13', 'Ringan', 77.971, 54.476, 85.939, 77.464, 62.5, 68.359, 54.852),
+(15, 10, '2023-09-09 14:20:08', 'Berat', 77.971, 66.678, 85.939, 91.451, 62.5, 93.75, 54.852),
+(16, 10, '2023-09-09 14:25:57', 'Ringan', 77.971, 37.807, 58.98, 77.464, 43.75, 68.359, 36.423);
 
 -- --------------------------------------------------------
 
@@ -48,7 +65,7 @@ CREATE TABLE `ind_gejala` (
   `indikator` text NOT NULL,
   `idkriteria` int(11) NOT NULL,
   `cf_pakar` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `ind_gejala`
@@ -68,8 +85,8 @@ INSERT INTO `ind_gejala` (`idindikator`, `kode_indikator`, `indikator`, `idkrite
 (32, 'IND1-W', 'merasakan emosi seperti marah, kecewa, gelisah, sedih dan bingung ketika tidak bermain game online ', 27, 0.5),
 (33, 'IND2-W', 'menyendiri dan tidak ingin diganggu karena bermain game online berlebihan', 27, 0.5),
 (34, 'IND1-C', 'sering bertengkar dengan pemain/player lain saat bermain game online', 28, 0.5),
-(35, 'IND2-C', 'memiliki perilaku menentang atau tidak patuh dengan orang tua maupun aturan lain akibat sering bermain game online', 28, 0.5),
-(36, 'IND1-P', 'keberfungsian psikologis diri', 29, 0.12413108189901);
+(37, 'IND2-C', 'memiliki perilaku menentang atau tidak patuh dengan orang tua maupun aturan lain akibat sering bermain game online', 28, 0.5),
+(38, 'IND1-P', 'keberfungsian psikologis diri', 30, 0.12413108189901);
 
 -- --------------------------------------------------------
 
@@ -82,16 +99,16 @@ CREATE TABLE `kategori` (
   `nama_kategori` varchar(30) NOT NULL,
   `range_atas` double NOT NULL,
   `range_bawah` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`idkategori`, `nama_kategori`, `range_atas`, `range_bawah`) VALUES
-(7, 'Ringan', 8.052, 0),
-(8, 'Sedang', 16.103, 8.053),
-(9, 'Berat', 24.155, 16.104);
+(15, 'Ringan', 19.257, 16.809),
+(16, 'Sedang', 21.706, 19.258),
+(17, 'Berat', 24.155, 21.707);
 
 -- --------------------------------------------------------
 
@@ -104,7 +121,7 @@ CREATE TABLE `kriteria` (
   `kode_kriteria` varchar(20) NOT NULL,
   `nama_kriteria` varchar(50) NOT NULL,
   `deskripsi` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `kriteria`
@@ -117,7 +134,7 @@ INSERT INTO `kriteria` (`idkriteria`, `kode_kriteria`, `nama_kriteria`, `deskrip
 (26, 'R', 'Relapse', 'Relapse yaitu kecenderungan untuk kembali ke pola permainan atau perilaku adiktif yang sudah dilakukan sebelumnya'),
 (27, 'W', 'Withdrawal', 'Withdrawal adalah perasaan dan dampak fisik negatif saat bermain game tiba-tiba berkurang atau dihentikan'),
 (28, 'C', 'Conflict', 'Conflict yaitu suatu hal yang merujuk pada segala bentuk konflik interpersonal yang timbul karena bermain game secara berlebihan'),
-(29, 'P', 'Problem', 'Problems yaitu hal yang merujuk pada masalah yang disebabkan oleh kecanduan bermain game yang berlebihan');
+(30, 'P', 'Problem', 'Problems yaitu hal yang merujuk pada masalah yang disebabkan oleh kecanduan bermain game yang berlebihan');
 
 -- --------------------------------------------------------
 
@@ -130,14 +147,14 @@ CREATE TABLE `pertanyaan` (
   `kode_pertanyaan` varchar(20) NOT NULL,
   `text_pertanyaan` text NOT NULL,
   `idindikator` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `pertanyaan`
 --
 
 INSERT INTO `pertanyaan` (`idpertanyaan`, `kode_pertanyaan`, `text_pertanyaan`, `idindikator`) VALUES
-(1, 'G1', 'Apakah anda terus-menerus memikirkan game online, bahkan ketika anda sedang tidak bermain selama 6 bulan terakhir?', 22),
+(1, 'G1', 'apakah anda terus-menerus memikirkan game online, bahkan ketika anda sedang tidak bermain selama 6 bulan terakhir?', 22),
 (2, 'G2', 'selama 6 bulan terakhir, apa sebelum tidur anda berpikiran untuk bermain game online?', 22),
 (3, 'G3', 'selama 6 bulan terakhir, apakah anda sering terpikirkan untuk bermain game online saat sedang melakukan aktivitas fisik seperti berolahraga?', 22),
 (4, 'G4', 'selama 6 bulan terakhir, apakah anda lebih sering bermain game online dibandingkan melakukan kegiatan sosial?', 23),
@@ -167,13 +184,13 @@ INSERT INTO `pertanyaan` (`idpertanyaan`, `kode_pertanyaan`, `text_pertanyaan`, 
 (29, 'G28', 'selama 6 bulan terakhir, apakah kamu sering membuat pertengkaran dengan pemain/player lain dalam bermain game online?', 34),
 (30, 'G29', 'selama 6 bulan terakhir, apakah anda pernah memperlakukan player lain dengan  tidak menyenangkan akibat kekalahan dalam bermain game online?', 34),
 (31, 'G30', 'selama 6 bulan terakhir, apakah anda pernah mengalami situasi di mana konflik dalam game online berasal dari perselisihan pribadi atau perbedaan pendapat dengan pemain lain?', 34),
-(32, 'G31', 'selama 6 bulan terakhir, apakah anda sering menolak dan membantah apabila disuruh orang tua yang sedang membutuhkan bantuan sehingga membuat orang tua marah?', 35),
-(33, 'G32', 'selama 6 bulan terakhir, apakah anda mengalami kesulitan tidur, gangguan nafsu makan, atau gejala fisik lainnya ketika Anda tidak bermain game online?', 36),
-(34, 'G33', 'selama 6 bulan terakhir, apakah anda rela mengeluarkan banyak uang untuk membeli item dalam game online?', 36),
-(35, 'G34', 'selama 6 bulan terakhir, apakah anda tidak memperhatikan kebersihan diri seperti mandi, karena terus bermain game online?', 36),
-(36, 'G35', 'selama 6 bulan terakhir, apakah anda merasa tidak masalah mengorbankan waktu belajar/beraktivitas sosial hanya karena bermain game online?', 36),
-(37, 'G36', 'selama 6 bulan terakhir, apakah prestasi sekolah anda mengalami penurunan akibat terlalu sering bermain game online?', 36),
-(38, 'G37', 'selama 6 bulan terakhir, apakah anda mengalami masalah kesehatan seperti kelelahan atau kurang energi setelah bermain game online selama beberapa jam?', 36);
+(94, 'G31', 'selama 6 bulan terakhir, apakah anda sering menolak dan membantah apabila disuruh orang tua yang sedang membutuhkan bantuan sehingga membuat orang tua marah?', 37),
+(95, 'G32', 'selama 6 bulan terakhir, apakah anda mengalami kesulitan tidur, gangguan nafsu makan, atau gejala fisik lainnya ketika Anda tidak bermain game online?', 38),
+(96, 'G33', 'selama 6 bulan terakhir, apakah anda rela mengeluarkan banyak uang untuk membeli item dalam game online?', 38),
+(97, 'G34', 'selama 6 bulan terakhir, apakah anda tidak memperhatikan kebersihan diri seperti mandi, karena terus bermain game online?', 38),
+(98, 'G35', 'selama 6 bulan terakhir, apakah anda merasa tidak masalah mengorbankan waktu belajar/beraktivitas sosial hanya karena bermain game online?', 38),
+(99, 'G36', 'selama 6 bulan terakhir, apakah prestasi sekolah anda mengalami penurunan akibat terlalu sering bermain game online?', 38),
+(104, 'G37', 'selama 6 bulan terakhir, apakah anda mengalami masalah kesehatan seperti kelelahan atau kurang energi setelah bermain game online selama beberapa jam?', 38);
 
 -- --------------------------------------------------------
 
@@ -187,7 +204,7 @@ CREATE TABLE `rel_indikator` (
   `kode1` varchar(20) NOT NULL,
   `kode2` varchar(20) NOT NULL,
   `nilai` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `rel_indikator`
@@ -243,7 +260,7 @@ CREATE TABLE `rel_kriteria` (
   `ID1` varchar(10) NOT NULL,
   `ID2` varchar(10) NOT NULL,
   `nilai` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `rel_kriteria`
@@ -298,7 +315,33 @@ INSERT INTO `rel_kriteria` (`ID`, `ID1`, `ID2`, `nilai`) VALUES
 (60, 'W', 'P', 1),
 (61, 'P', 'W', 1),
 (62, 'C', 'P', 1),
-(63, 'P', 'C', 1);
+(63, 'P', 'C', 1),
+(64, 'P', 'P', 1),
+(65, 'S', 'P', 1),
+(66, 'P', 'S', 1),
+(67, 'T', 'P', 1),
+(68, 'P', 'T', 1),
+(69, 'M', 'P', 1),
+(70, 'P', 'M', 1),
+(71, 'R', 'P', 1),
+(72, 'P', 'R', 1),
+(73, 'W', 'P', 1),
+(74, 'P', 'W', 1),
+(75, 'C', 'P', 1),
+(76, 'P', 'C', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `rule`
+--
+
+CREATE TABLE `rule` (
+  `idrule` int(11) NOT NULL,
+  `idkriteria` int(11) NOT NULL,
+  `idindikator` int(11) NOT NULL,
+  `cf_pakar` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -310,28 +353,28 @@ CREATE TABLE `solusi` (
   `idsolusi` int(11) NOT NULL,
   `idkategori` int(11) NOT NULL,
   `nama_solusi` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `solusi`
 --
 
 INSERT INTO `solusi` (`idsolusi`, `idkategori`, `nama_solusi`) VALUES
-(5, 7, 'Mengurangi waktu bermain game online dengan lebih memperhatikan lingkungan sekitar dan fokus terhadap hal yang positif yang mendukung aktivitas dalam mengalihkan keinginan untuk\r\nbermain game online'),
-(6, 7, 'sebaiknya konsultasikan dengan psikolog/psikiater '),
-(7, 8, 'Silahkan konsultasi dengan psikolog dan psikiater. '),
-(8, 8, 'Berolahraga/melakukan aktivitas fisik, minimal seminggu dua kali selama 2 jam'),
-(9, 8, 'Makan secara teratur : Sarapan jam 06.00 – 07.00 WIB, Makan siang jam 11.00 – 13.00 WIB, Makan malam 17.00 – 18.00 WIB\r\n'),
-(10, 8, 'Perbanyak konsumsi serat, buah dan air putih 2L perhari'),
-(11, 8, 'Tidur secara teratur, paling telat jam 22.00 WIB dan bangun lebih dini, kurang dari jam 06.00 WIB'),
-(12, 8, 'Kurangi konsumsi rokok dan kopi'),
-(13, 8, 'Paksakan untuk puasa HP/Game Online '),
-(14, 8, 'Sempatkan untuk membahagiakan diri sendiri, seperti tamasya (outing) ke tempat yang membuat diri kamu nyaman selama  seminggu sekali'),
-(15, 8, 'Perbaiki hubungan dengan keluarga dan teman dekat, upayakan intens berkomunikasi dengan orang dekat'),
-(16, 8, 'Ikuti kajian ilmu keagamaan rutin minimal seminggu sekali'),
-(17, 8, 'Lakukan passion anda (membaca, menulis, atau lainnya)  minimal seminggu sekali'),
-(18, 8, 'Jika anda di usia matang (23-30 tahun) namun belum memiliki pasangan, cobalah untuk berta’aruf'),
-(19, 9, 'Anda sudah dalam level berat dalam kecanduan bermain game online, segeralah hubungi psikolog.');
+(1, 15, 'Mengurangi waktu bermain game online dengan lebih memperhatikan lingkungan sekitar dan fokus terhadap hal yang positif yang mendukung aktivitas dalam mengalihkan keinginan untuk\r\nbermain game online'),
+(2, 15, 'Sebaiknya konsultasikan dengan psikolog/psikiater '),
+(3, 16, 'Silahkan konsultasi dengan psikolog dan psikiater'),
+(4, 16, 'Berolahraga/melakukan aktivitas fisik, minimal 2x seminggu selama 2 jam'),
+(5, 16, 'Makan secara teratur (Sarapan jam 06.00 – 07.00 WIB, Makan siang jam 11.00 – 13.00 WIB, Makan malam 17.00 – 18.00 WIB)\r\n'),
+(6, 16, 'Perbanyak konsumsi serat, buah dan air putih 2L perhari'),
+(7, 16, 'Tidur secara teratur, paling telat jam 22.00 WIB dan bangun lebih dini, kurang dari jam 06.00 WIB'),
+(8, 16, 'Kurangi konsumsi rokok dan kopi'),
+(9, 16, 'Paksakan untuk puasa HP/Game Online '),
+(10, 16, 'Sempatkan untuk membahagiakan diri sendiri, seperti tamasya (outing) ke tempat yang membuat diri kamu nyaman selama  seminggu sekali'),
+(11, 16, 'Perbaiki hubungan dengan keluarga dan teman dekat, upayakan intens berkomunikasi dengan orang dekat'),
+(12, 16, 'Ikuti kajian ilmu keagamaan rutin minimal seminggu sekali'),
+(13, 16, 'Lakukan passion anda (membaca, menulis, atau lainnya)  minimal seminggu sekali'),
+(14, 16, 'Jika anda di usia matang (23-30 tahun) namun belum memiliki pasangan, cobalah untuk berta’aruf'),
+(15, 17, 'Anda sudah dalam level berat dalam kecanduan bermain game online, segeralah hubungi psikolog!!');
 
 -- --------------------------------------------------------
 
@@ -347,19 +390,21 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `foto` varchar(50) NOT NULL,
   `level` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`iduser`, `nama`, `username`, `password`, `email`, `foto`, `level`) VALUES
-(1, 'Eka Nurseva Saniyah', 'eka', '$2y$10$b4K6pXc/pRmcGLk.MdqjDeyU8JOprHX75kHXU.pYkARmRedZS/Gjy', 'ekanursevas@gmail.com', '64d51cf577e65.jpg', 'Admin'),
-(2, 'Ali Asyidiqiansyah', 'ali', '$2y$10$wBGQowL3BxxRWH/f7P8j3eycrRPRN9jZmtCW/AEmWvbZUrcq6Ei.q', 'aliasss@gmail.com', '64d51cb0da085.jpg', 'User'),
-(5, 'Nurseva S', 'seva', '$2y$10$c9hDYIndNWRY7Dhn4FNRSu3wKLzw7JyZ9GUAnjFH0gHMdZGrhnLMu', 'nursevasa@gmail.com', '64d521a6a81d1.jpg', 'User'),
+(1, 'Eka Nurseva Saniyah', 'eka', '$2y$10$6iUNpnVUyRDy83nTBtqZ0e958GUQ6q5pA5q/PScVnIkkT9UMK3GAi', 'ekanursevas@gmail.com', '64eb7d97e138e.jpg', 'Admin'),
+(2, 'Ali Asyidiqiansyah', 'ali', '$2y$10$ss.R0CZO/EkdSt3Zxcw4YuL4gVbnNlWmJ6Ae9mivgKjr4LkNB6P12', 'aliasss@gmail.com', '64fc07a5463ab.jpg', 'User'),
+(5, 'Nurseva S', 'seva', '$2y$10$c9hDYIndNWRY7Dhn4FNRSu3wKLzw7JyZ9GUAnjFH0gHMdZGrhnLMu', 'nursevasa@gmail.com', '64fc782790aab.jpeg', 'User'),
 (9, 'Siti Syarifah M', 'siti18', '$2y$10$c1V1kNg7Jo4k9DEc0sZoUuu6ctfVs5BgtmKA/CQ9iu6Fc0BsfCqRu', 'sitisyarifahmudaim19@gmail.com', '64d8d35768301.jpg', 'User'),
 (10, 'Ali Asya', 'aliasya', '$2y$10$.MUsxEpC50UgTcMNPL0s2exEUOylQzF2divqgeOwZIQHw0RSAf.Ja', 'aliasyadiqian@gmail.com', 'default.png', 'User'),
-(13, 'Fillah Zaki Alhaqi', 'fillah21', '$2y$10$IkJs7QoTFBWrYfXkYCX08OvxJH6dq70vKQ4LsWAc1EJUcGz6CewPm', 'fillah.alhaqi11@gmail.com', '64eb6351a1519.png', 'Admin');
+(14, 'User', 'user', '$2y$10$1uWhMdv0UJIjZpVs9PUktuhIEr725Yguuc6PYSct6cHiTeoUdVYAi', 'user1@gmail.com', 'default.png', 'User'),
+(15, 'User2', 'user2', '$2y$10$mNRlBmXgVVm6BqjSbdY79ukUrkzD1AD620QEnteTij4iJgBhVLOeq', 'user2@gmail.com', 'default.png', 'User'),
+(19, 'azka', 'maulanazka', '$2y$10$eh.d.Km2IhMNK0QIyUrPm.QaTrDTNL.R/izFvOXb5Mvcv2Ys2Jwc2', 'askamualana6@gmail.com', 'default.png', 'User');
 
 --
 -- Indexes for dumped tables
@@ -411,6 +456,12 @@ ALTER TABLE `rel_kriteria`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indeks untuk tabel `rule`
+--
+ALTER TABLE `rule`
+  ADD PRIMARY KEY (`idrule`);
+
+--
 -- Indeks untuk tabel `solusi`
 --
 ALTER TABLE `solusi`
@@ -431,31 +482,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `hasil`
 --
 ALTER TABLE `hasil`
-  MODIFY `idhasil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idhasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `ind_gejala`
 --
 ALTER TABLE `ind_gejala`
-  MODIFY `idindikator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `idindikator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `idkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `idpertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `idpertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT untuk tabel `rel_indikator`
@@ -467,19 +518,25 @@ ALTER TABLE `rel_indikator`
 -- AUTO_INCREMENT untuk tabel `rel_kriteria`
 --
 ALTER TABLE `rel_kriteria`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- AUTO_INCREMENT untuk tabel `rule`
+--
+ALTER TABLE `rule`
+  MODIFY `idrule` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `solusi`
 --
 ALTER TABLE `solusi`
-  MODIFY `idsolusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idsolusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
