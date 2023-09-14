@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Sep 2023 pada 02.06
+-- Waktu pembuatan: 14 Sep 2023 pada 05.23
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -51,7 +51,14 @@ INSERT INTO `hasil` (`idhasil`, `iduser`, `tanggal`, `hsl_kategori`, `salience`,
 (13, 2, '2023-09-09 05:52:56', 'Sedang', 77.971, 66.678, 58.98, 91.002, 75, 68.359, 48.227),
 (14, 5, '2023-09-09 13:52:13', 'Ringan', 77.971, 54.476, 85.939, 77.464, 62.5, 68.359, 54.852),
 (15, 10, '2023-09-09 14:20:08', 'Berat', 77.971, 66.678, 85.939, 91.451, 62.5, 93.75, 54.852),
-(16, 10, '2023-09-09 14:25:57', 'Ringan', 77.971, 37.807, 58.98, 77.464, 43.75, 68.359, 36.423);
+(16, 10, '2023-09-09 14:25:57', 'Ringan', 77.971, 37.807, 58.98, 77.464, 43.75, 68.359, 36.423),
+(17, 1, '2023-09-10 01:02:03', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 40.63),
+(18, 14, '2023-09-11 07:50:15', 'Sedang', 77.971, 66.678, 85.939, 77.464, 75, 93.75, 54.852),
+(19, 14, '2023-09-11 07:56:42', 'Sedang', 90.919, 54.476, 85.939, 89.509, 75, 68.359, 54.852),
+(20, 20, '2023-09-11 08:01:24', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 40.63),
+(21, 20, '2023-09-11 08:11:14', 'Sedang', 80.575, 66.678, 52.147, 92.572, 62.5, 93.75, 54.852),
+(22, 21, '2023-09-11 08:48:55', 'Sedang', 79.314, 54.476, 52.147, 95.811, 43.75, 68.359, 36.423),
+(24, 24, '2023-09-12 07:02:46', 'Ringan', 77.971, 37.807, 58.98, 77.464, 62.5, 90.625, 36.423);
 
 -- --------------------------------------------------------
 
@@ -328,20 +335,22 @@ INSERT INTO `rel_kriteria` (`ID`, `ID1`, `ID2`, `nilai`) VALUES
 (73, 'W', 'P', 1),
 (74, 'P', 'W', 1),
 (75, 'C', 'P', 1),
-(76, 'P', 'C', 1);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `rule`
---
-
-CREATE TABLE `rule` (
-  `idrule` int(11) NOT NULL,
-  `idkriteria` int(11) NOT NULL,
-  `idindikator` int(11) NOT NULL,
-  `cf_pakar` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(76, 'P', 'C', 1),
+(77, 'SS', 'SS', 1),
+(78, 'S', 'SS', 1),
+(79, 'SS', 'S', 1),
+(80, 'T', 'SS', 1),
+(81, 'SS', 'T', 1),
+(82, 'M', 'SS', 1),
+(83, 'SS', 'M', 1),
+(84, 'R', 'SS', 1),
+(85, 'SS', 'R', 1),
+(86, 'W', 'SS', 1),
+(87, 'SS', 'W', 1),
+(88, 'C', 'SS', 1),
+(89, 'SS', 'C', 1),
+(90, 'P', 'SS', 1),
+(91, 'SS', 'P', 1);
 
 -- --------------------------------------------------------
 
@@ -402,9 +411,12 @@ INSERT INTO `user` (`iduser`, `nama`, `username`, `password`, `email`, `foto`, `
 (5, 'Nurseva S', 'seva', '$2y$10$c9hDYIndNWRY7Dhn4FNRSu3wKLzw7JyZ9GUAnjFH0gHMdZGrhnLMu', 'nursevasa@gmail.com', '64fc782790aab.jpeg', 'User'),
 (9, 'Siti Syarifah M', 'siti18', '$2y$10$c1V1kNg7Jo4k9DEc0sZoUuu6ctfVs5BgtmKA/CQ9iu6Fc0BsfCqRu', 'sitisyarifahmudaim19@gmail.com', '64d8d35768301.jpg', 'User'),
 (10, 'Ali Asya', 'aliasya', '$2y$10$.MUsxEpC50UgTcMNPL0s2exEUOylQzF2divqgeOwZIQHw0RSAf.Ja', 'aliasyadiqian@gmail.com', 'default.png', 'User'),
-(14, 'User', 'user', '$2y$10$1uWhMdv0UJIjZpVs9PUktuhIEr725Yguuc6PYSct6cHiTeoUdVYAi', 'user1@gmail.com', 'default.png', 'User'),
+(14, 'User', 'user', '$2y$10$vtJ1379MXo05EKNI9ZdDd.2vjBS39PSrbxao0inB/G9D9s8lrFGV2', 'user1@gmail.com', '64fec6428e429.png', 'User'),
 (15, 'User2', 'user2', '$2y$10$mNRlBmXgVVm6BqjSbdY79ukUrkzD1AD620QEnteTij4iJgBhVLOeq', 'user2@gmail.com', 'default.png', 'User'),
-(19, 'azka', 'maulanazka', '$2y$10$eh.d.Km2IhMNK0QIyUrPm.QaTrDTNL.R/izFvOXb5Mvcv2Ys2Jwc2', 'askamualana6@gmail.com', 'default.png', 'User');
+(19, 'azka', 'maulanazka', '$2y$10$eh.d.Km2IhMNK0QIyUrPm.QaTrDTNL.R/izFvOXb5Mvcv2Ys2Jwc2', 'askamualana6@gmail.com', 'default.png', 'User'),
+(20, 'Bubu', 'bubu', '$2y$10$JJykw2RjTRnUy/IW8Jmvruouu8R1wAQB1uENNdSNpvm1xhdU/Vfkm', 'ekanursevas@gmail.com', 'default.png', 'User'),
+(21, 'tiwwi', 'wii', '$2y$10$a/ex1iygwAAEsMhDp5E8.eCt6LqpgH/.ms8YewuQZS6zXRm0JJpJq', 'mgpratiwwi@gmail.com', 'default.png', 'User'),
+(24, 'Halimatus Sadiyah', 'atus', '$2y$10$FuFtfGf9JuIiQyLSBtexnOdy/d/.0/kPruY.ytFTmy8a7fk7QYIGK', 'halimatussadiyah281@gmail.com', 'default.png', 'User');
 
 --
 -- Indexes for dumped tables
@@ -456,12 +468,6 @@ ALTER TABLE `rel_kriteria`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indeks untuk tabel `rule`
---
-ALTER TABLE `rule`
-  ADD PRIMARY KEY (`idrule`);
-
---
 -- Indeks untuk tabel `solusi`
 --
 ALTER TABLE `solusi`
@@ -482,7 +488,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `hasil`
 --
 ALTER TABLE `hasil`
-  MODIFY `idhasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idhasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `ind_gejala`
@@ -500,7 +506,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `kriteria`
 --
 ALTER TABLE `kriteria`
-  MODIFY `idkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idkriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `pertanyaan`
@@ -518,25 +524,19 @@ ALTER TABLE `rel_indikator`
 -- AUTO_INCREMENT untuk tabel `rel_kriteria`
 --
 ALTER TABLE `rel_kriteria`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
-
---
--- AUTO_INCREMENT untuk tabel `rule`
---
-ALTER TABLE `rule`
-  MODIFY `idrule` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT untuk tabel `solusi`
 --
 ALTER TABLE `solusi`
-  MODIFY `idsolusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idsolusi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

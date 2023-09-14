@@ -69,12 +69,6 @@ $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id");
                 <h4 class="text-white text-center pb-3">RIWAYAT HASIL DIAGNOSIS</h4>
                 <div class="px-3">
                     <div class="tabel">
-                        <div class="del">
-                            <a href="#" class="fw-medium">
-                                <i class="bi bi-trash-fill"></i>
-                                <span>Delete Data Riwayat</span>
-                            </a>
-                        </div>
                         <table id="example" class="table table-hover text-center">
                             <thead>
                                 <tr>

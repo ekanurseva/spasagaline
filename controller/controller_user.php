@@ -195,6 +195,18 @@ function register_user($data)
         exit();
     }
 
+    $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'") or die(mysqli_error($conn));
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Email sudah digunakan, silahkan pakai email lain',
+                        'error'
+                    )
+                </script>";
+        exit();
+    }
+
     if ($password !== $password2) {
         echo "<script>
                     Swal.fire(
@@ -240,6 +252,18 @@ function register_admin($data)
                     Swal.fire(
                         'Gagal!',
                         'Username sudah digunakan, silahkan pakai username lain',
+                        'error'
+                    )
+                </script>";
+        exit();
+    }
+
+    $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'") or die(mysqli_error($conn));
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Email sudah digunakan, silahkan pakai email lain',
                         'error'
                     )
                 </script>";
