@@ -145,6 +145,9 @@
 </head>
 
 <body>
+    <?php
+    phpinfo();
+    ?>
     <!-- Formulir untuk memilih kriteria -->
     <!-- <form method="post">
         <label for="kriteria">Pilih Kriteria:</label>

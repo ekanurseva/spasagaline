@@ -46,7 +46,7 @@ $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id");
         <!-- sidebar -->
         <?php
         // Cek peran pengguna dan masukkan file sidebar yang sesuai
-        if ($user['level'] === "User") {
+        if ($user['level'] === "User" || $user['level'] === "Ortu") {
             require_once('../sidenav/sidebar_user.php');
         } elseif ($user['level'] === "Admin") {
             require_once('../sidenav/sidebar.php');
@@ -73,6 +73,11 @@ $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id");
                             <thead>
                                 <tr>
                                     <th scope="col">NO</th>
+                                    <?php
+                                    if ($user['level'] === "Ortu") {
+                                        echo '<th scope="col">ANAK/SISWA</th>';
+                                    }
+                                    ?>
                                     <th scope="col">WAKTU</th>
                                     <th scope="col">HASIL</th>
                                     <th scope="col">AKSI</th>
@@ -88,6 +93,12 @@ $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id");
                                         <th scope="row">
                                             <?= $i; ?>
                                         </th>
+                                        <?php
+                                        if ($user['level'] === "Ortu") {
+                                            echo '<th>' . $h['anak'] . '</th>';
+                                        }
+                                        ?>
+
                                         <td>
                                             <?= $waktu; ?>
                                         </td>
@@ -103,10 +114,19 @@ $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id");
                                             <?php
                                             $idhasil = enkripsi($h['idhasil']);
                                             ?>
-                                            <a class="detail" href="../hasil?idhasil=<?= $idhasil; ?>">
-                                                DETAIL
-                                            </a>
+                                            <?php
+                                            if ($user['level'] === "User") {
+                                                echo '<a class="detail" href="../hasil?idhasil=' . $idhasil . '">
+                                                        DETAIL
+                                                    </a>';
+                                            } else {
+                                                echo '<a class="detail" href="../hasil/hasil.php?idhasil=' . $idhasil . '">
+                                                        DETAIL
+                                                    </a>';
+                                            }
+                                            ?>
                                         </td>
+
                                     </tr>
                                     <?php
                                     $i++;

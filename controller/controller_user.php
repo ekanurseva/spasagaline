@@ -230,6 +230,69 @@ function register_user($data)
 }
 // Fungsi Registrasi User Selesai
 
+// Fungsi Registrasi Ortu
+function register_ortu($data)
+{
+    global $conn;
+
+    $nama = htmlspecialchars($data['nama']);
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn, $data["pwd"]);
+    $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
+    $email = htmlspecialchars($data['email']);
+    $foto = uploadFoto();
+    if ($foto == "") {
+        $foto = "default.png";
+    }
+    $level = "Ortu";
+
+    $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'") or die(mysqli_error($conn));
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Username sudah digunakan, silahkan pakai username lain',
+                        'error'
+                    )
+                </script>";
+        exit();
+    }
+
+    $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'") or die(mysqli_error($conn));
+    if (mysqli_fetch_assoc($result)) {
+        echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Email sudah digunakan, silahkan pakai email lain',
+                        'error'
+                    )
+                </script>";
+        exit();
+    }
+
+    if ($password !== $password2) {
+        echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Password tidak sesuai',
+                        'error'
+                    )
+                </script>";
+        exit();
+    }
+
+
+    //enkripsi password
+    $password = password_hash($password2, PASSWORD_DEFAULT);
+
+
+    //jika password sama, masukkan data ke database
+    mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$nama', '$username', '$password', '$email', '$foto', '$level')");
+
+    return mysqli_affected_rows($conn);
+}
+// Fungsi Registrasi Ortu Selesai
+
 // Fungsi Registrasi Admin
 function register_admin($data)
 {
@@ -478,4 +541,99 @@ function update_profil($data)
     return mysqli_affected_rows($conn);
 }
 // Fungsi Edit Profil Pengguna Selesai
+
+// Fungsi Edit Profil Ortu
+function update_profil_ortu($data)
+{
+    global $conn;
+    $iduser = $data['iduser'];
+    $oldpassword = $data['oldpassword'];
+    $oldusername = $data['oldusername'];
+    $oldemail = $data['oldemail'];
+    $oldfoto = $data['oldfoto'];
+    $oldlevel = $data['oldlevel'];
+
+    $nama = htmlspecialchars($data['nama']);
+    $nama_anak = htmlspecialchars($data['nama_anak']);
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn, $data["pwd"]);
+    $password2 = mysqli_real_escape_string($conn, $data["pwd2"]);
+    $email = htmlspecialchars($data['email']);
+    $foto = uploadFoto();
+    if ($foto == "") {
+        $foto = $oldfoto;
+    }
+
+    if (isset($data['level'])) {
+        $level = $data['level'];
+    } else {
+        $level = $oldlevel;
+    }
+
+
+    if ($username !== $oldusername) {
+        $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
+
+        if (mysqli_fetch_assoc($result)) {
+            echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Username sudah digunakan, silahkan pakai username lain',
+                        'error'
+                    )
+                  </script>";
+            exit();
+        }
+    }
+
+    if ($password !== $oldpassword) {
+        if ($password !== $password2) {
+            echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Password tidak sesuai',
+                        'error'
+                    )
+                  </script>";
+            exit();
+        }
+
+        $password = password_hash($password2, PASSWORD_DEFAULT);
+    }
+
+    if ($email !== $oldemail) {
+        $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'");
+
+        if (mysqli_fetch_assoc($result)) {
+            echo "<script>
+                    Swal.fire(
+                        'Gagal!',
+                        'Email sudah digunakan, silahkan pakai email lain',
+                        'error'
+                    )
+                  </script>";
+            exit();
+        }
+    }
+
+    if ($foto != $oldfoto && $oldfoto != "default.png") {
+        unlink("../profil/$oldfoto");
+    }
+
+    $query = "UPDATE user SET 
+                nama = '$nama',
+                anak = '$nama_anak',
+                username = '$username',
+                password = '$password',
+                email = '$email',
+                foto = '$foto',
+                level = '$level'
+              WHERE iduser = $iduser
+            ";
+    mysqli_query($conn, $query);
+
+
+    return mysqli_affected_rows($conn);
+}
+// Fungsi Edit Profil Ortu Selesai
 ?>

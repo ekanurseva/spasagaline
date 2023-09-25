@@ -112,29 +112,16 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="row">
-                                    <label class="col-form-label">Level Pengguna</label>
-                                    <div class="input-group mt-3">
-                                        <div class="form-check me-5">
-                                            <input class="form-check-input" type="radio" name="level" id="user"
-                                                value="User" <?php if ($data['level'] === 'User') {
-                                                    echo 'checked';
-                                                } ?>>
-                                            <label class="form-check-label" for="user">User</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="level" id="admin"
-                                                value="Admin" <?php if ($data['level'] === 'Admin') {
-                                                    echo 'checked';
-                                                } ?>>
-                                            <label class="form-check-label" for="admin">Admin</label>
-                                        </div>
-                                    </div>
+                                <label for="anak" class="col-form-label">Nama Anak/Siswa</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="text" class="form-control" id="anak" value="<?= $data['anak']; ?>"
+                                        name="nama_anak" placeholder="Masukkan Nama Anak">
                                 </div>
                             </div>
                         </div>
                         <div class="row pb-1">
-                            <div class="col-6 me-5">
+                            <div class="col-6">
                                 <label for="profil" class="col-form-label">Foto Profil</label>
                                 <div class="foto-profil">
                                     <img src="../profil/<?= $data['foto']; ?>" class="img-preview">
@@ -146,6 +133,36 @@ $data = query("SELECT * FROM user WHERE iduser = $dekripsi")[0];
                                 </div>
                                 <label for="foto" class="foto">*kosongkan jika tidak ingin mengganti foto</label>
                             </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="col-form-label">Level Pengguna</label>
+                                    <div class="input-group">
+                                        <div class="form-check me-5">
+                                            <input class="form-check-input" type="radio" name="level" id="user"
+                                                value="User" <?php if ($data['level'] === 'User') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label" for="user">User</label>
+                                        </div>
+                                        <div class="form-check me-5">
+                                            <input class="form-check-input" type="radio" name="level" id="admin"
+                                                value="Admin" <?php if ($data['level'] === 'Admin') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label" for="admin">Admin</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="level" id="ortu"
+                                                value="Ortu" <?php if ($data['level'] === 'Ortu') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label" for="ortu">Ortu</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end ms-5">
                             <div class="col-2 ms-5">
                                 <div style="margin-top: 33px" class="col-2 tombol">
                                     <button type="submit" name="submit">

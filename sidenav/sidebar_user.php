@@ -13,7 +13,8 @@
     <!--PROFIL-->
     <div class="profil">
         <img src="../profil/<?= $user['foto']; ?>" class="rounded-circle" alt="profi">
-        <a href="../pengguna/profil.php"><button class="rounded-circle"><i class="bi bi-pencil-fill"></i></button></a>
+        <a href="../pengguna/profil.php"><button class="rounded-circle"><i class="bi bi-pencil-fill"></i></button></a>;
+
         <h1>
             <?= $user['nama']; ?>
         </h1>
@@ -23,10 +24,19 @@
     <!-- menu -->
     <ul class="list-unstyled pt-2 fw-medium">
         <li class="">
-            <a href="../diagnosa" class="text-decoration-none d-block text-center">
-                <i class="bi bi-controller"></i>
-                <span>Mulai Deteksi</span>
-            </a>
+            <?php
+            if ($user['level'] === "User") {
+                echo '<a href="../diagnosa" class="text-decoration-none d-block text-center">
+                        <i class="bi bi-controller"></i>
+                        <span>Mulai Deteksi</span>
+                      </a>';
+            } else {
+                echo '<a href="../diagnosa/diagnosa.php" class="text-decoration-none d-block text-center">
+                        <i class="bi bi-controller"></i>
+                        <span>Mulai Deteksi</span>
+                      </a>';
+            }
+            ?>
         </li>
         <li class="">
             <a href="../pengguna" class="text-decoration-none d-block">

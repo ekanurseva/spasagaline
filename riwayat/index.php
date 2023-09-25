@@ -74,6 +74,7 @@ $data_hasil = query("SELECT * FROM hasil");
                                 <tr>
                                     <th scope="col">NO</th>
                                     <th scope="col">NAMA</th>
+                                    <th scope="col">ANAK/SISWA</th>
                                     <th scope="col">WAKTU</th>
                                     <th scope="col">HASIL</th>
                                     <th scope="col">AKSI</th>
@@ -94,6 +95,9 @@ $data_hasil = query("SELECT * FROM hasil");
                                         </th>
                                         <td>
                                             <?= $nama['nama']; ?>
+                                        </td>
+                                        <td>
+                                            <?= $h['anak']; ?>
                                         </td>
                                         <td>
                                             <?= $waktu; ?>

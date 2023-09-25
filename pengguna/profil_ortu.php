@@ -39,7 +39,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         <!-- sidebar -->
         <?php
         // Cek peran pengguna dan masukkan file sidebar yang sesuai
-        if ($user['level'] === "User" || ($user['level'] === "Ortu")) {
+        if ($user['level'] === "User" || $user['level'] === "Ortu") {
             require_once('../sidenav/sidebar_user.php');
         } elseif ($user['level'] === "Admin") {
             require_once('../sidenav/sidebar.php');
@@ -113,6 +113,14 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                         </div>
                         <div class="row pb-1">
                             <div class="col-6">
+                                <label for="anak" class="col-form-label">Nama Anak</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                    <input type="text" class="form-control" id="anak" value="<?= $user['anak']; ?>"
+                                        name="nama_anak" placeholder="Masukkan Nama Anak">
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <label for="email" class="col-form-label">Email</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
@@ -120,6 +128,8 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                         name="email" placeholder="Masukkan Alamat Email">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row pb-1" style="margin-bottom: 30px;">
                             <div class="col-6">
                                 <label for="profil" class="col-form-label">Foto Profil</label>
                                 <div class="foto-profil">
@@ -132,17 +142,15 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                                 </div>
                                 <label for="foto" class="foto">*kosongkan jika tidak ingin mengganti foto</label>
                             </div>
-                        </div>
-                        <div class="row pb-1 justify-content-end" style="margin-top: -20px; margin-bottom: 30px;">
                             <div class="col-2 me-3">
-                                <div style="margin-top: 33px" class="col-2 tombol">
+                                <div style="margin-top: 50px" class="col-2 tombol">
                                     <button type="submit" name="submit_profil">
                                         <span class="fw-medium">UPDATE</span>
                                     </button>
                                 </div>
                             </div>
                             <div class="col-2">
-                                <div style="margin-top: 33px" class="col-2 tombol">
+                                <div style="margin-top: 50px" class="col-2 tombol">
                                     <a href="index.php" class="back fw-medium text-decoration-none">
                                         <span>KEMBALI</span>
                                     </a>

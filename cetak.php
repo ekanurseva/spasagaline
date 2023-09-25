@@ -15,12 +15,6 @@ $hasil = hasil_cf($data_hasil);
 $iduser = $data_hasil['iduser'];
 $data_user = query("SELECT * FROM user WHERE iduser = $iduser")[0];
 
-// Periksa jika level pengguna bukan "Ortu"
-if ($data_hasil['anak'] == '-') {
-    // Jika bukan "Ortu", tetapkan "nama anak" menjadi "nama pengguna"
-    $data_hasil['anak'] = $data_user['nama'];
-}
-
 $kriteria_cf = kriteria_cf($data_hasil);
 $hasil_cf = hasil_cf($data_hasil);
 
@@ -105,8 +99,11 @@ $html = '<!DOCTYPE html>
                 <h3 style="text-align: center; margin: 0;">HASIL DIAGNOSIS</h3>
                 <h3 style="text-align: center; margin: 0;">GEJALA KECANDUAN GAME ONLINE</h3>
 
-                <h4 style="text-align: center; text-transform: uppercase;">';
+                <h4 style="text-align: center; text-transform: uppercase; margin: 0; margin-top: 20px">';
 $html .= $data_hasil['anak'] . '</h4>
+                <h5 style="text-align: center; margin: 0; margin-top: 10px">Orang Tua/Guru Dari Pengguna Game Online Di Atas:</h5>
+                <h5 style="text-align: center; text-transform: uppercase; margin-top: 0;">';
+$html .= $data_user['nama'] . '</h5>
 
                 <table>
                     <tr>

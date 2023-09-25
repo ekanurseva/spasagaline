@@ -41,7 +41,7 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
         <!-- sidebar -->
         <?php
         // Cek peran pengguna dan masukkan file sidebar yang sesuai
-        if ($user['level'] === "User") {
+        if ($user['level'] === "User" || $user['level'] === "Ortu") {
             require_once('../sidenav/sidebar_user.php');
         } elseif ($user['level'] === "Admin") {
             require_once('../sidenav/sidebar.php');
@@ -66,10 +66,20 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 </h4>
                 <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
 
-                <a href="../diagnosa" class="text-decoration-none fw-bold">
-                    <i class="bi bi-controller"></i>
-                    <span>Mulai Deteksi</span>
-                </a>
+                <?php
+                if ($user['level'] === "User" || $user['level'] === "Admin") {
+                    echo '<a href="../diagnosa" class="text-decoration-none fw-bold">
+                            <i class="bi bi-controller"></i>
+                            <span>Mulai Deteksi</span>
+                          </a>';
+                } else {
+                    echo '<a href="../diagnosa/diagnosa.php" class="text-decoration-none fw-bold">
+                            <i class="bi bi-controller"></i>
+                            <span>Mulai Deteksi</span>
+                          </a>';
+                }
+                ?>
+
                 <div class="kritera pt-3">
                     <img style="width: 93%" src="../img/Home.png" alt="kriteria kecanduan game online">
                 </div>

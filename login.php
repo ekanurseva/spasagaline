@@ -98,7 +98,7 @@ if (isset($_POST["login"])) {
 
                             <div class="row mb-4">
                                 <div class="col-6 login">
-                                    <a type="button" href="registrasi.php">Registrasi</a>
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#regis">Registrasi</a>
                                 </div>
                                 <div class="col-6 login">
                                     <a type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -145,7 +145,43 @@ if (isset($_POST["login"])) {
                         </div>
                     </div>
                 </div>
-                <!-- Modal Forgot Password = Input Email Selesai -->
+                <!-- Modal Regist -->
+
+                <!-- Modal Forgot Password = Input Email -->
+                <div class="modal fade" id="regis" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5 text-dark" id="staticBackdropLabel">Registrasi</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+
+
+                            <div class="modal-body">
+                                <div class="mb-2">
+                                    <label for="email" class="form-label text-dark">Registrasi Sebagai:</label>
+                                </div>
+                                <div class="mb-3">
+                                    <a href="registrasi.php"
+                                        style="text-decoration: none; color: black; padding-right: 187px; padding-left: 20px;">Pengguna
+                                        Game Online</a>
+                                </div>
+                                <div class="mb-3">
+                                    <a href="regist_ortu.php"
+                                        style="text-decoration: none; color: black; padding-left: 20px;">Orang
+                                        Tua/Guru dari Pengguna Game Online</a>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Regist -->
             </div>
 
             <!-- konten selesai -->

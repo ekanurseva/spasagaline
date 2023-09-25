@@ -66,15 +66,7 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        // Cek peran pengguna dan masukkan file sidebar yang sesuai
-        if ($user['level'] === "User") {
-            require_once('../sidenav/sidebar_user.php');
-        } elseif ($user['level'] === "Admin") {
-            require_once('../sidenav/sidebar.php');
-        } else {
-            // Jika peran tidak dikenali, Anda dapat menambahkan pesan error atau tindakan lain sesuai kebutuhan
-            echo "Error: Peran pengguna tidak valid.";
-        }
+        require_once('../sidenav/sidebar_user.php');
         ?>
         <!-- sidebar selesai -->
 
@@ -91,17 +83,7 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
 
                 <div class="tabel text-white px-5 py-4">
                     <h6 class="text-center text-uppercase">
-                        <?php
-                        // Periksa jika level pengguna bukan "Ortu"
-                        if ($data_hasil['anak'] == '-') {
-                            // Jika bukan "Ortu", tetapkan "nama anak" menjadi "nama pengguna"
-                            $data_hasil['anak'] = $nama['nama'];
-                        }
-
-                        if (isset($data_hasil['anak'])) {
-                            echo $data_hasil['anak'];
-                        }
-                        ?>
+                        <?php echo $data_hasil['anak']; ?>
                     </h6>
                     <div class="judul">
                         <p>Kriteria Gejala Kecanduan Game Online Anda Adalah:</p>
@@ -141,7 +123,7 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
                     </div>
 
                     <div class="submit text-center mt-4 pt-4">
-                        <a href="../print.php?id=<?= $idhasil; ?>" target="_blank"
+                        <a href="../cetak.php?id=<?= $idhasil; ?>" target="_blank"
                             class="fw-medium text-decoration-none">
                             <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
                         </a>

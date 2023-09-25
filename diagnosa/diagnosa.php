@@ -15,19 +15,19 @@ $pertanyaan1 = query("SELECT * FROM pertanyaan LIMIT $jumper1");
 $pertanyaan2 = query("SELECT * FROM pertanyaan LIMIT $jumper2 OFFSET $jumper1");
 
 if (isset($_POST['submit_hitung'])) {
-    if (hitung($_POST) > 0) {
+    if (hitung2($_POST) > 0) {
         echo "
             <script>
-              document.location.href='../hasil';
+              document.location.href='../hasil/hasil.php';
             </script>
         ";
-    } else {
+      } else {
         echo "
             <script>
               document.location.href='index.php';
             </script>
         ";
-    }
+      }
 }
 ?>
 
@@ -63,15 +63,7 @@ if (isset($_POST['submit_hitung'])) {
     <div class="main-container d-flex">
         <!-- sidebar -->
         <?php
-        // Cek peran pengguna dan masukkan file sidebar yang sesuai
-        if ($user['level'] === "User" || $user['level'] === "Ortu") {
             require_once('../sidenav/sidebar_user.php');
-        } elseif ($user['level'] === "Admin") {
-            require_once('../sidenav/sidebar.php');
-        } else {
-            // Jika peran tidak dikenali, Anda dapat menambahkan pesan error atau tindakan lain sesuai kebutuhan
-            echo "Error: Peran pengguna tidak valid.";
-        }
         ?>
         <!-- sidebar selesai -->
 
@@ -90,17 +82,11 @@ if (isset($_POST['submit_hitung'])) {
                     <form method="post" action="">
                         <div class="row pb-2 d-flex justify-content-center">
                             <div class="col-12">
-                                <?php
-                                if ($user['level'] === "User" || $user['level'] === "Admin") {
-                                    echo '<input style="height: 30px;" type="text" readonly id="nama" value="' . $user['nama'] . '" class="form-control fw-medium text-center">';
-                                } elseif ($user['level'] === "Ortu") {
-                                    echo '<input style="height: 30px;" type="text" readonly id="nama" value="' . $user['anak'] . '" class="form-control fw-medium text-center">';
-                                }
-                                ?>
+                                <input style="height: 30px;" type="text" name="anak" placeholder="Masukkan Nama Orang Yang Ingin Didiagnosis" id="nama" value=""
+                                    class="form-control fw-medium text-center fs-5">
                             </div>
                         </div>
-                        <p class="text-center py-3">Silahkan Jawab Pertanyaan Di Bawah Untuk Mendapatkan Hasil Diagnosis
-                            &
+                        <p class="text-center py-3">Silahkan Jawab Pertanyaan Di Bawah Untuk Mendapatkan Hasil Diagnosis &
                             Solusi</p>
                         <div class="row">
                             <div class="col-6">
@@ -114,16 +100,16 @@ if (isset($_POST['submit_hitung'])) {
                                     </h6>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="1"
-                                            id="<?= 'iya_' . $p1['kode_pertanyaan']; ?>"
-                                            name="<?= $p1['kode_pertanyaan']; ?>" required>
+                                            id="<?= 'iya_' . $p1['kode_pertanyaan']; ?>" name="<?= $p1['kode_pertanyaan']; ?>"
+                                            required>
                                         <label class="form-check-label" for="<?= 'iya_' . $p1['kode_pertanyaan']; ?>">
                                             Iya
                                         </label>
                                     </div>
                                     <div class="form-check mb-4">
                                         <input class="form-check-input" type="radio" value="0.5"
-                                            id="<?= 'tidak_' . $p1['kode_pertanyaan']; ?>"
-                                            name="<?= $p1['kode_pertanyaan']; ?>" required>
+                                            id="<?= 'tidak_' . $p1['kode_pertanyaan']; ?>" name="<?= $p1['kode_pertanyaan']; ?>"
+                                            required>
                                         <label class="form-check-label" for="<?= 'tidak_' . $p1['kode_pertanyaan']; ?>">
                                             Tidak
                                         </label>
@@ -133,7 +119,7 @@ if (isset($_POST['submit_hitung'])) {
                                 endforeach;
                                 ?>
                             </div>
-
+    
                             <div class="col-6">
                                 <?php foreach ($pertanyaan2 as $p2):
                                     ?>
@@ -143,16 +129,16 @@ if (isset($_POST['submit_hitung'])) {
                                     </h6>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="1"
-                                            id="<?= 'iya_' . $p2['kode_pertanyaan']; ?>"
-                                            name="<?= $p2['kode_pertanyaan']; ?>" required>
+                                            id="<?= 'iya_' . $p2['kode_pertanyaan']; ?>" name="<?= $p2['kode_pertanyaan']; ?>"
+                                            required>
                                         <label class="form-check-label" for="<?= 'iya_' . $p2['kode_pertanyaan']; ?>">
                                             Iya
                                         </label>
                                     </div>
                                     <div class="form-check  mb-4">
                                         <input class="form-check-input" type="radio" value="0.5"
-                                            id="<?= 'tidak_' . $p2['kode_pertanyaan']; ?>"
-                                            name="<?= $p2['kode_pertanyaan']; ?>" required>
+                                            id="<?= 'tidak_' . $p2['kode_pertanyaan']; ?>" name="<?= $p2['kode_pertanyaan']; ?>"
+                                            required>
                                         <label class="form-check-label" for="<?= 'tidak_' . $p2['kode_pertanyaan']; ?>">
                                             Tidak
                                         </label>
@@ -163,9 +149,9 @@ if (isset($_POST['submit_hitung'])) {
                                 ?>
                             </div>
                         </div>
-
+    
                         <div class="submit text-center pt-4 btn-long">
-                            <a href="../hasil" class="fw-medium text-decoration-none">
+                            <a href="../hasil/hasil.php" class="fw-medium text-decoration-none">
                                 <button style="border: none; background: none; font-weight: 500;" type="submit"
                                     name="submit_hitung">SUBMIT</button>
                             </a>
