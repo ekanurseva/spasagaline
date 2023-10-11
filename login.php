@@ -145,9 +145,9 @@ if (isset($_POST["login"])) {
                         </div>
                     </div>
                 </div>
-                <!-- Modal Regist -->
+                <!-- Modal Forgot Password = Input Email Selesai -->
 
-                <!-- Modal Forgot Password = Input Email -->
+                <!-- Modal Regist -->
                 <div class="modal fade" id="regis" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -181,7 +181,7 @@ if (isset($_POST["login"])) {
                         </div>
                     </div>
                 </div>
-                <!-- Modal Regist -->
+                <!-- Modal Regist Selesai -->
             </div>
 
             <!-- konten selesai -->

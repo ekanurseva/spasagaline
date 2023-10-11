@@ -123,10 +123,20 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
                     </div>
 
                     <div class="submit text-center mt-4 pt-4">
-                        <a href="../cetak.php?id=<?= $idhasil; ?>" target="_blank"
+                        <?php
+                        if ($user['level'] === "User" || $user['level'] === "Admin") {
+                            echo '<a href="../cetak.php?id=<?= $idhasil; ?>" target="_blank"
                             class="fw-medium text-decoration-none">
                             <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
-                        </a>
+                        </a>';
+                        } else {
+                            echo '<a href="../print.php?id=<?= $idhasil; ?>" target="_blank"
+                            class="fw-medium text-decoration-none">
+                            <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
+                        </a>';
+                        }
+                        ?>
+
                     </div>
                 </div>
 

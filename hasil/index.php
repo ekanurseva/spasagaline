@@ -67,7 +67,7 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
         <!-- sidebar -->
         <?php
         // Cek peran pengguna dan masukkan file sidebar yang sesuai
-        if ($user['level'] === "User") {
+        if ($user['level'] === "User" || $user['level'] === "Ortu") {
             require_once('../sidenav/sidebar_user.php');
         } elseif ($user['level'] === "Admin") {
             require_once('../sidenav/sidebar.php');
@@ -141,11 +141,21 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
                     </div>
 
                     <div class="submit text-center mt-4 pt-4">
-                        <a href="../print.php?id=<?= $idhasil; ?>" target="_blank"
-                            class="fw-medium text-decoration-none">
-                            <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
-                        </a>
+                        <?php
+                        if ($user['level'] === "User" || $user['level'] === "Admin") {
+                            echo '<a href="../print.php?id=' . $idhasil . '" target="_blank"
+                                    class="fw-medium text-decoration-none">
+                                    <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
+                                </a>';
+                        } else {
+                            echo '<a href="../cetak.php?id=' . $idhasil . '" target="_blank"
+                                    class="fw-medium text-decoration-none">
+                                    <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
+                                </a>';
+                        }
+                        ?>
                     </div>
+
                 </div>
 
             </div>

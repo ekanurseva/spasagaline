@@ -90,18 +90,11 @@ if (isset($_POST['submit_hitung'])) {
                     <form method="post" action="">
                         <div class="row pb-2 d-flex justify-content-center">
                             <div class="col-12">
-                                <?php
-                                if ($user['level'] === "User" || $user['level'] === "Admin") {
-                                    echo '<input style="height: 30px;" type="text" readonly id="nama" value="' . $user['nama'] . '" class="form-control fw-medium text-center">';
-                                } elseif ($user['level'] === "Ortu") {
-                                    echo '<input style="height: 30px;" type="text" readonly id="nama" value="' . $user['anak'] . '" class="form-control fw-medium text-center">';
-                                }
-                                ?>
+                                <input style="height: 30px;" type="text" readonly id="nama" value="<?= $user['nama']; ?>"
+                                    class="form-control fw-medium text-center">
                             </div>
                         </div>
-                        <p class="text-center py-3">Silahkan Jawab Pertanyaan Di Bawah Untuk Mendapatkan Hasil Diagnosis
-                            &
-                            Solusi</p>
+                        <p class="text-center py-3">Silahkan Jawab Pertanyaan Di Bawah Untuk Mendapatkan Hasil Diagnosis & Solusi</p>
                         <div class="row">
                             <div class="col-6">
                                 <?php

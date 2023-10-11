@@ -67,25 +67,21 @@ $user = query("SELECT * FROM user WHERE iduser = $id")[0];
                 <h1 class="text-white text-center pb-3">Welcome to SPASAGALINE</h1>
 
                 <?php
-                if ($user['level'] === "User" || $user['level'] === "Admin") {
+                if ($user['level'] === "User") {
                     echo '<a href="../diagnosa" class="text-decoration-none fw-bold">
                             <i class="bi bi-controller"></i>
                             <span>Mulai Deteksi</span>
                           </a>';
                 } else {
-                    echo '<a href="../diagnosa/diagnosa.php" class="text-decoration-none fw-bold">
-                            <i class="bi bi-controller"></i>
-                            <span>Mulai Deteksi</span>
-                          </a>';
+                    echo '<a type="button" class="text-decoration-none fw-bold" data-bs-toggle="modal" data-bs-target="#deteksi"><i class="bi bi-controller"></i>
+                    <span>Mulai Deteksi</span></a>';
                 }
                 ?>
 
                 <div class="kritera pt-3">
                     <img style="width: 93%" src="../img/Home.png" alt="kriteria kecanduan game online">
                 </div>
-
             </div>
-
             <!-- konten selesai -->
         </div>
     </div>

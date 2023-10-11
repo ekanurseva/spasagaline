@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Sep 2023 pada 05.23
+-- Waktu pembuatan: 11 Okt 2023 pada 03.59
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.0.28
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `hasil` (
   `idhasil` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
+  `anak` varchar(50) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `hsl_kategori` varchar(45) NOT NULL,
   `salience` double NOT NULL,
@@ -45,20 +46,72 @@ CREATE TABLE `hasil` (
 -- Dumping data untuk tabel `hasil`
 --
 
-INSERT INTO `hasil` (`idhasil`, `iduser`, `tanggal`, `hsl_kategori`, `salience`, `tolerance`, `mood_modification`, `relapse`, `withdrawal`, `conflict`, `problem`) VALUES
-(11, 1, '2023-09-07 09:58:10', 'Ringan', 80.179, 54.476, 52.147, 78.587, 43.75, 68.359, 31.918),
-(12, 1, '2023-09-08 07:24:44', 'Berat', 96.093, 54.476, 64.838, 96.02, 62.5, 90.625, 44.559),
-(13, 2, '2023-09-09 05:52:56', 'Sedang', 77.971, 66.678, 58.98, 91.002, 75, 68.359, 48.227),
-(14, 5, '2023-09-09 13:52:13', 'Ringan', 77.971, 54.476, 85.939, 77.464, 62.5, 68.359, 54.852),
-(15, 10, '2023-09-09 14:20:08', 'Berat', 77.971, 66.678, 85.939, 91.451, 62.5, 93.75, 54.852),
-(16, 10, '2023-09-09 14:25:57', 'Ringan', 77.971, 37.807, 58.98, 77.464, 43.75, 68.359, 36.423),
-(17, 1, '2023-09-10 01:02:03', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 40.63),
-(18, 14, '2023-09-11 07:50:15', 'Sedang', 77.971, 66.678, 85.939, 77.464, 75, 93.75, 54.852),
-(19, 14, '2023-09-11 07:56:42', 'Sedang', 90.919, 54.476, 85.939, 89.509, 75, 68.359, 54.852),
-(20, 20, '2023-09-11 08:01:24', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 40.63),
-(21, 20, '2023-09-11 08:11:14', 'Sedang', 80.575, 66.678, 52.147, 92.572, 62.5, 93.75, 54.852),
-(22, 21, '2023-09-11 08:48:55', 'Sedang', 79.314, 54.476, 52.147, 95.811, 43.75, 68.359, 36.423),
-(24, 24, '2023-09-12 07:02:46', 'Ringan', 77.971, 37.807, 58.98, 77.464, 62.5, 90.625, 36.423);
+INSERT INTO `hasil` (`idhasil`, `iduser`, `anak`, `tanggal`, `hsl_kategori`, `salience`, `tolerance`, `mood_modification`, `relapse`, `withdrawal`, `conflict`, `problem`) VALUES
+(11, 1, '-', '2023-09-22 03:39:01', 'Ringan', 80.179, 54.476, 52.147, 78.587, 43.75, 68.359, 31.918),
+(12, 1, '-', '2023-09-22 03:39:01', 'Berat', 96.093, 54.476, 64.838, 96.02, 62.5, 90.625, 44.559),
+(13, 2, '-', '2023-09-22 03:39:01', 'Sedang', 77.971, 66.678, 58.98, 91.002, 75, 68.359, 48.227),
+(14, 5, '-', '2023-09-22 03:39:01', 'Ringan', 77.971, 54.476, 85.939, 77.464, 62.5, 68.359, 54.852),
+(15, 10, '-', '2023-09-22 03:39:01', 'Berat', 77.971, 66.678, 85.939, 91.451, 62.5, 93.75, 54.852),
+(16, 10, '-', '2023-09-22 03:39:01', 'Ringan', 77.971, 37.807, 58.98, 77.464, 43.75, 68.359, 36.423),
+(17, 1, '-', '2023-09-22 03:39:01', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 40.63),
+(18, 14, '-', '2023-09-22 03:39:01', 'Sedang', 77.971, 66.678, 85.939, 77.464, 75, 93.75, 54.852),
+(19, 14, '-', '2023-09-22 03:39:01', 'Sedang', 90.919, 54.476, 85.939, 89.509, 75, 68.359, 54.852),
+(20, 20, 'Bulan', '2023-09-22 03:37:25', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 40.63),
+(21, 20, 'Bulan', '2023-09-22 03:37:25', 'Sedang', 80.575, 66.678, 52.147, 92.572, 62.5, 93.75, 54.852),
+(22, 21, '-', '2023-09-22 03:39:01', 'Sedang', 79.314, 54.476, 52.147, 95.811, 43.75, 68.359, 36.423),
+(24, 24, '-', '2023-09-22 03:39:01', 'Ringan', 77.971, 37.807, 58.98, 77.464, 62.5, 90.625, 36.423),
+(25, 10, '-', '2023-09-22 03:39:01', 'Ringan', 77.971, 54.476, 85.939, 77.464, 62.5, 68.359, 54.852),
+(26, 10, '-', '2023-09-22 03:39:01', 'Ringan', 77.971, 54.476, 52.147, 77.464, 62.5, 68.359, 54.852),
+(27, 10, '-', '2023-09-22 03:39:01', 'Sedang', 77.971, 66.678, 85.939, 77.464, 75, 93.75, 54.852),
+(28, 27, 'Naufal', '2023-09-22 03:37:25', 'Berat', 95.922, 54.476, 64.838, 92.572, 62.5, 90.625, 40.63),
+(29, 27, 'Naufal', '2023-09-22 03:37:25', 'Berat', 95.922, 54.476, 64.838, 92.572, 62.5, 90.625, 40.63),
+(31, 14, '-', '2023-09-22 03:25:08', 'Sedang', 90.522, 54.476, 80.865, 91.002, 75, 85.938, 51.653),
+(32, 29, '-', '2023-09-21 03:03:42', 'Sedang', 79.314, 37.807, 58.98, 87.486, 62.5, 85.938, 48.227),
+(33, 30, '-', '2023-09-21 03:07:00', 'Sedang', 89.907, 66.678, 58.98, 88.959, 62.5, 78.906, 31.918),
+(34, 31, '-', '2023-09-21 03:10:46', 'Sedang', 80.179, 66.678, 58.98, 91.34, 43.75, 90.625, 44.559),
+(35, 32, '-', '2023-09-21 03:13:52', 'Sedang', 98.21, 37.807, 83.597, 92.943, 43.75, 68.359, 48.227),
+(36, 33, '-', '2023-09-21 03:17:52', 'Ringan', 77.971, 54.476, 64.838, 86.829, 43.75, 78.906, 36.423),
+(37, 34, '-', '2023-09-21 03:22:44', 'Ringan', 89.907, 54.476, 52.147, 77.464, 62.5, 68.359, 31.918),
+(38, 35, '-', '2023-09-21 03:25:28', 'Ringan', 89.907, 37.807, 64.838, 81.634, 62.5, 78.906, 31.918),
+(39, 36, '-', '2023-09-21 03:25:58', 'Ringan', 77.971, 37.807, 64.838, 87.325, 43.75, 85.938, 31.918),
+(40, 37, '-', '2023-09-21 03:27:08', 'Berat', 96.331, 66.678, 80.865, 95.179, 75, 90.625, 48.227),
+(41, 38, '-', '2023-09-21 03:27:19', 'Ringan', 90.522, 37.807, 52.147, 83.206, 62.5, 78.906, 31.918),
+(42, 39, '-', '2023-09-21 03:27:55', 'Ringan', 77.971, 37.807, 52.147, 78.587, 43.75, 68.359, 36.423),
+(43, 40, '-', '2023-09-21 03:27:19', 'Sedang', 90.522, 54.476, 64.838, 91.772, 43.75, 90.625, 31.918),
+(44, 41, '-', '2023-09-21 03:27:31', 'Sedang', 80.179, 54.476, 64.838, 90.53, 43.75, 85.938, 36.423),
+(45, 42, '-', '2023-09-21 03:27:21', 'Sedang', 79.314, 54.476, 83.597, 90.886, 62.5, 85.938, 40.63),
+(46, 43, '-', '2023-09-21 03:28:19', 'Ringan', 77.971, 37.807, 64.838, 84.044, 43.75, 78.906, 36.423),
+(47, 28, 'Tiara Dian Santika', '2023-09-21 04:56:39', 'Berat', 90.522, 37.807, 80.865, 94.379, 75, 85.938, 36.423),
+(48, 28, 'Fajar Rifai', '2023-09-21 05:58:43', 'Sedang', 89.907, 66.678, 64.838, 84.839, 62.5, 78.906, 44.559),
+(49, 28, 'Pandu Winata', '2023-09-21 06:00:38', 'Ringan', 77.971, 54.476, 58.98, 83.206, 43.75, 85.938, 36.423),
+(50, 28, 'Ahmad Ridho Haibah', '2023-09-21 06:05:34', 'Sedang', 95.658, 54.476, 80.865, 85.41, 75, 78.906, 40.63),
+(51, 28, 'Saputra', '2023-09-21 06:10:49', 'Sedang', 90.522, 37.807, 64.838, 87.291, 62.5, 78.906, 44.559),
+(52, 28, 'Muh Muhyi', '2023-09-21 06:13:07', 'Ringan', 91.472, 54.476, 80.865, 78.587, 62.5, 78.906, 40.63),
+(53, 28, 'fahrian wibowo', '2023-09-21 06:17:58', 'Sedang', 77.971, 37.807, 52.147, 93.774, 43.75, 85.938, 36.423),
+(54, 28, 'Jihan Delly Naysilla', '2023-09-21 06:21:15', 'Berat', 98.21, 54.476, 52.147, 92.183, 75, 85.938, 48.227),
+(55, 28, 'Sultan Reza Ardiansyah', '2023-09-21 06:25:51', 'Sedang', 96.331, 37.807, 80.865, 84.044, 62.5, 90.625, 36.423),
+(56, 28, 'Cantika Satya Bhayangkari', '2023-09-21 06:30:56', 'Sedang', 80.575, 66.678, 58.98, 95.36, 62.5, 85.938, 40.63),
+(57, 28, 'Cinta Oktaviani', '2023-09-21 06:35:04', 'Sedang', 90.522, 54.476, 64.838, 86.138, 62.5, 85.938, 44.559),
+(58, 28, 'Ratna Anjali', '2023-09-21 06:41:42', 'Sedang', 90.919, 37.807, 80.865, 82.325, 62.5, 85.938, 44.559),
+(59, 28, 'Adik Rowe', '2023-09-21 06:46:29', 'Sedang', 89.907, 54.476, 58.98, 90.53, 43.75, 68.359, 36.423),
+(60, 28, 'Nicolas Octavian', '2023-09-21 06:48:36', 'Sedang', 89.907, 37.807, 58.98, 92.082, 62.5, 85.938, 51.653),
+(61, 28, 'Reyhan Panca Satria Hardiana', '2023-09-21 06:51:52', 'Berat', 95.658, 54.476, 85.939, 94.379, 43.75, 85.938, 48.227),
+(62, 44, 'Tiara Dian Santika', '2023-09-21 07:19:59', 'Berat', 90.522, 37.807, 80.865, 94.659, 62.5, 85.938, 36.423),
+(63, 45, 'Fajar Rifai', '2023-09-21 07:29:30', 'Sedang', 89.907, 66.678, 58.98, 84.839, 62.5, 78.906, 44.559),
+(64, 46, 'Pandu Winata', '2023-09-21 08:10:46', 'Sedang', 80.179, 54.476, 58.98, 90.53, 43.75, 85.938, 36.423),
+(65, 47, 'Ahmad Ridho Haibah', '2023-09-21 08:59:01', 'Sedang', 96.093, 54.476, 80.865, 91.772, 75, 78.906, 40.63),
+(66, 48, 'Saputra', '2023-09-21 07:23:02', 'Berat', 90.522, 37.807, 64.838, 92.833, 62.5, 85.938, 44.559),
+(67, 49, 'Muh Muhyi', '2023-09-21 08:26:00', 'Sedang', 81.388, 54.476, 80.865, 87.325, 62.5, 85.938, 48.227),
+(68, 50, 'Fahrian Wibowo', '2023-09-21 07:49:02', 'Sedang', 91.992, 54.476, 52.147, 93.774, 43.75, 85.938, 40.63),
+(69, 51, 'Jihan Delly Naysilla', '2023-09-21 10:32:44', 'Sedang', 90.919, 54.476, 58.98, 91.002, 62.5, 85.938, 40.63),
+(70, 52, 'Sultan Reza Ardiansyah', '2023-09-21 09:05:14', 'Sedang', 96.331, 37.807, 80.865, 84.044, 62.5, 90.625, 36.423),
+(71, 53, 'Cantika Satya Bhayangkari', '2023-09-21 09:39:22', 'Sedang', 80.575, 66.678, 58.98, 95.592, 62.5, 85.938, 44.559),
+(72, 54, 'Cinta Oktaviani', '2023-09-21 11:36:34', 'Sedang', 90.522, 54.476, 64.838, 87.486, 62.5, 85.938, 44.559),
+(73, 55, 'Ratna Anjali', '2023-09-21 10:02:44', 'Sedang', 90.919, 37.807, 80.865, 82.325, 62.5, 85.938, 44.559),
+(74, 56, 'Adik Rowe', '2023-09-21 10:11:19', 'Sedang', 90.522, 54.476, 58.98, 91.002, 43.75, 68.359, 36.423),
+(75, 57, 'Nicolas Octavian', '2023-09-21 10:28:32', 'Sedang', 89.907, 37.807, 58.98, 92.082, 62.5, 85.938, 48.227),
+(76, 58, 'Reyhan Panca Satria Hardiana', '2023-09-21 11:39:54', 'Berat', 95.658, 54.476, 85.939, 94.379, 43.75, 85.938, 44.559),
+(77, 28, '-', '2023-10-02 01:35:43', 'Sedang', 90.919, 54.476, 58.98, 89.099, 43.75, 78.906, 36.423);
 
 -- --------------------------------------------------------
 
@@ -414,9 +467,41 @@ INSERT INTO `user` (`iduser`, `nama`, `username`, `password`, `email`, `foto`, `
 (14, 'User', 'user', '$2y$10$vtJ1379MXo05EKNI9ZdDd.2vjBS39PSrbxao0inB/G9D9s8lrFGV2', 'user1@gmail.com', '64fec6428e429.png', 'User'),
 (15, 'User2', 'user2', '$2y$10$mNRlBmXgVVm6BqjSbdY79ukUrkzD1AD620QEnteTij4iJgBhVLOeq', 'user2@gmail.com', 'default.png', 'User'),
 (19, 'azka', 'maulanazka', '$2y$10$eh.d.Km2IhMNK0QIyUrPm.QaTrDTNL.R/izFvOXb5Mvcv2Ys2Jwc2', 'askamualana6@gmail.com', 'default.png', 'User'),
-(20, 'Bubu', 'bubu', '$2y$10$JJykw2RjTRnUy/IW8Jmvruouu8R1wAQB1uENNdSNpvm1xhdU/Vfkm', 'ekanursevas@gmail.com', 'default.png', 'User'),
+(20, 'Bubu', 'bubu', '$2y$10$JJykw2RjTRnUy/IW8Jmvruouu8R1wAQB1uENNdSNpvm1xhdU/Vfkm', 'ekanursevas@gmail.com', '650cbbe79453f.jpg', 'Ortu'),
 (21, 'tiwwi', 'wii', '$2y$10$a/ex1iygwAAEsMhDp5E8.eCt6LqpgH/.ms8YewuQZS6zXRm0JJpJq', 'mgpratiwwi@gmail.com', 'default.png', 'User'),
-(24, 'Halimatus Sadiyah', 'atus', '$2y$10$FuFtfGf9JuIiQyLSBtexnOdy/d/.0/kPruY.ytFTmy8a7fk7QYIGK', 'halimatussadiyah281@gmail.com', 'default.png', 'User');
+(24, 'Halimatus Sadiyah', 'atus', '$2y$10$FuFtfGf9JuIiQyLSBtexnOdy/d/.0/kPruY.ytFTmy8a7fk7QYIGK', 'halimatussadiyah281@gmail.com', 'default.png', 'User'),
+(27, 'Maulana', 'maul', '$2y$10$KfJvZ2dRRxKGq.BUzTETVOHNmkUAqitnjWerha6QfcX29l5qPWtuG', 'maulanaya@gmail.com', 'default.png', 'Ortu'),
+(28, 'Aris Sabthazi', 'aris', '$2y$10$NR7HcvgaOfGiuCGRMPGT3uMpvNhybUNYr8mqTJyuW/GMvp1t64xTu', 'arissabthazi@gmail.com', 'default.png', 'Ortu'),
+(29, 'Tiara Dian Santika', 'tiara', '$2y$10$ZkAdqG3MmY1sIJL6pJK7Ku2IbNSxv0b.DE3LahIRrJigoYcpcVplW', 'tiaradians@gmail.com', 'default.png', 'User'),
+(30, 'Fajar Rifai', 'fajar', '$2y$10$XUiQNb32W5rEOcQyKqRr3.OBJqUlvBPu5ZeJolgnosy.d8UVcJj.y', 'frifai.fajar@gmail.com', 'default.png', 'User'),
+(31, 'Pandu Winata', 'winata', '$2y$10$pACKTi0WjW09NM2gScTcju0xc0d9yd1tY1ntOLr566u7Qvoq4hTHS', 'panduwina@gmail.com', 'default.png', 'User'),
+(32, 'Ahmad Ridho Haibah', 'ridho', '$2y$10$pPxWy5MWjJEX4z41VyFHsO1V4NGZzksUmu1.0Uvt.nH6ZNdfH9hfO', 'ridho.ahmadh@gmail.com', 'default.png', 'User'),
+(33, 'Saputra', 'saputra', '$2y$10$IEs0hGMSMb3EeEtpwPA1fePspzYL6o0x765P1Yd6dywwu4WJN9.TG', 'saputra23@gmail.com', 'default.png', 'User'),
+(34, 'Muhammad Muhyi', 'muhyi', '$2y$10$NNVtgFVuVe49JjxRvW8RcOJVwCITmy7Jbs3i0.c3RSdDXRUpz3drW', 'muh.muhyi@gmail.com', 'default.png', 'User'),
+(35, 'Fahrian Wibowo', 'fahrian', '$2y$10$ZVYnd74hJk5biTUKCNj0..CyjB4UEeYbx7S/Ira6Z7hZwB4p63JUW', 'fahrianwibowo@gmail.com', 'default.png', 'User'),
+(36, 'Jihan Delly Naysilla', 'jihan', '$2y$10$/uMeYPNFDTeiE2Xd5g3XHe6xKhj/7/MhtThC2ZTDeWZyY5IecI5cq', 'jihan.naysilla@gmail.com', 'default.png', 'User'),
+(37, 'Sultan reza Apriansyah', 'reza', '$2y$10$ezSXbvleIK5LZm2N741ou.7HMIzr.1VwkHk/66XBfGo643/CINRMi', 'rezaapriansyah@gmail.com', 'default.png', 'User'),
+(38, 'Cantika Satya Bhayangkari', 'cantika', '$2y$10$pZeE0fwjSWrQl61LzLg5gOS4c0R1vZcv91UwlFUWUTC2MtPJHp.8a', 'cantika.satya@gmail.com', 'default.png', 'User'),
+(39, 'Cinta Oktaviani', 'cinta', '$2y$10$7n8Q.8d3h/j7oT4ouT4Fquqze4woWTEv5l/ULxCnP0hkPONShh8HC', 'cintiaokt10@gmail.com', 'default.png', 'User'),
+(40, 'Ratna Anjali', 'ratna', '$2y$10$zrRsgr0fq47NYtOWJITI7e1mcwCSBzJkviEPtWb6d2Iw0yquFdWCy', 'ratnaanjali03@gmail.com', 'default.png', 'User'),
+(41, 'Adik Rowe', 'rowe', '$2y$10$U2Si9MQxtINkBs/YWf5fhO5KWfKdTWxz/MBes9.sOiAepftpRdOAS', 'adikrowe@gmail.com', 'default.png', 'User'),
+(42, 'Nicolas Octavian', 'nico', '$2y$10$j1.plNf/zwJzDAT4wGBvVOK4VEnUkKatOJ.xWoyh1TnzdnSLLK83y', 'nicolas.octavian@gmail.com', 'default.png', 'User'),
+(43, 'Reyhan Panca Satria Hardiana', 'rey', '$2y$10$KyVpsNFm0y7dUsCW.sZnSeoTJgiJwBW0/5dUqDHM5QEZPYnY8n80K', 'reyhanpanca.satria@gmail.com', 'default.png', 'User'),
+(44, 'Tania', 'tania', '$2y$10$M/A/znkRp6yuIQJRSP62BueKG1vyPsIdTlps33wShMaIYZf/IXttW', 'tania320@gmail.com', 'default.png', 'Ortu'),
+(45, 'Moh. Jainal', 'jainal', '$2y$10$TR7E/5O4rvsGkRycvY3YSenKg90zuzvXPaio7awWoaomlm1XFVrIG', 'jainal.mohammad@gmail.com', 'default.png', 'Ortu'),
+(46, 'Jalaludin', 'udin', '$2y$10$NzvpkgBHv838KjAyylIpL.AxJHfPhs3OIRotTLUtHXgT8itpKzk3C', 'jalaludin.09@gmail.com', 'default.png', 'Ortu'),
+(47, 'Habibah Putra', 'putra', '$2y$10$4TqYXWeexkgVl8quBl2TrOOTU9x5Fw6T6r.kYNLvoHBT4avgsluue', 'habibahputra@gmail.com', 'default.png', 'Ortu'),
+(48, 'Jaelani', 'jae', '$2y$10$O9LAnNLu6ECAmcG9RUcqeOu58r4XUqYw773uAW9N7qGvOyFifPljS', 'jaelani20@gmail.com', 'default.png', 'Ortu'),
+(49, 'Maryam', 'maryam', '$2y$10$Auemy8vCSfYUeuw6pAa7nOfusNhYOWG0ie4tZdeWDXbII5FJosF5C', 'maryam.m@gmail.com', 'default.png', 'Ortu'),
+(50, 'Wibowo', 'bowo', '$2y$10$IEv7loc7NtftbDQkLrIt/eKwB8suPu5iBx0u.YmzNuL2rXZwgLr2.', 'wibowo.bowo12@gmail.com', 'default.png', 'Ortu'),
+(51, 'Tanti Suprianti', 'tanti', '$2y$10$kEDvbceh0coDN55eQD1qkueQxw/2EiWwrP49ddt4UewZhR1OavhrK', 'suprianti_tanti@gmail.com', 'default.png', 'Ortu'),
+(52, 'Ichtiarin S', 'arin', '$2y$10$/gIdPcB8IkquNjqKk5hMH.At/tnHWHe1Cfz1cwActVy.YF0qQa8nO', 'ichtiarin7s@gmail.com', 'default.png', 'Ortu'),
+(53, 'Heri Bhayangkari', 'heri', '$2y$10$DyLzM7LNSvaMF4kwWWZtmOjhT1ZnQi/krH31ScTW3/YeMqusjyvBC', 'bhayangkasi_herri@gmail.com', 'default.png', 'Ortu'),
+(54, 'Dwi Dewi', 'dewi', '$2y$10$sHLlQxCYH7sHh5Oh7cLPCu9yEor4qwzeT2rZ7GPTWM.cQlj6j2xsy', '2dewi.dwi@gmail.com', 'default.png', 'Ortu'),
+(55, 'Dian', 'dian', '$2y$10$ryBtUlluLg8VSSpHYF6/Je/VcZequL3scUbvuPsvKMipDCNJAPSYW', 'dian0921@gmail.com', 'default.png', 'Ortu'),
+(56, 'Yani', 'yani', '$2y$10$Q9dAi9M/0BLUqIbun5/azej4P9vHuAAyV4Vh/D9fKLI4QX6u8qf0q', 'yaniyani@gmail.com', 'default.png', 'Ortu'),
+(57, 'Maulana Muna', 'muna', '$2y$10$Vp6Kffw9.IqALB.7AwtCKO2dyUigHl2HyzYp9YDrS1yd45iIKgIdG', 'maulanamuna@gmail.com', 'default.png', 'Ortu'),
+(58, 'Dhamar S', 'dhamar', '$2y$10$7ExZAJpm94PrPjmpLM0QF.CobgAgcUk0zIVLJG4W8NJ5aUf7zXNIu', 'dhamar.suryana@gmail.com', 'default.png', 'Ortu');
 
 --
 -- Indexes for dumped tables
@@ -488,7 +573,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `hasil`
 --
 ALTER TABLE `hasil`
-  MODIFY `idhasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idhasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT untuk tabel `ind_gejala`
@@ -536,7 +621,7 @@ ALTER TABLE `solusi`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

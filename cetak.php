@@ -15,6 +15,12 @@ $hasil = hasil_cf($data_hasil);
 $iduser = $data_hasil['iduser'];
 $data_user = query("SELECT * FROM user WHERE iduser = $iduser")[0];
 
+// Periksa jika level pengguna bukan "Ortu"
+if ($data_hasil['anak'] == '-') {
+    // Jika bukan "Ortu", tetapkan "nama anak" menjadi "nama pengguna"
+    $data_hasil['anak'] = $data_user['nama'];
+}
+
 $kriteria_cf = kriteria_cf($data_hasil);
 $hasil_cf = hasil_cf($data_hasil);
 

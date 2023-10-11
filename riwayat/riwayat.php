@@ -114,19 +114,10 @@ $data_hasil = query("SELECT * FROM hasil WHERE iduser = $id");
                                             <?php
                                             $idhasil = enkripsi($h['idhasil']);
                                             ?>
-                                            <?php
-                                            if ($user['level'] === "User") {
-                                                echo '<a class="detail" href="../hasil?idhasil=' . $idhasil . '">
-                                                        DETAIL
-                                                    </a>';
-                                            } else {
-                                                echo '<a class="detail" href="../hasil/hasil.php?idhasil=' . $idhasil . '">
-                                                        DETAIL
-                                                    </a>';
-                                            }
-                                            ?>
+                                            <a class="detail" href="../hasil?idhasil=<?php echo $idhasil; ?>">
+                                                DETAIL
+                                            </a>
                                         </td>
-
                                     </tr>
                                     <?php
                                     $i++;
