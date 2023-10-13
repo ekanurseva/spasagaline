@@ -125,15 +125,15 @@ $solusi = query("SELECT * FROM solusi WHERE idkategori = $idkategori");
                     <div class="submit text-center mt-4 pt-4">
                         <?php
                         if ($user['level'] === "User" || $user['level'] === "Admin") {
-                            echo '<a href="../cetak.php?id=<?= $idhasil; ?>" target="_blank"
-                            class="fw-medium text-decoration-none">
-                            <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
-                        </a>';
+                            echo '<a href="../print.php?id=' . $idhasil . '" target="_blank"
+                                    class="fw-medium text-decoration-none">
+                                    <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
+                                </a>';
                         } else {
-                            echo '<a href="../print.php?id=<?= $idhasil; ?>" target="_blank"
-                            class="fw-medium text-decoration-none">
-                            <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
-                        </a>';
+                            echo '<a href="../cetak.php?id=' . $idhasil . '" target="_blank"
+                                    class="fw-medium text-decoration-none">
+                                    <span><i class="bi bi-printer me-2"></i>CETAK HASIL</span>
+                                </a>';
                         }
                         ?>
 
